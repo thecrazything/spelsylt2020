@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameStatsService
@@ -14,7 +15,7 @@ public class GameStatsService
             return _characters;
         }
     }
-    public ICharacter selectedCharacter;
+    public Character selectedCharacter;
 
     public static GameStatsService Instance
     {
@@ -26,5 +27,10 @@ public class GameStatsService
             }
             return _serviceInstance;
         }
+    }
+
+    public Character GetCharacterById(int id)
+    {
+        return _characters.FirstOrDefault(c => c.id == id);
     }
 }
