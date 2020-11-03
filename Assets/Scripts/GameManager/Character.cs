@@ -42,7 +42,7 @@ public class Character
     {
         get
         {
-            return _dead:
+            return _dead;
         }
         set
         {
