@@ -48,7 +48,7 @@ public class ConsoleBehaviour : MonoBehaviour
         if (_textToWrite != null)
         {
             _currentWriteTime += Time.deltaTime;
-            if (_currentPosition > _textToWrite.Length)
+            if (_currentPosition >= _textToWrite.Length)
             {
                 _textToWrite = null;
             } 
