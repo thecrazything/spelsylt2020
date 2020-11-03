@@ -1,12 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class GameStatsService
 {
+    public delegate void ChangeSelectedCharacterEvent(Character character);
+    public event ChangeSelectedCharacterEvent onChangeSelectedCharacter;
+
     private static GameStatsService _serviceInstance;
     private ICollection<Character> _characters;
+    private Character _selectedCharacter;
     public GameStats gameStats;
     public ICollection<Character> characters
     {
@@ -15,7 +20,16 @@ public class GameStatsService
             return _characters;
         }
     }
-    public Character selectedCharacter;
+    public Character selectedCharacter { 
+        get
+        {
+            return _selectedCharacter;
+        }
+        set {
+            _selectedCharacter = value;
+            onChangeSelectedCharacter?.Invoke(_selectedCharacter);
+        } 
+    }
 
     public static GameStatsService Instance
     {
@@ -31,6 +45,16 @@ public class GameStatsService
 
     public Character GetCharacterById(int id)
     {
+        if (_characters == null)
+        {
+            throw new ArgumentNullException("Character list was null.");
+        }
         return _characters.FirstOrDefault(c => c.id == id);
+    }
+
+    public void SetStartData(ICollection<Character> characters, GameStats gameStats)
+    {
+        _characters = characters;
+        this.gameStats = gameStats;
     }
 }

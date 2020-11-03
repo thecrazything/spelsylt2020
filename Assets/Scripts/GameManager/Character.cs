@@ -50,6 +50,12 @@ public class Character
         }
     }
 
+    public Character(int id, string name)
+    {
+        _id = id;
+        _name = name;
+    }
+
     public void subtractHealth(float value)
     {
         if (value < 0)
