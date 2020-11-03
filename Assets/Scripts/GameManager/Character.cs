@@ -12,6 +12,7 @@ public class Character
     private string _name = "TESTNAME";
     private float _health;
     private float _maxHealth = 100f;
+    private bool _dead = false;
 
     public int id
     {
@@ -34,6 +35,18 @@ public class Character
         get
         {
             return _health;
+        }
+    }
+
+    public bool dead
+    {
+        get
+        {
+            return _dead:
+        }
+        set
+        {
+            _dead = value;
         }
     }
 
