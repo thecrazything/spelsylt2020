@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterDataInjector : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         List<Character> characters = new List<Character>();
 
@@ -20,6 +20,7 @@ public class CharacterDataInjector : MonoBehaviour
 
         GameStats stats = new GameStats();
         GameStatsService.Instance.SetStartData(characters, stats);
+        GameStatsService.Instance.selectedCharacter = a;
     }
 
     // Update is called once per frame

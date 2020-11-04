@@ -54,6 +54,7 @@ public class Character
     {
         _id = id;
         _name = name;
+        _health = _maxHealth;
     }
 
     public void subtractHealth(float value)
