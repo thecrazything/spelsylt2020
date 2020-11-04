@@ -21,12 +21,6 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetFloat("Speed", movement.sqrMagnitude);
 
-        if (movement.x < 0) {
-            transform.localScale = new Vector3(-1f, 1, 1);
-        } else {
-            transform.localScale = new Vector3(1f, 1, 1); ;
-        }
-
         if (movement.magnitude > .1f) {
             animator.SetFloat("Last_Horizontal", movement.x);
             animator.SetFloat("Last_Vertical", movement.y);
@@ -35,7 +29,15 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        movement = movement.normalized;
+        if (Input.GetAxisRaw("Vertical") > 0.5f || Input.GetAxisRaw("Vertical") < -0.5f)
+        {
+            movement.x = 0;
+        }
+        else {
+            movement.y = 0;
+        }
+
+        //movement = movement.normalized;
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
 
 
