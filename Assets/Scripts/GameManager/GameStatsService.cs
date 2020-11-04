@@ -52,6 +52,11 @@ public class GameStatsService
         return _characters.FirstOrDefault(c => c.id == id);
     }
 
+    public void CompleteExpedition()
+    {
+        this.gameStats.expeditionComplete = true;
+    }
+
     public void SetStartData(ICollection<Character> characters, GameStats gameStats)
     {
         _characters = characters;

@@ -6,4 +6,6 @@ public class GameStats
 {
     public delegate void GameStatChangeDelegate(GameStats stats);
     public event GameStatChangeDelegate onGameChange;
+
+    public bool expeditionComplete = false;
 }

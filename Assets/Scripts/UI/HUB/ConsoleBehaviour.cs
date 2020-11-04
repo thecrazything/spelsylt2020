@@ -18,13 +18,19 @@ public class ConsoleBehaviour : MonoBehaviour
 
     private TextPrintAnimation _textPrintAnimation;
 
+    private string _startText;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (_startText == null)
+        {
+            _startText = defaultText;
+        }
+
         _audioSource = GetComponent<AudioSource>();
         _textPrintAnimation = new TextPrintAnimation(GetComponent<Text>(), writeDelay);
-        _textPrintAnimation.Write(defaultText);
+        _textPrintAnimation.Write(_startText);
         GameStatsService.Instance.onChangeSelectedCharacter += character =>
         {
             if (character == null)
@@ -46,5 +52,16 @@ public class ConsoleBehaviour : MonoBehaviour
     void Update()
     {
         _textPrintAnimation.printNextIfTime(Time.deltaTime);
+    }
+
+    public void WriteText(string text)
+    {
+        if (_textPrintAnimation != null)
+        {
+            _textPrintAnimation.Write(text);
+        } else
+        {
+            _startText = text;
+        }
     }
 }
