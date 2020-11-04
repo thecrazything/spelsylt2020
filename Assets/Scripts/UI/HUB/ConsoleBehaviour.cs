@@ -6,57 +6,45 @@ using UnityEngine.UI;
 public class ConsoleBehaviour : MonoBehaviour
 {
     public float writeDelay = 0.1f;
-    private Text _consoleText;
+    public AudioClip startSound;
+    public AudioClip idleSound;
+    public AudioClip stopSound;
+    public AudioClip[] writeSounds;
+
+    private AudioSource _audioSource;
 
     private string defaultText = "Much need to be done in the HUB and on expeditions or whatever lol.";
     private string characterSelectedText = "{name} is feeling pretty swell. Pretty swiggity swooty. Hip with the kids.";
 
-    private int _currentPosition;
-    private string _textToWrite;
+    private TextPrintAnimation _textPrintAnimation;
 
-    private float _currentWriteTime;
 
     // Start is called before the first frame update
     void Start()
     {
-        _consoleText = GetComponent<Text>();
-        _consoleText.text = defaultText;
+        _audioSource = GetComponent<AudioSource>();
+        _textPrintAnimation = new TextPrintAnimation(GetComponent<Text>(), writeDelay);
+        _textPrintAnimation.Write(defaultText);
         GameStatsService.Instance.onChangeSelectedCharacter += character =>
         {
             if (character == null)
             {
-                WriteText(defaultText);
+                _textPrintAnimation.Write(defaultText);
             } 
             else
             {
-                WriteText(characterSelectedText.Replace("{name}", character.name));
+                _textPrintAnimation.Write(characterSelectedText.Replace("{name}", character.name));
+                _audioSource.clip = writeSounds[Random.Range(0, 2)];
+                _audioSource.Play();
+                StartCoroutine(SoundQueue.playNext(_audioSource, idleSound, 0.1f));
             }
         };
-    }
-
-    void WriteText(string text)
-    {
-        _consoleText.text = "";
-        _currentPosition = 0;
-        _textToWrite = text;
-        _currentWriteTime = 0.0f;
+        StartCoroutine(SoundQueue.playNext(_audioSource, idleSound, 0.7f));
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_textToWrite != null)
-        {
-            _currentWriteTime += Time.deltaTime;
-            if (_currentPosition >= _textToWrite.Length)
-            {
-                _textToWrite = null;
-            } 
-            else if (_currentWriteTime >= writeDelay)
-            {
-                _currentWriteTime = 0;
-                _consoleText.text += _textToWrite[_currentPosition++];
-            }
-        }
+        _textPrintAnimation.printNextIfTime(Time.deltaTime);
     }
 }
