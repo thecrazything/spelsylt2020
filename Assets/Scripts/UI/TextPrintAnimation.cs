@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +16,11 @@ public class TextPrintAnimation
     {
         _textView = textView;
         _delay = delay;
+
+        if (_textView == null)
+        {
+            throw new ArgumentNullException("TextView");
+        }
     }
 
     public void Write(string text)
