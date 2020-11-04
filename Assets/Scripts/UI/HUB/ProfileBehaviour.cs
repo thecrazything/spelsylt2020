@@ -35,9 +35,9 @@ public class ProfileBehaviour : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     public void OnDeselect(BaseEventData eventData)
     {
-       if (GameStatsService.Instance.selectedCharacter != null && GameStatsService.Instance.selectedCharacter.id == _character.id)
+       /**if (GameStatsService.Instance.selectedCharacter != null && GameStatsService.Instance.selectedCharacter.id == _character.id)
         {
             GameStatsService.Instance.selectedCharacter = null;
-        }
+        }**/
     }
 }

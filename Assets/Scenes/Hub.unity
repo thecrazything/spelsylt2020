@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 4301671}
   - component: {fileID: 4301670}
   - component: {fileID: 4301669}
+  - component: {fileID: 4301672}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -202,7 +203,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4301670}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4301672}
+        m_MethodName: ChangeScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4301670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,6 +252,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4301667}
   m_CullTransparentMesh: 0
+--- !u!114 &4301672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4301667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2813544610e5bf546b7fb7a1b48ccc39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scene: 2
 --- !u!224 &290127470 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5762169638827983905, guid: 9012313ac184ed54282f70079e11553c,
@@ -547,6 +572,7 @@ GameObject:
   - component: {fileID: 791774677}
   - component: {fileID: 791774676}
   - component: {fileID: 791774679}
+  - component: {fileID: 791774680}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -631,6 +657,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25b56bc955f5b3645b1c2e65d519ea9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &791774680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791774675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca49b3ed65a759e4eb8d5eeab6947583, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  consoleBehaviour: {fileID: 1688336039}
 --- !u!1001 &1043033370
 PrefabInstance:
   m_ObjectHideFlags: 0
