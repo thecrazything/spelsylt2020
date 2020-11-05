@@ -26,12 +26,16 @@ public class ProfileBehaviour : MonoBehaviour, ISelectHandler, IDeselectHandler
         }
         nameField.text = TextPrintAnimation.spaceLetters(_character.name);
         _ProfilePictureBackgroundColor = profilePictureBackground.color;
+        if (_character.dead)
+        {
+            _selectable.interactable = false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameStatsService.Instance.tmpSelectedCharacter != null && GameStatsService.Instance.tmpSelectedCharacter.id != _character.id)
+        if (GameStatsService.Instance.selectedCharacter != null && GameStatsService.Instance.selectedCharacter.id != _character.id)
         {
             _selectable.interactable = false;
             profilePictureBackground.color = disableColor;
@@ -44,15 +48,11 @@ public class ProfileBehaviour : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     public void OnSelect(BaseEventData eventData)
     {
-        GameStatsService.Instance.tmpSelectedCharacter = _character;
-        GameStatsService.Instance.selectedCharacter = _character; // BAD AND UGLY
+        GameStatsService.Instance.selectedCharacter = _character;
     }
 
     public void OnDeselect(BaseEventData eventData)
     {
-       if (GameStatsService.Instance.tmpSelectedCharacter != null && GameStatsService.Instance.tmpSelectedCharacter.id == _character.id)
-       {
-            GameStatsService.Instance.tmpSelectedCharacter = null;
-       }
+        
     }
 }

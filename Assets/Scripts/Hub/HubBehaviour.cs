@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class HubBehaviour : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class HubBehaviour : MonoBehaviour
         }
         if (GameStatsService.Instance.gameStats.expeditionComplete)
         {
+            GameStatsService.Instance.gameStats.newDay();
             consoleBehaviour.WriteText("Welcome back from expedition or whatever lol");
         }
         GameStatsService.Instance.gameStats.expeditionComplete = false;
@@ -23,6 +25,9 @@ public class HubBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject())
+        {
+            GameStatsService.Instance.selectedCharacter = null;
+        }
     }
 }

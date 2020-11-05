@@ -12,20 +12,13 @@ public class ConsoleBehaviour : MonoBehaviour
 
     private AudioSource _audioSource;
 
-    private string defaultText = "Much need to be done in the HUB and on expeditions or whatever lol.";
-    private string characterSelectedText = "{name} is feeling pretty swell. Pretty swiggity swooty. Hip with the kids.";
-
     private TextPrintAnimation _textPrintAnimation;
 
-    private string _startText;
+    private string _startText = TextConstants.INTRO_MESSAGE;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (_startText == null)
-        {
-            _startText = defaultText;
-        }
 
         _audioSource = GetComponent<AudioSource>();
         Text consoleTextView = GetComponent<Text>();
@@ -45,11 +38,12 @@ public class ConsoleBehaviour : MonoBehaviour
         {
             if (character == null)
             {
-                _textPrintAnimation.Write(defaultText);
+                _textPrintAnimation.Write(TextConstants.IDLE_TEXT);
             } 
             else
             {
-                _textPrintAnimation.Write(characterSelectedText.Replace("{name}", character.name));
+                string txt = TextConstants.USER_DETAIL_NAME_TEXT + "\n" + TextConstants.USER_HEALTH_5_TEXT; // TODO switch based on health
+                _textPrintAnimation.Write(txt.Replace("{name}", character.name));
                 _audioSource.clip = writeSounds[UnityEngine.Random.Range(0, 2)];
                 _audioSource.Play();
                 StartCoroutine(SoundQueue.playNext(_audioSource, idleSound, 0.1f));
@@ -61,7 +55,10 @@ public class ConsoleBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _textPrintAnimation.printNextIfTime(Time.deltaTime);
+        if (_textPrintAnimation != null)
+        {
+            _textPrintAnimation.printNextIfTime(Time.deltaTime);
+        }
     }
 
     public void WriteText(string text)
