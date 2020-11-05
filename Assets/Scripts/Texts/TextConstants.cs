@@ -13,4 +13,8 @@ public static class TextConstants
     public static readonly string USER_HEALTH_3_TEXT = "{name} is not looking too good.";
     public static readonly string USER_HEALTH_2_TEXT = "{name} is badly hurt.";
     public static readonly string USER_HEALTH_1_TEXT = "{name} is near death.";
+
+    public static readonly string DAYS_LEFT = "{days} days left";
+
+    public static readonly string NEXT_DAY_MESSAGE = "Preparing summary of previous day..................................................";
 }

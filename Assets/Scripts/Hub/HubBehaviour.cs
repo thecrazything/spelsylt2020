@@ -17,7 +17,8 @@ public class HubBehaviour : MonoBehaviour
         if (GameStatsService.Instance.gameStats.expeditionComplete)
         {
             GameStatsService.Instance.gameStats.newDay();
-            consoleBehaviour.WriteText("Welcome back from expedition or whatever lol");
+            GameStatsService.Instance.selectedCharacter = null;
+            consoleBehaviour.WriteText(TextConstants.NEXT_DAY_MESSAGE);
         }
         GameStatsService.Instance.gameStats.expeditionComplete = false;
     }
