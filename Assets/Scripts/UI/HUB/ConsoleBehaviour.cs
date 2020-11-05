@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,7 +28,18 @@ public class ConsoleBehaviour : MonoBehaviour
         }
 
         _audioSource = GetComponent<AudioSource>();
-        _textPrintAnimation = new TextPrintAnimation(GetComponent<Text>(), writeDelay);
+        Text consoleTextView = GetComponent<Text>();
+
+        if (_audioSource == null)
+        {
+            throw new ArgumentNullException("No AudioSource component view exists on the GameObject");
+        }
+        if (consoleTextView == null)
+        {
+            throw new ArgumentNullException("No Text component exists on the GameObject");
+        }
+
+        _textPrintAnimation = new TextPrintAnimation(consoleTextView, writeDelay);
         _textPrintAnimation.Write(_startText);
         GameStatsService.Instance.onChangeSelectedCharacter += character =>
         {
@@ -40,7 +50,7 @@ public class ConsoleBehaviour : MonoBehaviour
             else
             {
                 _textPrintAnimation.Write(characterSelectedText.Replace("{name}", character.name));
-                _audioSource.clip = writeSounds[Random.Range(0, 2)];
+                _audioSource.clip = writeSounds[UnityEngine.Random.Range(0, 2)];
                 _audioSource.Play();
                 StartCoroutine(SoundQueue.playNext(_audioSource, idleSound, 0.1f));
             }
