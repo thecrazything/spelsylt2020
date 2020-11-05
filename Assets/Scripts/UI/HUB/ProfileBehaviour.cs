@@ -39,7 +39,8 @@ public class ProfileBehaviour : MonoBehaviour, ISelectHandler, IDeselectHandler
         {
             _selectable.interactable = false;
             profilePictureBackground.color = disableColor;
-        } else
+        } 
+        else if (!_character.dead)
         {
             _selectable.interactable = true;
             profilePictureBackground.color = _ProfilePictureBackgroundColor;
