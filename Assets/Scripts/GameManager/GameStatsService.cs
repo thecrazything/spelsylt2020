@@ -13,6 +13,9 @@ public class GameStatsService
     private ICollection<Character> _characters;
     private Character _selectedCharacter;
     public GameStats gameStats;
+
+    public Character tmpSelectedCharacter; // TODO UGLY HACK DO NOOOOOOOTT USE FOR ANYTHING JACOB
+
     public ICollection<Character> characters
     {
         get
