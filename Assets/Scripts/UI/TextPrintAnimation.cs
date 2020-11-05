@@ -48,4 +48,14 @@ public class TextPrintAnimation
             }
         }
     }
+
+    public static string spaceLetters(string text)
+    {
+        string result = "";
+        for (var i = 0; i <= text.Length - 1; i++)
+        {
+            result += text[i] + ( i >= (text.Length - 1) ? "" : " ");
+        }
+        return result;
+    }
 }

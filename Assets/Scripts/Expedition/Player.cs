@@ -37,6 +37,9 @@ public class Player : MonoBehaviour
     {
         if (character.health <= 0) {
             Debug.Log("You dieded");
+
+            character.dead = true;
+            GameStatsService.Instance.CompleteExpedition();
         }
     }
 

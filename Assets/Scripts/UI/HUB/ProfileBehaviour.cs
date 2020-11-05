@@ -19,7 +19,7 @@ public class ProfileBehaviour : MonoBehaviour, ISelectHandler, IDeselectHandler
         {
             throw new ArgumentException("No such character with id " + characterId);
         }
-        nameField.text = _character.name;
+        nameField.text = TextPrintAnimation.spaceLetters(_character.name);
     }
 
     // Update is called once per frame

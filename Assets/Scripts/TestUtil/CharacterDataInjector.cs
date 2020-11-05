@@ -21,11 +21,8 @@ public class CharacterDataInjector : MonoBehaviour
             characters.Add(d);
             GameStats stats = new GameStats();
             GameStatsService.Instance.SetStartData(characters, stats);
+            GameStatsService.Instance.selectedCharacter = a;
         }
-
-        GameStats stats = new GameStats();
-        GameStatsService.Instance.SetStartData(characters, stats);
-        GameStatsService.Instance.selectedCharacter = a;
     }
 
     // Update is called once per frame

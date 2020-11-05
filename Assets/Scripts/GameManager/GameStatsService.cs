@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameStatsService
 {
@@ -55,6 +56,7 @@ public class GameStatsService
     public void CompleteExpedition()
     {
         this.gameStats.expeditionComplete = true;
+        SceneManager.LoadScene(1);
     }
 
     public void SetStartData(ICollection<Character> characters, GameStats gameStats)
