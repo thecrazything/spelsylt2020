@@ -8,4 +8,21 @@ public class GameStats
     public event GameStatChangeDelegate onGameChange;
 
     public bool expeditionComplete = false;
+
+    public int daysLeft 
+    {
+        get
+        {
+            return _daysLeft;
+        }
+    }
+
+    private int _daysLeft = 12;
+
+    public void newDay()
+    {
+        _daysLeft -= 1;
+
+        onGameChange?.Invoke(this);
+    }
 }
