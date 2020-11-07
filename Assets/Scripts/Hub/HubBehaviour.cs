@@ -13,8 +13,7 @@ public class HubBehaviour : MonoBehaviour
         get { return _selectedCharacter; }
         set 
         {
-            _selectedCharacter = value;
-            onSelectedCharacterChange(_selectedCharacter);
+            onSelectedCharacterChange(value);
         } 
     }
 
@@ -40,7 +39,7 @@ public class HubBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject())
+        if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject() && selectedCharacter != null)
         {
             selectedCharacter = null;
         }
@@ -48,6 +47,10 @@ public class HubBehaviour : MonoBehaviour
 
     private void onSelectedCharacterChange(Character character)
     {
+        if (_selectedCharacter == character)
+        {
+            return;
+        }
         if (character == null)
         {
             string txt = "";
@@ -78,6 +81,7 @@ public class HubBehaviour : MonoBehaviour
                 CharacterTextFormatter.FormatHunger(character);
             consoleBehaviour.WriteTextWithSound(txt.Replace("{name}", character.name));
         }
+        _selectedCharacter = character;
     }
 
     private string tallyLastDay()
