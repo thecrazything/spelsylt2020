@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts.Expedition;
 
 public class Player : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
         character = GameStatsService.Instance.selectedCharacter;
 
         inventoryUI = Instantiate(inventoryCanvas, transform).GetComponent<InventoryUI>();
+        inventoryUI.SetTitle("Inventory");
     }
 
     // Update is called once per frame
@@ -26,7 +28,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space)) {
             Debug.Log("End expedition");
-            GameStatsService.Instance.CompleteExpedition();
+            GameStatsService.Instance.CompleteExpedition(inventory.GetAllItems());
         }
 
         if (Input.GetKeyDown(KeyCode.I)) {
@@ -46,7 +48,7 @@ public class Player : MonoBehaviour
     {
         if (character.health <= 0) {
             character.dead = true;
-            GameStatsService.Instance.CompleteExpedition();
+            GameStatsService.Instance.CompleteExpedition(new InventoryItem[0]);
         }
     }
 

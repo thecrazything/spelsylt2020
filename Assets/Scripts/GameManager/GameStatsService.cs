@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Assets.Scripts.Expedition;
 
 public class GameStatsService
 {
@@ -54,9 +55,9 @@ public class GameStatsService
         return _characters.FirstOrDefault(c => c.id == id);
     }
 
-    public void CompleteExpedition()
+    public void CompleteExpedition(InventoryItem[] items)
     {
-        this.gameStats.expeditionComplete = true;
+        gameStats.expeditionComplete = true;
         SceneManager.LoadScene(1);
     }
 
