@@ -7,7 +7,7 @@ public class Consequence
     public int rationLoss { get; }
     private Consequence(int rationLoss) { }
 
-    public static Consequence RationLosss(int amount)
+    public static Consequence RationLoss(int amount)
     {
         return new Consequence(amount);
     }

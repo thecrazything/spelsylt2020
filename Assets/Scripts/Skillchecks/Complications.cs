@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Complications
 {
-    private static readonly Complication[] complications = { new Complication("{name} missplaced a ration.", SkillsEnum.NEUTRAL, Consequence.RationLosss(1)) };
+    private static readonly Complication[] complications = { new Complication("{name} missplaced a ration.", SkillsEnum.NEUTRAL, Consequence.RationLoss(1)) };
 
     public static Complication getRandom(SkillsEnum skill)
     {

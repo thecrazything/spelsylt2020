@@ -50,7 +50,7 @@ public class HubBehaviour : MonoBehaviour
                 SkillCheck.Result result = SkillCheck.DoCheck(task.doer, task.skillTest);
                 if (result.success)
                 {
-                    // TODO test succes consequence
+                    // TODO test success consequence
                     tasksSummary += "\n" + task.skillTest.passMessage.Replace("{name}", task.doer.name);
                 }
                 else
@@ -68,7 +68,7 @@ public class HubBehaviour : MonoBehaviour
             else
             {
                 // TODO failure consequence
-                tasksSummary += "\n" + task.skillTest.failMessage.Replace("{name}", "");
+                tasksSummary += "\n" + task.skillTest.failMessage.Replace("{name}", ""); // TODO Make the print nicer than just removing the name
             }
         }
 
@@ -88,27 +88,9 @@ public class HubBehaviour : MonoBehaviour
         GameStatsService.Instance.characters.ToList().ForEach(character =>
         {
             character.hunger -= 1;
-            if (character.hunger == 1)
-            {
-                msg += "\n " + character.name + " is starving.";
-            }
-            else if (character.hunger == 2)
-            {
-                msg += "\n " + character.name + " is veru hungry.";
-            }
-            else if (character.hunger == 3)
-            {
-                msg += "\n " + character.name + " is hungry.";
-            }
-            else if (character.hunger == 4)
-            {
-                msg += "\n " + character.name + " could eat.";
-            }
-            else if (character.hunger == 5)
-            {
-                msg += "\n " + character.name + " is full.";
-            }
         });
+
+        // TODO announce deaths (and the cause)
 
         return msg;
     }

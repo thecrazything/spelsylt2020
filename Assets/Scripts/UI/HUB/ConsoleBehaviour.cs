@@ -54,7 +54,9 @@ public class ConsoleBehaviour : MonoBehaviour
         }
         else
         {
-            string txt = TextConstants.USER_DETAIL_NAME_TEXT + "\n" + TextConstants.USER_HEALTH_5_TEXT; // TODO switch based on health
+            string txt = TextConstants.USER_DETAIL_NAME_TEXT + "\n" + 
+                CharacterTextFormatter.FormatHealth(character) + "\n" + 
+                CharacterTextFormatter.FormatHunger(character);
             _textPrintAnimation.Write(txt.Replace("{name}", character.name));
             _audioSource.clip = writeSounds[UnityEngine.Random.Range(0, 2)];
             _audioSource.Play();

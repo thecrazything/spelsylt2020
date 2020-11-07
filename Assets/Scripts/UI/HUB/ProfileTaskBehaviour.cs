@@ -28,7 +28,6 @@ public class ProfileTaskBehaviour : MonoBehaviour
 
     void Update()
     {
-        print(GameStatsService.Instance.selectedCharacter);
         if (GameStatsService.Instance.selectedCharacter != null)
         {
             expeditionButton.interactable = false;
