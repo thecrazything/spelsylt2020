@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
     {
         character = GameStatsService.Instance.selectedCharacter;
 
-        Debug.Log(character.name);
         inventoryUI = Instantiate(inventoryCanvas, transform).GetComponent<InventoryUI>();
     }
 
@@ -46,8 +45,6 @@ public class Player : MonoBehaviour
     void checkIfDead() 
     {
         if (character.health <= 0) {
-            Debug.Log("You dieded");
-
             character.dead = true;
             GameStatsService.Instance.CompleteExpedition();
         }

@@ -22,7 +22,6 @@ public class InventoryUI : MonoBehaviour
 
     void UpdateUI()
     {
-        Debug.Log("Updating UI");
         for (int i = 0; i < playerInventory.size; i++)
         {
             var item = playerInventory.GetItem(i);
@@ -45,7 +44,7 @@ public class InventoryUI : MonoBehaviour
 
     public void Toggle()
     {
-        if (wrapper.active) {
+        if (wrapper.activeSelf) {
             Hide();
         } else {
             Show();

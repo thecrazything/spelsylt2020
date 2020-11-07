@@ -6,21 +6,26 @@ using Assets.Scripts.Expedition;
 
 public class InventorySlot : MonoBehaviour
 {
-    public Sprite icon;
+    public Transform iconHolder;
 
     InventoryItem item;
+    Image image;
+
+    void Start() {
+        image = iconHolder.GetComponent<Image>();
+    }
 
     public void AddItem(InventoryItem item)
     {
         this.item = item;
-        icon = item.icon;
-        //icon.enabled = true;
+        image.sprite = item.icon;
+        image.enabled = true;
     }
 
     public void RemoveItem()
     {
         item = null;
-        icon = null;
-        //icon.enabled = false;
+        image.sprite = null;
+        image.enabled = false;
     }
 }
