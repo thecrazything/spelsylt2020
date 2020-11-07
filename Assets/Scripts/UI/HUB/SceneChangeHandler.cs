@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 public class SceneChangeHandler : MonoBehaviour
 {
     public int scene;
-    // Start is called before the first frame update
+    public HubBehaviour hub;
     void Start()
     {
-        
+        hub = GameObject.Find("Main Camera").GetComponent<HubBehaviour>();
     }
 
     // Update is called once per frame
@@ -20,6 +20,7 @@ public class SceneChangeHandler : MonoBehaviour
 
     public void ChangeScene()
     {
+        GameStatsService.Instance.gameStats.hubTasks = hub.avalibleTasks;
         SceneManager.LoadScene(scene);
     }
 }

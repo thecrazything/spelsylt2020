@@ -9,6 +9,7 @@ public class ConsoleBehaviour : MonoBehaviour
     public AudioClip idleSound;
     public AudioClip stopSound;
     public AudioClip[] writeSounds;
+    public HubBehaviour hub;
 
     private AudioSource _audioSource;
 
@@ -16,10 +17,12 @@ public class ConsoleBehaviour : MonoBehaviour
 
     private string _startText = TextConstants.INTRO_MESSAGE;
 
+    private Character previousCharacter;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        hub = GameObject.Find("Main Camera").GetComponent<HubBehaviour>();
         _audioSource = GetComponent<AudioSource>();
         Text consoleTextView = GetComponent<Text>();
 
@@ -40,6 +43,11 @@ public class ConsoleBehaviour : MonoBehaviour
 
     private void handleCharacterSelectChange(Character character)
     {
+        if (previousCharacter == character)
+        {
+            return;
+        }
+
         if (character == null)
         {
             _textPrintAnimation.Write(TextConstants.IDLE_TEXT);
@@ -52,6 +60,7 @@ public class ConsoleBehaviour : MonoBehaviour
             _audioSource.Play();
             StartCoroutine(SoundQueue.playNext(_audioSource, idleSound, 0.1f));
         }
+        previousCharacter = character;
     }
 
     // Update is called once per frame
@@ -61,6 +70,7 @@ public class ConsoleBehaviour : MonoBehaviour
         {
             _textPrintAnimation.printNextIfTime(Time.deltaTime);
         }
+        handleCharacterSelectChange(hub.selectedCharacter);
     }
 
     public void WriteText(string text)

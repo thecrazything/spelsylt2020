@@ -9,6 +9,8 @@ public class GameStats
 
     public bool expeditionComplete = false;
 
+    public HubTask[] hubTasks;
+
     public int daysLeft 
     {
         get

@@ -13,6 +13,7 @@ public class Character
     private float _health;
     private float _maxHealth = 100f;
     private bool _dead = false;
+    private int _hunger = 5;
 
     public int id
     {
@@ -47,6 +48,23 @@ public class Character
         set
         {
             _dead = value;
+        }
+    }
+
+
+    public int hunger
+    {
+        get
+        {
+            return _hunger;
+        }
+        set
+        {
+            _hunger = value;
+            if (_hunger <= 0)
+            {
+                dead = true;
+            }
         }
     }
 
