@@ -65,6 +65,10 @@ public class Character
             {
                 dead = true;
             }
+            else if (_hunger > 6)
+            {
+                _hunger = 6;
+            }
         }
     }
 

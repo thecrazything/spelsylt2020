@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameStatsService
 {
@@ -54,10 +51,17 @@ public class GameStatsService
         return _characters.FirstOrDefault(c => c.id == id);
     }
 
-    public void CompleteExpedition()
+    public void CompleteExpedition(InventoryItem[] items)
     {
-        this.gameStats.expeditionComplete = true;
-        SceneManager.LoadScene(1);
+        if (items != null)
+        {
+            // TODO handle other item types
+            items.Where(x => x is RationItem).ToList().ForEach(item =>
+            {
+                gameStats.AddRation(item as RationItem);
+            });
+        }
+        gameStats.expeditionComplete = true;
     }
 
     public void SetStartData(ICollection<Character> characters, GameStats gameStats)

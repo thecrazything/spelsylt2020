@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -21,7 +22,8 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space)) {
             Debug.Log("End expedition");
-            GameStatsService.Instance.CompleteExpedition();
+            GameStatsService.Instance.CompleteExpedition(null); // TODO add items here
+            SceneManager.LoadScene(1);
         }
 
         oxygen -= Time.deltaTime;
@@ -39,7 +41,8 @@ public class Player : MonoBehaviour
             Debug.Log("You dieded");
 
             character.dead = true;
-            GameStatsService.Instance.CompleteExpedition();
+            GameStatsService.Instance.CompleteExpedition(null); // TODO add items here
+            SceneManager.LoadScene(1);
         }
     }
 

@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Consequence
 {
-    public int rationLoss { get; }
-    private Consequence(int rationLoss) { }
+    public int rationChange { get; }
+    private Consequence(int rationChange) 
+    {
+        this.rationChange = rationChange;
+    }
 
-    public static Consequence RationLoss(int amount)
+    public static Consequence RationChange(int amount)
     {
         return new Consequence(amount);
     }
