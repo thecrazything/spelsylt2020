@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class TextConstants
 {
-    public static readonly string INTRO_MESSAGE = "$ Check base integrity \nCHECKING BASE INTEGRITY.....................................................20% \n WARNING: Major atomosphere leaks detected \n HUB INTEGRITY............................................................................90% \n WARNING: HUB Food rations LOW \n ERROR: Earth communications FAILED \n ERROR: Communications Offline \n Next communication window in....................................................12 days";
+    public static readonly string INTRO_MESSAGE = "$ Check base integrity \nCHECKING BASE INTEGRITY................................20% \n WARNING: Major atomosphere leaks detected \n HUB INTEGRITY.....................................90% \n WARNING: HUB Food rations LOW \n ERROR: Earth communications FAILED \n ERROR: Communications Offline \n Next communication window in..................................12 days";
     public static readonly string IDLE_TEXT = "$ Awaiting command";
     public static readonly string USER_DETAIL_NAME_TEXT = "$ status -n {name}";
 
@@ -16,7 +16,7 @@ public static class TextConstants
 
     public static readonly string DAYS_LEFT = "{days} days left";
 
-    public static readonly string NEXT_DAY_MESSAGE = "Preparing summary of previous day..................................................";
+    public static readonly string NEXT_DAY_MESSAGE = "Preparing summary of previous day.......................................";
 
     public static readonly string ASSIGNED_TO = "Assigned to {name}.";
     public static readonly string EXPEDITION_ASSIGNED_TO = "Expedition assigned to {name}.";

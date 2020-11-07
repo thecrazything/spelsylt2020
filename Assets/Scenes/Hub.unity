@@ -1433,8 +1433,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d53026a71b60662429bd4a3e1390639c, type: 3}
-    m_FontSize: 16
+    m_Font: {fileID: 12800000, guid: 9efe54f459184c7429275493fc446d43, type: 3}
+    m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -1474,7 +1474,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2aeaa0fda8eb59d46a42cc1f9dcf7cfe, type: 3}
   - {fileID: 8300000, guid: 402ff098b11f8e74099356b0f0627417, type: 3}
   - {fileID: 8300000, guid: a1b0e10755a40f44c968b6084c16d6f4, type: 3}
-  hub: {fileID: 0}
 --- !u!82 &1688336040
 AudioSource:
   m_ObjectHideFlags: 0
