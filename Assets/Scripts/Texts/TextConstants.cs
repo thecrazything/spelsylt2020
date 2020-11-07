@@ -17,4 +17,8 @@ public static class TextConstants
     public static readonly string DAYS_LEFT = "{days} days left";
 
     public static readonly string NEXT_DAY_MESSAGE = "Preparing summary of previous day..................................................";
+
+    public static readonly string ASSIGNED_TO = "Assigned to {name}.";
+    public static readonly string EXPEDITION_ASSIGNED_TO = "Expedition assigned to {name}.";
+    public static readonly string EXPEDITION_UNASSIGNED = "Expedition is unassigned.";
 }

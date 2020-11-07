@@ -7,7 +7,17 @@ using UnityEngine.EventSystems;
 
 public class HubBehaviour : MonoBehaviour
 {
-    public Character selectedCharacter;
+    private Character _selectedCharacter;
+
+    public Character selectedCharacter {
+        get { return _selectedCharacter; }
+        set 
+        {
+            _selectedCharacter = value;
+            onSelectedCharacterChange(_selectedCharacter);
+        } 
+    }
+
     public ConsoleBehaviour consoleBehaviour;
     public HubTask[] avalibleTasks = { };
     // Start is called before the first frame update
@@ -33,6 +43,40 @@ public class HubBehaviour : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             selectedCharacter = null;
+        }
+    }
+
+    private void onSelectedCharacterChange(Character character)
+    {
+        if (character == null)
+        {
+            string txt = "";
+            for (var i = 0; i < avalibleTasks.Length; i++)
+            {
+                txt += avalibleTasks[i].skillTest.description;
+                if (avalibleTasks[i].doer != null)
+                {
+                    txt += " " + TextConstants.ASSIGNED_TO.Replace("{name}", avalibleTasks[i].doer.name);
+                }
+                txt += "\n";
+            }
+            if (GameStatsService.Instance.selectedCharacter != null)
+            {
+                txt += TextConstants.EXPEDITION_ASSIGNED_TO.Replace("{name}", GameStatsService.Instance.selectedCharacter.name) + "\n";
+            }
+            else
+            {
+                txt += TextConstants.EXPEDITION_UNASSIGNED + "\n";
+            }
+            txt += "\n" + TextConstants.IDLE_TEXT;
+            consoleBehaviour.WriteTextWithSound(txt);
+        }
+        else
+        {
+            string txt = TextConstants.USER_DETAIL_NAME_TEXT + "\n" +
+                CharacterTextFormatter.FormatHealth(character) + "\n" +
+                CharacterTextFormatter.FormatHunger(character);
+            consoleBehaviour.WriteTextWithSound(txt.Replace("{name}", character.name));
         }
     }
 

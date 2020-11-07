@@ -9,7 +9,6 @@ public class ConsoleBehaviour : MonoBehaviour
     public AudioClip idleSound;
     public AudioClip stopSound;
     public AudioClip[] writeSounds;
-    public HubBehaviour hub;
 
     private AudioSource _audioSource;
 
@@ -17,12 +16,9 @@ public class ConsoleBehaviour : MonoBehaviour
 
     private string _startText = TextConstants.INTRO_MESSAGE;
 
-    private Character previousCharacter;
-
     // Start is called before the first frame update
     void Start()
     {
-        hub = GameObject.Find("Main Camera").GetComponent<HubBehaviour>();
         _audioSource = GetComponent<AudioSource>();
         Text consoleTextView = GetComponent<Text>();
 
@@ -37,32 +33,7 @@ public class ConsoleBehaviour : MonoBehaviour
 
         _textPrintAnimation = new TextPrintAnimation(consoleTextView, writeDelay);
         _textPrintAnimation.Write(_startText);
-        GameStatsService.Instance.onChangeSelectedCharacter += handleCharacterSelectChange;
         StartCoroutine(SoundQueue.playNext(_audioSource, idleSound, 0.7f));
-    }
-
-    private void handleCharacterSelectChange(Character character)
-    {
-        if (previousCharacter == character)
-        {
-            return;
-        }
-
-        if (character == null)
-        {
-            _textPrintAnimation.Write(TextConstants.IDLE_TEXT);
-        }
-        else
-        {
-            string txt = TextConstants.USER_DETAIL_NAME_TEXT + "\n" + 
-                CharacterTextFormatter.FormatHealth(character) + "\n" + 
-                CharacterTextFormatter.FormatHunger(character);
-            _textPrintAnimation.Write(txt.Replace("{name}", character.name));
-            _audioSource.clip = writeSounds[UnityEngine.Random.Range(0, 2)];
-            _audioSource.Play();
-            StartCoroutine(SoundQueue.playNext(_audioSource, idleSound, 0.1f));
-        }
-        previousCharacter = character;
     }
 
     // Update is called once per frame
@@ -72,11 +43,26 @@ public class ConsoleBehaviour : MonoBehaviour
         {
             _textPrintAnimation.printNextIfTime(Time.deltaTime);
         }
-        handleCharacterSelectChange(hub.selectedCharacter);
     }
 
     public void WriteText(string text)
     {
+        WriteText(text, false);
+    }
+
+    public void WriteTextWithSound(string text)
+    {
+        WriteText(text, true);
+    }
+    private void WriteText(string text, bool sound)
+    {
+        if (sound)
+        {
+            _audioSource.clip = writeSounds[UnityEngine.Random.Range(0, 2)];
+            _audioSource.Play();
+            StartCoroutine(SoundQueue.playNext(_audioSource, idleSound, 0.1f));
+        }
+
         if (_textPrintAnimation != null)
         {
             _textPrintAnimation.Write(text);
@@ -84,10 +70,5 @@ public class ConsoleBehaviour : MonoBehaviour
         {
             _startText = text;
         }
-    }
-
-    void OnDestroy()
-    {
-        GameStatsService.Instance.onChangeSelectedCharacter -= handleCharacterSelectChange;
     }
 }
