@@ -8,6 +8,6 @@ namespace Assets.Scripts.Expedition
 {
     interface IInteractable
     {
-        void Interact();
+        void Interact(Player player);
     }
 }

@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 558218374134476611}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -251,3 +251,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7eb8be03b940d74891bdf7294246e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryCanvas: {fileID: 3986099038148390820, guid: 54eecff9bf8508447b0262789e27d35c,
+    type: 3}

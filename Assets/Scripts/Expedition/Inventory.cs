@@ -4,18 +4,18 @@ using Assets.Scripts.Expedition;
 
 public class Inventory
 {
-    int _size;
+    public int size;
     InventoryItem[] _inventory;
 
     public Inventory(int size)
     {
-        _size = size;
-        _inventory = new InventoryItem[_size];
+        this.size = size;
+        _inventory = new InventoryItem[size];
     }
 
     public bool AddItem(InventoryItem item)
     {
-        for (int i = 0; i < _size; i++)
+        for (int i = 0; i < _inventory.Length; i++)
         {
             if (_inventory[i] == null) {
                 _inventory[i] = item;
@@ -26,10 +26,13 @@ public class Inventory
         return false;
     }
 
-
     public void EmptyIndex(int i)
     {
         _inventory[i] = null;
+    }
+
+    public InventoryItem[] GetAllItems() {
+        return _inventory;
     }
 
     public InventoryItem GetItem(int i)

@@ -5,7 +5,7 @@ using Assets.Scripts.Expedition;
 
 public class Chest : MonoBehaviour, IInteractable
 {
-    public void Interact()
+    public void Interact(Player player)
     {
         Debug.Log("Hello! I'm a chest");
     }

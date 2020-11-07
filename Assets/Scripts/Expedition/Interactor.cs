@@ -6,6 +6,11 @@ using Assets.Scripts.Expedition;
 public class Interactor : MonoBehaviour
 {
     IInteractable _focusedInteractable;
+    Player player;
+
+    void Start() {
+        player = GetComponentInParent<Player>();
+    }
 
     void Update()
     {
@@ -18,7 +23,7 @@ public class Interactor : MonoBehaviour
     {
         if (_focusedInteractable != null)
         {
-            _focusedInteractable.Interact();
+            _focusedInteractable.Interact(player);
         }
         else {
             Debug.Log("Nothing to interact with");

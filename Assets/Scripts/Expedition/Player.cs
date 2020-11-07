@@ -8,12 +8,18 @@ public class Player : MonoBehaviour
     float oxygen = 10;
 
     Character character;
+    public Inventory inventory = new Inventory(5);
+    public GameObject inventoryCanvas;
+
+    InventoryUI inventoryUI;
 
     // Start is called before the first frame update
     void Start()
     {
         character = GameStatsService.Instance.selectedCharacter;
+
         Debug.Log(character.name);
+        inventoryUI = Instantiate(inventoryCanvas, transform).GetComponent<InventoryUI>();
     }
 
     // Update is called once per frame
@@ -24,7 +30,11 @@ public class Player : MonoBehaviour
             GameStatsService.Instance.CompleteExpedition();
         }
 
-        oxygen -= Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.I)) {
+            inventoryUI.Toggle();
+        }
+
+        //oxygen -= Time.deltaTime;
 
         if (oxygen < 0) {
             character.subtractHealth(1);

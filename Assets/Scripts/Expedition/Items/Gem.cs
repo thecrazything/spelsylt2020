@@ -5,8 +5,11 @@ using Assets.Scripts.Expedition;
 
 public class Gem : MonoBehaviour, IInteractable
 {
-    public void Interact()
+    public InventoryItem inventoryItem;
+
+    public void Interact(Player player)
     {
+        player.inventory.AddItem(inventoryItem);
         Debug.Log("Picked up a gem!");
         Destroy(gameObject);
     }
