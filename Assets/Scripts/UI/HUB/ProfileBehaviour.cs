@@ -2,58 +2,69 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class ProfileBehaviour : MonoBehaviour, ISelectHandler, IDeselectHandler
+public class ProfileBehaviour : MonoBehaviour, ISelectHandler
 {
+    public HubBehaviour hub;
+    public Image dropdown;
+    public Image taskDropdown;
     public int characterId = 0;
     public Text nameField;
     public Image profilePictureBackground;
     public Color disableColor;
 
-    private Character _character;
+    public Character character;
     private Selectable _selectable;
     private Color _ProfilePictureBackgroundColor;
     // Start is called before the first frame update
     void Start()
     {
+        hub = GameObject.Find("Main Camera").GetComponent<HubBehaviour>();
         _selectable = GetComponent<Selectable>();
-        _character = GameStatsService.Instance.GetCharacterById(characterId);
-        if (_character == null)
+        character = GameStatsService.Instance.GetCharacterById(characterId);
+        if (character == null)
         {
             throw new ArgumentException("No such character with id " + characterId);
         }
-        nameField.text = TextPrintAnimation.spaceLetters(_character.name);
+        nameField.text = TextPrintAnimation.spaceLetters(character.name);
         _ProfilePictureBackgroundColor = profilePictureBackground.color;
-        if (_character.dead)
+        if (character.dead)
         {
             _selectable.interactable = false;
+            profilePictureBackground.color = disableColor;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameStatsService.Instance.selectedCharacter != null && GameStatsService.Instance.selectedCharacter.id != _character.id)
+        if (hub.selectedCharacter != null && hub.selectedCharacter.id == character.id)
+        {
+            dropdown.gameObject.SetActive(true);
+        }
+        if (hub.selectedCharacter != null && hub.selectedCharacter.id != character.id)
         {
             _selectable.interactable = false;
             profilePictureBackground.color = disableColor;
+            dropdown.gameObject.SetActive(false);
+            taskDropdown.gameObject.SetActive(false);
         } 
-        else if (!_character.dead)
+        else if (!character.dead)
         {
             _selectable.interactable = true;
             profilePictureBackground.color = _ProfilePictureBackgroundColor;
+        }
+        if(hub.selectedCharacter == null)
+        {
+            dropdown.gameObject.SetActive(false);
+            taskDropdown.gameObject.SetActive(false);
         }
     }
 
     public void OnSelect(BaseEventData eventData)
     {
-        GameStatsService.Instance.selectedCharacter = _character;
-    }
-
-    public void OnDeselect(BaseEventData eventData)
-    {
-        
+        hub.selectedCharacter = character;
     }
 }
