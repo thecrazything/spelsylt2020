@@ -1,33 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using Assets.Scripts.Expedition;
 
-public class InventoryUI : MonoBehaviour
+public abstract class InventoryUI : MonoBehaviour
 {
     public Transform title;
     public Transform itemsParent;
     public GameObject wrapper;
-    public string name;
-    public bool isPlayerInventory = false;
+    public string inventoryName;
     public Inventory inventory;
 
-    Inventory playerInventory;
     InventorySlot[] slots;
     TextMeshProUGUI titleText;
 
     void Start()
     {
-        Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        playerInventory = player.inventory;
-
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
 
         titleText = title.GetComponent<TextMeshProUGUI>();
-        name = transform.parent.name;
+        inventoryName = transform.parent.name;
 
         foreach (InventorySlot slot in slots) {
             slot.GetComponentInChildren<Button>().onClick.AddListener(delegate { HandleSlot(slot); });
@@ -48,7 +39,7 @@ public class InventoryUI : MonoBehaviour
     }
 
     public void SetTitle(string name) {
-        this.name = name;
+        inventoryName = name;
     }
 
     public void Show()
@@ -63,18 +54,7 @@ public class InventoryUI : MonoBehaviour
         wrapper.SetActive(false);
     }
 
-    public void HandleSlot(InventorySlot slot)
-    {
-        if (isPlayerInventory) { return; }
-
-        InventoryItem item = slot.item;
-        if (item != null) {
-            playerInventory.AddItem(item);
-            slot.RemoveItem();
-        } else {
-            Debug.Log("Slot is empty");
-        }
-    }
+    public abstract void HandleSlot(InventorySlot slot);
 
     public void Toggle()
     {

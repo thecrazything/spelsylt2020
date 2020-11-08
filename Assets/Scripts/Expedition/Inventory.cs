@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Expedition;
 
@@ -26,9 +27,9 @@ public class Inventory
         return false;
     }
 
-    public void EmptyIndex(int i)
+    public void RemoveItem(InventoryItem item)
     {
-        _inventory[i] = null;
+        _inventory[Array.IndexOf(_inventory, item)] = null;
     }
 
     public InventoryItem[] GetAllItems() {

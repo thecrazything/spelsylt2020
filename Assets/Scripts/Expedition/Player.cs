@@ -12,15 +12,16 @@ public class Player : MonoBehaviour
     public Inventory inventory = new Inventory(5);
     public GameObject inventoryCanvas;
 
-    InventoryUI inventoryUI;
+    PlayerInventoryUI inventoryUI;
 
     // Start is called before the first frame update
     void Start()
     {
         character = GameStatsService.Instance.selectedCharacter;
 
-        inventoryUI = Instantiate(inventoryCanvas, transform).GetComponent<InventoryUI>();
+        inventoryUI = Instantiate(inventoryCanvas, transform).GetComponent<PlayerInventoryUI>();
         inventoryUI.SetTitle("Inventory");
+        inventoryUI.inventory = inventory;
     }
 
     // Update is called once per frame

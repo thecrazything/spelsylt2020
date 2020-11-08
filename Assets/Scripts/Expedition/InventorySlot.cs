@@ -22,7 +22,7 @@ public class InventorySlot : MonoBehaviour
         image.enabled = true;
     }
 
-    public void RemoveItem()
+    public void Clear()
     {
         Image image = iconHolder.GetComponent<Image>();
 
