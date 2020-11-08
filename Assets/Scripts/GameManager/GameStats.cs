@@ -9,7 +9,7 @@ public class GameStats
 
     public bool expeditionComplete = false;
 
-    public HubTask[] hubTasks;
+    public HubTask[] hubTasks = { };
     private RationItem[] _rations = { };
 
     public int daysLeft 

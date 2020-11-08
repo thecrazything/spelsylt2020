@@ -5,12 +5,14 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
+    public float sprintModifier = 1.5f;
 
     public Rigidbody2D rb;
     public Animator animator;
     public GameObject interactor;
 
     Vector2 movement;
+    bool _sprinting = false;
 
     void Update()
     {
@@ -39,11 +41,13 @@ public class PlayerMovement : MonoBehaviour
 
             UpdateInteractor(movement);
         }
+
+        _sprinting = Input.GetAxisRaw("Sprint") >= 0.5f; ;
     }
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * moveSpeed * (_sprinting ? sprintModifier : 1f) * Time.fixedDeltaTime);
     }
 
     // Moves the interactor component to match player rotation
