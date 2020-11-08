@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using Assets.Scripts.Expedition;
 
 public class GameStatsService
 {
@@ -57,8 +53,15 @@ public class GameStatsService
 
     public void CompleteExpedition(InventoryItem[] items)
     {
+        if (items != null)
+        {
+            // TODO handle other item types
+            items.Where(x => x is RationItem).ToList().ForEach(item =>
+            {
+                gameStats.AddRation(item as RationItem);
+            });
+        }
         gameStats.expeditionComplete = true;
-        SceneManager.LoadScene(1);
     }
 
     public void SetStartData(ICollection<Character> characters, GameStats gameStats)

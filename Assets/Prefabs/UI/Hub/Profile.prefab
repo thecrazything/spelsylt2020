@@ -1460,6 +1460,7 @@ GameObject:
   - component: {fileID: 7788579934971683316}
   - component: {fileID: 1555369320929672874}
   - component: {fileID: 4900632129053553857}
+  - component: {fileID: 1011139524793492823}
   m_Layer: 5
   m_Name: RationsButton
   m_TagString: Untagged
@@ -1566,7 +1567,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1555369320929672874}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1011139524793492823}
+        m_MethodName: giveRation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1011139524793492823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7537470569962993175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f7071122589d04796506160b486553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pfb: {fileID: 8300234980985169510}
 --- !u!1 &7647147307254418417
 GameObject:
   m_ObjectHideFlags: 0

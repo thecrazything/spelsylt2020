@@ -45,12 +45,23 @@ public class HubBehaviour : MonoBehaviour
         }
     }
 
+    public void RedrawCharacter()
+    {
+        printCharacter(_selectedCharacter);
+    }
+
     private void onSelectedCharacterChange(Character character)
     {
         if (_selectedCharacter == character)
         {
             return;
         }
+        printCharacter(character);
+        _selectedCharacter = character;
+    }
+
+    private void printCharacter(Character character)
+    {
         if (character == null)
         {
             string txt = "";
@@ -81,7 +92,6 @@ public class HubBehaviour : MonoBehaviour
                 CharacterTextFormatter.FormatHunger(character);
             consoleBehaviour.WriteTextWithSound(txt.Replace("{name}", character.name));
         }
-        _selectedCharacter = character;
     }
 
     private string tallyLastDay()
@@ -110,6 +120,16 @@ public class HubBehaviour : MonoBehaviour
                 if (result.complication != null)
                 {
                     tasksSummary += "\n" + result.complication.message.Replace("{name}", task.doer.name);
+                    GameStatsService.Instance.gameStats.RemoveRation(result.complication.consequence.rationChange);
+                    // TODO performe complicaiton consequence
+                }
+                if (result.bonus != null)
+                {
+                    tasksSummary += "\n" + result.bonus.message.Replace("{name}", task.doer.name);
+                    for(var j = 0; j < result.bonus.consequence.rationChange; j++)
+                    {
+                        GameStatsService.Instance.gameStats.AddRation(new RationItem());
+                    }
                     // TODO performe complicaiton consequence
                 }
             }

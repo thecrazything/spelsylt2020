@@ -65,6 +65,13 @@ public class ProfileBehaviour : MonoBehaviour, ISelectHandler
 
     public void OnSelect(BaseEventData eventData)
     {
-        hub.selectedCharacter = character;
+        if (hub.selectedCharacter != null)
+        {
+            hub.selectedCharacter = null;
+        } 
+        else
+        {
+            hub.selectedCharacter = character;
+        }
     }
 }

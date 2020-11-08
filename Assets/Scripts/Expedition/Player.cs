@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.Expedition;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -29,7 +30,9 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space)) {
             Debug.Log("End expedition");
+
             GameStatsService.Instance.CompleteExpedition(inventory.GetAllItems());
+            SceneManager.LoadScene(1);
         }
 
         if (Input.GetKeyDown(KeyCode.I)) {
@@ -49,7 +52,8 @@ public class Player : MonoBehaviour
     {
         if (character.health <= 0) {
             character.dead = true;
-            GameStatsService.Instance.CompleteExpedition(new InventoryItem[0]);
+            GameStatsService.Instance.CompleteExpedition(null); // TODO add items here
+            SceneManager.LoadScene(1);
         }
     }
 
