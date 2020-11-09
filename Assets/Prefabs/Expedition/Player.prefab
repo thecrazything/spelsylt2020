@@ -191,7 +191,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: addc469b59e73df4c965007545b905f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 1
+  sprintModifier: 4
   rb: {fileID: 558218374134476613}
   animator: {fileID: 558218374134476614}
   interactor: {fileID: 558218373324039827}
@@ -252,6 +253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7eb8be03b940d74891bdf7294246e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oxygen: 60
+  sprintOxygenMod: 4
 --- !u!1 &2585566707663266972
 GameObject:
   m_ObjectHideFlags: 0

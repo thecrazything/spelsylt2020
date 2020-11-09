@@ -14,18 +14,13 @@ public class ConsoleBehaviour : MonoBehaviour
 
     private TextPrintAnimation _textPrintAnimation;
 
-    private string _startText = TextConstants.INTRO_MESSAGE;
+    private string _startText = "";
 
     // Start is called before the first frame update
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
         Text consoleTextView = GetComponent<Text>();
-
-        if (_audioSource == null)
-        {
-            throw new ArgumentNullException("No AudioSource component view exists on the GameObject");
-        }
         if (consoleTextView == null)
         {
             throw new ArgumentNullException("No Text component exists on the GameObject");
@@ -33,7 +28,10 @@ public class ConsoleBehaviour : MonoBehaviour
 
         _textPrintAnimation = new TextPrintAnimation(consoleTextView, writeDelay);
         _textPrintAnimation.Write(_startText);
-        StartCoroutine(SoundQueue.playNext(_audioSource, idleSound, 0.7f));
+        if (_audioSource != null)
+        {
+            StartCoroutine(SoundQueue.playNext(_audioSource, idleSound, 0.7f));
+        }
     }
 
     // Update is called once per frame

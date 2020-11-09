@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
     public GameObject interactor;
+    public bool iSprinting { get { return _sprinting; }}
+    public bool isMoving { get { return movement != null && movement.magnitude > .1f; } }
 
     Vector2 movement;
     bool _sprinting = false;

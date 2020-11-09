@@ -5,14 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    // Test-value, 1 minute of oxygen
-    float oxygen = 10;
+    public float oxygen = 60;
+    public float noMovingOxygenMod = 0.5f;
+    public float sprintOxygenMod = 2.0f;
 
     Character character;
+
+    PlayerMovement _playerMovement;
 
     // Start is called before the first frame update
     void Start()
     {
+        _playerMovement = GetComponent<PlayerMovement>();
         character = GameStatsService.Instance.selectedCharacter;
         Debug.Log(character.name);
     }
@@ -26,7 +30,14 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene(1);
         }
 
-        oxygen -= Time.deltaTime;
+        if (_playerMovement.isMoving)
+        {
+            oxygen -= Time.deltaTime * (_playerMovement.iSprinting ? sprintOxygenMod : 1);
+        }
+        else
+        {
+            oxygen -= Time.deltaTime * noMovingOxygenMod;
+        }
 
         if (oxygen < 0) {
             character.subtractHealth(1);
