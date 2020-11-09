@@ -17,6 +17,11 @@ public class SkillTest
     public string passMessage { get; }
     public string failMessage { get; }
 
+    public SkillTest(SkillsEnum skill, int difficulty)
+    {
+        this.skill = skill;
+        this.difficulty = difficulty;
+    }
 
     public SkillTest(SkillsEnum skill, int difficulty, string name, string description, string passMessage, string failMessage)
     {

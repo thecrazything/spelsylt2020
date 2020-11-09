@@ -18,7 +18,7 @@ public class Interactor : MonoBehaviour
     {
         if (_focusedInteractable != null)
         {
-            _focusedInteractable.Interact();
+            _focusedInteractable.Interact(gameObject.transform.parent.gameObject);
         }
         else {
             Debug.Log("Nothing to interact with");

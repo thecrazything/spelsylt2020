@@ -254,6 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oxygen: 60
+  noMovingOxygenMod: 0.5
   sprintOxygenMod: 4
 --- !u!1 &2585566707663266972
 GameObject:
