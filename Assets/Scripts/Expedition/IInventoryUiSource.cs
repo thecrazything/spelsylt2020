@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-interface IInteractable
+public interface IInventoryUiSource
 {
-    void Interact(Player player);
+    Item[] GetItems();
 }

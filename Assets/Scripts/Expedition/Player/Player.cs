@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Assets.Scripts.Expedition;
 using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
@@ -10,28 +9,26 @@ public class Player : MonoBehaviour
     float oxygen = 10;
 
     Character character;
-    public Inventory inventory = new Inventory(5);
     public GameObject inventoryCanvas;
 
-    PlayerInventoryUI inventoryUI;
+    ContainerInventoryUI inventoryUI;
+    public PlayerInventory inventory = new PlayerInventory();
 
-    // Start is called before the first frame update
     void Start()
     {
         character = GameStatsService.Instance.selectedCharacter;
 
-        inventoryUI = Instantiate(inventoryCanvas, transform).GetComponent<PlayerInventoryUI>();
+        inventoryUI = Instantiate(inventoryCanvas, transform).GetComponent<ContainerInventoryUI>();
         inventoryUI.SetTitle("Inventory");
-        inventoryUI.inventory = inventory;
+        inventoryUI.source = inventory;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space)) {
             Debug.Log("End expedition");
 
-            GameStatsService.Instance.CompleteExpedition(inventory.GetAllItems());
+            GameStatsService.Instance.CompleteExpedition(inventory.items.ToArray());
             SceneManager.LoadScene(1);
         }
 

@@ -51,14 +51,14 @@ public class GameStatsService
         return _characters.FirstOrDefault(c => c.id == id);
     }
 
-    public void CompleteExpedition(InventoryItem[] items)
+    public void CompleteExpedition(Item[] items)
     {
         if (items != null)
         {
             // TODO handle other item types
-            items.Where(x => x is RationItem).ToList().ForEach(item =>
+            items.Where(x => x is Ration).ToList().ForEach(item =>
             {
-                gameStats.AddRation(item as RationItem);
+                gameStats.AddRation(item as Ration);
             });
         }
         gameStats.expeditionComplete = true;

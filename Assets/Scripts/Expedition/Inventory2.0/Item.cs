@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryItem
+public abstract class Item
 {
     public string name;
-    public Sprite icon;
+
+    public abstract string GetName();
 }

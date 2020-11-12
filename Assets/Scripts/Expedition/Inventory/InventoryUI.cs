@@ -1,39 +1,38 @@
 ﻿using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using UnityEngine.UIElements;
 
 public abstract class InventoryUI : MonoBehaviour
 {
     public Transform title;
-    public Transform itemsParent;
+    public Transform scrollViewTransform;
     public GameObject wrapper;
     public string inventoryName;
-    public Inventory inventory;
 
-    InventorySlot[] slots;
+    public IInventoryUiSource source;
+
     TextMeshProUGUI titleText;
 
     void Start()
     {
-        slots = itemsParent.GetComponentsInChildren<InventorySlot>();
-
         titleText = title.GetComponent<TextMeshProUGUI>();
         inventoryName = transform.parent.name;
-
-        foreach (InventorySlot slot in slots) {
-            slot.GetComponentInChildren<Button>().onClick.AddListener(delegate { HandleSlot(slot); });
-        }
 
         Hide();
     }
 
     void UpdateUI()
     {
-        for (int i = 0; i < inventory.size; i++)
+        var inventory = source.GetItems();
+
+        for (int i = 0; i < inventory.Length; i++)
         {
-            var item = inventory.GetItem(i);
+            var item = inventory[i];
             if (item != null) {
-                slots[i].AddItem(item);
+                //slots[i].AddItem(item);
             }
         }
     }

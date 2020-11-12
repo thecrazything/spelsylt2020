@@ -20,8 +20,8 @@ public class CharacterDataInjector : MonoBehaviour
             Character d = new Character(3, "Micheal Moore");
             characters.Add(d);
             GameStats stats = new GameStats();
-            stats.AddRation(new RationItem());
-            stats.AddRation(new RationItem());
+            stats.AddRation(new Ration());
+            stats.AddRation(new Ration());
             GameStatsService.Instance.SetStartData(characters, stats);
             GameStatsService.Instance.selectedCharacter = a;
         }

@@ -128,7 +128,7 @@ public class HubBehaviour : MonoBehaviour
                     tasksSummary += "\n" + result.bonus.message.Replace("{name}", task.doer.name);
                     for(var j = 0; j < result.bonus.consequence.rationChange; j++)
                     {
-                        GameStatsService.Instance.gameStats.AddRation(new RationItem());
+                        GameStatsService.Instance.gameStats.AddRation(new Ration());
                     }
                     // TODO performe complicaiton consequence
                 }

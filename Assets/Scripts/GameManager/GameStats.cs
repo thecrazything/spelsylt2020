@@ -10,7 +10,7 @@ public class GameStats
     public bool expeditionComplete = false;
 
     public HubTask[] hubTasks;
-    private RationItem[] _rations = { };
+    private Ration[] _rations = { };
 
     public int daysLeft 
     {
@@ -29,9 +29,9 @@ public class GameStats
         onGameChange?.Invoke(this);
     }
 
-    public void AddRation(RationItem ration)
+    public void AddRation(Ration ration)
     {
-        var temp = new RationItem[_rations.Length + 1];
+        var temp = new Ration[_rations.Length + 1];
         _rations.CopyTo(temp, 0);
         temp[temp.Length - 1] = ration;
         _rations = temp;
@@ -49,7 +49,7 @@ public class GameStats
 
     public void RemoveRation(int amount)
     {
-        var temp = new RationItem[_rations.Length - amount];
+        var temp = new Ration[_rations.Length - amount];
         for (var i = 0; i < temp.Length; i++)
         {
             temp[i] = _rations[i];
