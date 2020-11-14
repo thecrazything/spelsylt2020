@@ -23,7 +23,11 @@ public class CharacterDataInjector : MonoBehaviour
             stats.AddRation(new Ration());
             stats.AddRation(new Ration());
             GameStatsService.Instance.SetStartData(characters, stats);
-            GameStatsService.Instance.selectedCharacter = a;
+
+            if (GameStatsService.Instance.selectedCharacter == null)
+            {
+                GameStatsService.Instance.selectedCharacter = a;
+            }
         }
     }
 

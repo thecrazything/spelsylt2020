@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    // Test-value, 1 minute of oxygen
-    float oxygen = 10;
+    public float oxygen = 60;
+    public float noMovingOxygenMod = 0.5f;
+    public float sprintOxygenMod = 2.0f;
 
     Character character;
     public GameObject inventoryCanvas;
@@ -14,8 +15,11 @@ public class Player : MonoBehaviour
     ContainerInventoryUI inventoryUI;
     public PlayerInventory inventory = new PlayerInventory();
 
+    PlayerMovement _playerMovement;
+
     void Start()
     {
+        _playerMovement = GetComponent<PlayerMovement>();
         character = GameStatsService.Instance.selectedCharacter;
 
         inventoryUI = Instantiate(inventoryCanvas, transform).GetComponent<ContainerInventoryUI>();
@@ -36,7 +40,14 @@ public class Player : MonoBehaviour
             inventoryUI.Toggle();
         }
 
-        //oxygen -= Time.deltaTime;
+        if (_playerMovement.isMoving)
+        {
+            oxygen -= Time.deltaTime * (_playerMovement.iSprinting ? sprintOxygenMod : 1);
+        }
+        else
+        {
+            oxygen -= Time.deltaTime * noMovingOxygenMod;
+        }
 
         if (oxygen < 0) {
             character.subtractHealth(1);

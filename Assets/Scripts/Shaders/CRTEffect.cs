@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class CRTEffect : MonoBehaviour
 {
@@ -30,8 +31,11 @@ public class CRTEffect : MonoBehaviour
         material = new Material(shader);
     }
 
+
     private void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
+        // URP broke it :(
+        /*
         material.SetFloat("u_time", Time.fixedTime);
         material.SetFloat("u_bend", bend);
         material.SetFloat("u_scanline_size_1", scanlineSize1);
@@ -47,6 +51,6 @@ public class CRTEffect : MonoBehaviour
         material.SetVector("u_red_offset", redOffset);
         material.SetVector("u_blue_offset", blueOffset);
         material.SetVector("u_green_offset", greenOffset);
-        Graphics.Blit(source, destination, material);
+        Graphics.Blit(source, destination, material);*/
     }
 }
