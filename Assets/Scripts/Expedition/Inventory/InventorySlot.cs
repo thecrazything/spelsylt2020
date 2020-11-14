@@ -10,9 +10,10 @@ public class InventorySlot : MonoBehaviour
     public Transform title;
     Item _item;
 
-    public event EventHandler<OnDeleteItemEventArgs> OnDeleteItem;
-    public class OnDeleteItemEventArgs : EventArgs {
-        public GameObject item;
+    public event EventHandler<OnItemClickedEventArgs> OnClickItem;
+    public class OnItemClickedEventArgs : EventArgs {
+        public InventorySlot slot;
+        public GameObject gameObject;
     }
 
     public Item item
@@ -20,11 +21,13 @@ public class InventorySlot : MonoBehaviour
         get { return _item; }
     }
 
-    public void Delete(string test)
+    public void ClickItem()
     {
-        Debug.Log(test);
-        Debug.Log("Delete item " + gameObject.name);
-        OnDeleteItem?.Invoke(this, new OnDeleteItemEventArgs { item = gameObject });
+        OnClickItem?.Invoke(this, new OnItemClickedEventArgs
+        {
+            slot = this,
+            gameObject = gameObject
+        }) ;
     }
 
     public void Set(Item item)

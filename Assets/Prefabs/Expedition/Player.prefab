@@ -258,7 +258,7 @@ MonoBehaviour:
   oxygen: 60
   noMovingOxygenMod: 0.5
   sprintOxygenMod: 4
-  inventoryCanvas: {fileID: 3986099038148390820, guid: 54eecff9bf8508447b0262789e27d35c,
+  inventoryCanvas: {fileID: 6123184275040888053, guid: dfdd66659f226ca40bb883671628a93c,
     type: 3}
 --- !u!1 &2560739059010967074
 GameObject:

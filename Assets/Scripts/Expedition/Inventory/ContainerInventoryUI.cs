@@ -6,24 +6,12 @@ using System;
 
 public class ContainerInventoryUI : InventoryUI
 {
-    public Transform list;
-    public GameObject listItem;
-
-    public void AddToList()
+    protected override void Slot_OnClickItem(object sender, InventorySlot.OnItemClickedEventArgs e)
     {
-        var i = Instantiate(listItem, list);
-        InventorySlot slot = i.GetComponent<InventorySlot>();
+        source.GetInventory().Remove(e.slot.item);
 
-        slot.Set(new Ration());
-        slot.OnDeleteItem += Slot_OnDeleteItem;
-
-        Debug.Log(i.GetComponent<RectTransform>().sizeDelta.x);
-        Debug.Log(i.GetComponent<RectTransform>().sizeDelta.y);
-    }
-
-    private void Slot_OnDeleteItem(object sender, InventorySlot.OnDeleteItemEventArgs e)
-    {
-        Debug.Log("Recieved " + e.item.name);
-        Destroy(e.item);
+        var player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<Player>().inventory.items.Add(e.slot.item);
+        Destroy(e.gameObject);
     }
 }
