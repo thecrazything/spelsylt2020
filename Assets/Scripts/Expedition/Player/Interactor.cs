@@ -1,11 +1,14 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Interactor : MonoBehaviour
 {
     public Slider interactProgressbar;
+    public GameObject interactTextObject;
 
+    TextMeshProUGUI _interactText;
     IInteractable _focusedInteractable;
     Player player;
 
@@ -18,6 +21,7 @@ public class Interactor : MonoBehaviour
     {
         // TODO: Inte säker på att denna behövs, från MC
         player = GetComponentInParent<Player>();
+        _interactText = interactTextObject.GetComponent<TextMeshProUGUI>();
 
         if (interactProgressbar == null)
         {
@@ -59,6 +63,11 @@ public class Interactor : MonoBehaviour
         {
             if (_focusedInteractable.GetActionTime() != null)
             {
+                string title = _focusedInteractable.GetActionTitle();
+                if (title != null) {
+                    SetAndActivateTitle(title);
+                }
+
                 _playerMovement.SetFrozen(true);
                 _isInteracting = true;
                 _timeout = (float)_focusedInteractable.GetActionTime();
@@ -76,11 +85,24 @@ public class Interactor : MonoBehaviour
         }
     }
 
+    void SetAndActivateTitle(string title)
+    {
+        _interactText.text = title;
+        interactTextObject.SetActive(true);
+    }
+
+    void RemoveAndDeactivateTitle()
+    {
+        _interactText.text = "";
+        interactTextObject.SetActive(false);
+    }
+
     void StopInteract()
     {
         _playerMovement.SetFrozen(false);
         _isInteracting = false;
         interactProgressbar.gameObject.SetActive(false);
+        RemoveAndDeactivateTitle();
     }
 
     void ProgressInteraction()

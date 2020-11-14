@@ -46,4 +46,9 @@ public class LootContainer : MonoBehaviour, IInteractable, IInventoryUiSource
     {
         return inventory;
     }
+
+    public string GetActionTitle()
+    {
+        return "Searching...";
+    }
 }

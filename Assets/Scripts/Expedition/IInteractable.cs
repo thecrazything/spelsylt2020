@@ -10,4 +10,6 @@ interface IInteractable
     void Interact(GameObject source);
 
     float? GetActionTime();
+
+    string GetActionTitle();
 }
