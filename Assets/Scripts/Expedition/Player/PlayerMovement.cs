@@ -10,16 +10,24 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
     public GameObject interactor;
-    public bool iSprinting { get { return _sprinting; }}
+    public bool iSprinting { get; private set; } = false;
     public bool isMoving { get { return movement != null && movement.magnitude > .1f; } }
 
     Vector2 movement;
-    bool _sprinting = false;
+    bool _frozen;
 
     void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        if (_frozen)
+        {
+            movement.x = 0;
+            movement.y = 0;
+        }
+        else
+        {
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+        }
 
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
@@ -44,12 +52,12 @@ public class PlayerMovement : MonoBehaviour
             UpdateInteractor(movement);
         }
 
-        _sprinting = Input.GetAxisRaw("Sprint") >= 0.5f; ;
+        iSprinting = Input.GetAxisRaw("Sprint") >= 0.5f; ;
     }
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * moveSpeed * (_sprinting ? sprintModifier : 1f) * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * moveSpeed * (iSprinting ? sprintModifier : 1f) * Time.fixedDeltaTime);
     }
 
     // Moves the interactor component to match player rotation
@@ -66,5 +74,10 @@ public class PlayerMovement : MonoBehaviour
         } else {
             interactor.transform.localPosition = new Vector3(0, -.45f, 0);
         }
+    }
+
+    public void SetFrozen(bool value)
+    {
+        _frozen = value;
     }
 }

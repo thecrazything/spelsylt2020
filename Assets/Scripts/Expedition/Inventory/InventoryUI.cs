@@ -53,8 +53,6 @@ public abstract class InventoryUI : MonoBehaviour
         wrapper.SetActive(false);
     }
 
-    public abstract void HandleSlot(InventorySlot slot);
-
     public void Toggle()
     {
         if (wrapper.activeSelf) {

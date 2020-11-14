@@ -9,11 +9,12 @@ public class Player : MonoBehaviour
     public float noMovingOxygenMod = 0.5f;
     public float sprintOxygenMod = 2.0f;
 
-    Character character;
     public GameObject inventoryCanvas;
 
     ContainerInventoryUI inventoryUI;
     public PlayerInventory inventory = new PlayerInventory();
+
+    public Character character { get; private set; }
 
     PlayerMovement _playerMovement;
 

@@ -44,7 +44,7 @@ public static class SkillCheck
             complication = true;
         }
 
-        return new Result(sucesses >= test.difficulty, sucesses, bonus ? Boons.getRandom(test.skill) : null, complication ? Complications.getRandom(test.skill) : null);
+        return new Result(test.skill, sucesses >= test.difficulty, sucesses, bonus, complication);
     }
 
     private static int doDiceRoll()
@@ -54,12 +54,14 @@ public static class SkillCheck
 
     public class Result {
 
+        public SkillsEnum skill { get; }
         public bool success { get; }
         public int sucessDice { get; }
-        public Boon bonus { get;  }
-        public Complication complication { get;  }
+        public bool bonus { get;  }
+        public bool complication { get;  }
 
-        public Result(bool sucess, int sucessDice, Boon bonus, Complication complication) {
+        public Result(SkillsEnum skill, bool sucess, int sucessDice, bool bonus, bool complication) {
+            this.skill = skill;
             this.success = sucess;
             this.sucessDice = sucessDice;
             this.bonus = bonus;

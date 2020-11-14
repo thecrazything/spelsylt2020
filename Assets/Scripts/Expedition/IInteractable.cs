@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 interface IInteractable
 {
-    void Interact(Player player);
+    void Interact(GameObject source);
+
+    float? GetActionTime();
 }

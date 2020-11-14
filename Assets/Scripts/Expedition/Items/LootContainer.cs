@@ -17,14 +17,18 @@ public class LootContainer : MonoBehaviour, IInteractable, IInventoryUiSource
         ui.source = this;
     }
 
-    public void Interact(Player player)
-    {
-        Debug.Log(inventory.Count);
-        ui.Show();
-    }
-
     public Item[] GetItems()
     {
         return inventory.ToArray();
+    }
+
+    public void Interact(GameObject source)
+    {
+        ui.Show();
+    }
+
+    public float? GetActionTime()
+    {
+        return null;
     }
 }

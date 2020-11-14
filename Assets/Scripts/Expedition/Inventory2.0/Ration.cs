@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class Ration : Item
 {
+    public Ration()
+    {
+        name = "Ration";
+    }
+
     public override string GetName()
     {
-        throw new System.NotImplementedException();
+        return name;
     }
 }

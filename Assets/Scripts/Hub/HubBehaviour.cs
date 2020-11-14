@@ -117,20 +117,17 @@ public class HubBehaviour : MonoBehaviour
                     tasksSummary += "\n" + task.skillTest.failMessage.Replace("{name}", task.doer.name);
                 }
 
-                if (result.complication != null)
+                if (result.complication)
                 {
-                    tasksSummary += "\n" + result.complication.message.Replace("{name}", task.doer.name);
-                    GameStatsService.Instance.gameStats.RemoveRation(result.complication.consequence.rationChange);
-                    // TODO performe complicaiton consequence
+                    IExtraAction complication = HubComplications.getRandom(task.skillTest.skill);
+                    tasksSummary += "\n" + complication.GetMessage().Replace("{name}", task.doer.name);
+                    complication.on(GameStatsService.Instance);
                 }
-                if (result.bonus != null)
+                if (result.bonus)
                 {
-                    tasksSummary += "\n" + result.bonus.message.Replace("{name}", task.doer.name);
-                    for(var j = 0; j < result.bonus.consequence.rationChange; j++)
-                    {
-                        GameStatsService.Instance.gameStats.AddRation(new Ration());
-                    }
-                    // TODO performe complicaiton consequence
+                    IExtraAction bonus = HubBoons.getRandom(task.skillTest.skill);
+                    tasksSummary += "\n" + bonus.GetMessage().Replace("{name}", task.doer.name);
+                    bonus.on(GameStatsService.Instance);
                 }
             }
             else

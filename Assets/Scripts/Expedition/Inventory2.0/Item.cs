@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Item
 {
-    public string name;
+    protected string name;
 
     public abstract string GetName();
 }

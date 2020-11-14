@@ -4,8 +4,5 @@ using UnityEngine;
 
 public class PlayerInventoryUI : InventoryUI
 {
-    public override void HandleSlot(InventorySlot slot)
-    {
-        
-    }
+
 }
