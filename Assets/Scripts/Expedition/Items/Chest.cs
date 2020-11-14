@@ -9,4 +9,9 @@ public class Chest : MonoBehaviour, IInteractable
     {
         Debug.Log("Hello! I'm a chest");
     }
+
+    public float? GetActionTime()
+    {
+        return null;
+    }
 }

@@ -10,4 +10,9 @@ public class Gem : MonoBehaviour, IInteractable
         Debug.Log("Picked up a gem!");
         Destroy(gameObject);
     }
+
+    public float? GetActionTime()
+    {
+        return null;
+    }
 }

@@ -1,16 +1,51 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 using Assets.Scripts.Expedition;
 
 public class Interactor : MonoBehaviour
 {
+    public Slider interactProgressbar;
+
     IInteractable _focusedInteractable;
+    bool _isInteracting = false;
+    float _timeout;
+    float _time = 0;
+    PlayerMovement _playerMovement;
+
+    void Start()
+    {
+        if (interactProgressbar == null)
+        {
+            throw new ArgumentNullException("No Progressbar found");
+        }
+        interactProgressbar.gameObject.SetActive(false);
+        _playerMovement = transform.parent.gameObject.GetComponent<PlayerMovement>();
+
+        if (_playerMovement == null)
+        {
+            throw new ArgumentNullException("No Player component found");
+        }
+    }
 
     void Update()
     {
+        // TODO map to inputs
+        // TODO interrupt on any move
         if (Input.GetKeyDown(KeyCode.E)) {
-            TryInteract();
+            if (!_isInteracting)
+            {
+                TryInteract();
+            }
+            else
+            {
+                StopInteract();
+            }
+        }
+
+        if (_isInteracting)
+        {
+            ProgressInteraction();
         }
     }
 
@@ -18,16 +53,45 @@ public class Interactor : MonoBehaviour
     {
         if (_focusedInteractable != null)
         {
-            _focusedInteractable.Interact(gameObject.transform.parent.gameObject);
+            if (_focusedInteractable.GetActionTime() != null)
+            {
+                _playerMovement.SetFrozen(true);
+                _isInteracting = true;
+                _timeout = (float)_focusedInteractable.GetActionTime();
+                _time = 0;
+                interactProgressbar.maxValue = _timeout;
+                interactProgressbar.gameObject.SetActive(true);
+            }
+            else
+            {
+                _focusedInteractable.Interact(gameObject.transform.parent.gameObject);
+            }
         }
         else {
             Debug.Log("Nothing to interact with");
         }
     }
 
+    void StopInteract()
+    {
+        _playerMovement.SetFrozen(false);
+        _isInteracting = false;
+        interactProgressbar.gameObject.SetActive(false);
+    }
+
+    void ProgressInteraction()
+    {
+        _time += Time.deltaTime;
+        interactProgressbar.value = _time;
+        if (_time >= _timeout)
+        {
+            StopInteract();
+            _focusedInteractable.Interact(gameObject.transform.parent.gameObject);
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log("asdf");
         if (collider.TryGetComponent(out _focusedInteractable)) {
             Debug.Log("Found an interactable");
         }

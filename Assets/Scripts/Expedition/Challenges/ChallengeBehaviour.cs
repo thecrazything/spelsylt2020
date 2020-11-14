@@ -12,7 +12,7 @@ public class ChallengeBehaviour : MonoBehaviour, IInteractable
     public string testName;
     public string description;
 
-    public float time; // TODO make it take time
+    public float executeTime;
 
     private SkillTest _skillTest;
     private ChallengeConsequence _consequence;
@@ -38,6 +38,11 @@ public class ChallengeBehaviour : MonoBehaviour, IInteractable
         {
             Debug.Log("No consequences found, but result was " + (result.success ? "success" : "fail"));
         }
+    }
+
+    public float? GetActionTime()
+    {
+        return executeTime;
     }
 
     // Start is called before the first frame update

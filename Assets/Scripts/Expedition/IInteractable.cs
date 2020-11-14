@@ -10,5 +10,7 @@ namespace Assets.Scripts.Expedition
     interface IInteractable
     {
         void Interact(GameObject source);
+
+        float? GetActionTime();
     }
 }
