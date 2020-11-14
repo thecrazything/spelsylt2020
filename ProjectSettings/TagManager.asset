@@ -39,6 +39,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Tilemap
+    uniqueID: 2136800557
+    locked: 0
   - name: Ground
     uniqueID: 2498830341
     locked: 0
