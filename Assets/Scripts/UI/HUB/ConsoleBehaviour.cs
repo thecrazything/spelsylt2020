@@ -15,6 +15,7 @@ public class ConsoleBehaviour : MonoBehaviour
     private TextPrintAnimation _textPrintAnimation;
 
     private string _startText = "";
+    private Func<bool, bool> _startOnComplete;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,8 @@ public class ConsoleBehaviour : MonoBehaviour
         }
 
         _textPrintAnimation = new TextPrintAnimation(consoleTextView, writeDelay);
-        _textPrintAnimation.Write(_startText);
+        _textPrintAnimation.Write(_startText, _startOnComplete);
+        _startOnComplete = null;
         if (_audioSource != null)
         {
             StartCoroutine(SoundQueue.playNext(_audioSource, idleSound, 0.7f));
@@ -45,14 +47,26 @@ public class ConsoleBehaviour : MonoBehaviour
 
     public void WriteText(string text)
     {
-        WriteText(text, false);
+        WriteText(text, null);
+    }
+
+
+    public void WriteText(string text, Func<bool, bool> onComplete)
+    {
+        WriteText(text, false, onComplete);
     }
 
     public void WriteTextWithSound(string text)
     {
-        WriteText(text, true);
+        WriteTextWithSound(text, null);
     }
-    private void WriteText(string text, bool sound)
+
+    public void WriteTextWithSound(string text, Func<bool, bool> onComplete)
+    {
+        WriteText(text, true, onComplete);
+    }
+
+    private void WriteText(string text, bool sound, Func<bool, bool> onComplete)
     {
         if (sound)
         {
@@ -63,10 +77,11 @@ public class ConsoleBehaviour : MonoBehaviour
 
         if (_textPrintAnimation != null)
         {
-            _textPrintAnimation.Write(text);
+            _textPrintAnimation.Write(text, onComplete);
         } else
         {
             _startText = text;
+            _startOnComplete = onComplete;
         }
     }
 }
