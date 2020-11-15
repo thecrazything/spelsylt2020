@@ -11,6 +11,7 @@ public class TextPrintAnimation
     private string _textToWrite;
     private int _currentPosition = 0;
     private float _currentWriteTime = 0.0f;
+    private Func<bool, bool> _onComplete;
 
     public TextPrintAnimation(Text textView, float delay)
     {
@@ -21,6 +22,12 @@ public class TextPrintAnimation
         {
             throw new ArgumentNullException("TextView");
         }
+    }
+
+    public void Write(string text, Func<bool, bool> onComplete)
+    {
+        _onComplete = onComplete;
+        Write(text);
     }
 
     public void Write(string text)
@@ -39,7 +46,9 @@ public class TextPrintAnimation
             _currentWriteTime += Time.deltaTime;
             if (_currentPosition >= _textToWrite.Length)
             {
+                _onComplete?.Invoke(true);
                 _textToWrite = null;
+                _onComplete = null;
             }
             else if (_currentWriteTime >= _delay)
             {
