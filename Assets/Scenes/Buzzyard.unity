@@ -7025,6 +7025,11 @@ PrefabInstance:
       propertyPath: m_InstanceId
       value: -35818
       objectReference: {fileID: 0}
+    - target: {fileID: 3829477551464863593, guid: 7a47cc4c7ea22c84bb3e0a64d6fd891f,
+        type: 3}
+      propertyPath: keycardColor
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a47cc4c7ea22c84bb3e0a64d6fd891f, type: 3}
 --- !u!1001 &7104408166315713672
