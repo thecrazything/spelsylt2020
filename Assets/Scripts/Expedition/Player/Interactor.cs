@@ -64,7 +64,8 @@ public class Interactor : MonoBehaviour
             if (_focusedInteractable.GetActionTime() != null)
             {
                 string title = _focusedInteractable.GetActionTitle();
-                if (title != null) {
+                if (title != null)
+                {
                     SetAndActivateTitle(title);
                 }
 
@@ -80,7 +81,8 @@ public class Interactor : MonoBehaviour
                 _focusedInteractable.Interact(gameObject.transform.parent.gameObject);
             }
         }
-        else {
+        else
+        {
             Debug.Log("Nothing to interact with");
         }
     }
@@ -118,13 +120,18 @@ public class Interactor : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.TryGetComponent(out _focusedInteractable)) {
-            Debug.Log("Found an interactable");
+        IInteractable interactable;
+        if (collider.TryGetComponent(out interactable)) {
+            _focusedInteractable = interactable;
         }
     }
 
-    void OnTriggerExit(Collider collider)
+    void OnTriggerExit2D(Collider2D collider)
     {
-        _focusedInteractable = null;
+        IInteractable _exitInteractable = collider.GetComponent<IInteractable>();
+        if (_exitInteractable != null && _exitInteractable == _focusedInteractable)
+        {
+            _focusedInteractable = null;
+        }
     }
 }
