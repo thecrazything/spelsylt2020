@@ -62,4 +62,9 @@ public class ChallengeBehaviour : MonoBehaviour, IInteractable
     {
         
     }
+
+    public string GetActionTitle()
+    {
+        return null;
+    }
 }

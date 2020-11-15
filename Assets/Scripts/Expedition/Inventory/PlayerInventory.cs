@@ -10,8 +10,8 @@ public class PlayerInventory : IInventoryUiSource
         items = new List<Item>();
     }
 
-    public Item[] GetItems()
+    public List<Item> GetInventory()
     {
-        return items.ToArray();
+        return items;
     }
 }

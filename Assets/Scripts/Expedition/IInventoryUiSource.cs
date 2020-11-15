@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 public interface IInventoryUiSource
 {
-    Item[] GetItems();
+    List<Item> GetInventory();
 }

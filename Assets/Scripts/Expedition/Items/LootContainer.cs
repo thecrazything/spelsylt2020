@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class LootContainer : MonoBehaviour, IInteractable, IInventoryUiSource
 {
+    public Sprite openSprite;
+    public Sprite closeSpite;
+
+    private bool isOpen = false;
+    private bool isSearched = false;
+
     public GameObject inventoryUiPrefab;
 
     InventoryUI ui;
@@ -13,22 +19,36 @@ public class LootContainer : MonoBehaviour, IInteractable, IInventoryUiSource
     void Start()
     {
         ui = Instantiate(inventoryUiPrefab, transform).GetComponent<InventoryUI>();
-        Debug.Log("UI: " + ui);
         ui.source = this;
-    }
-
-    public Item[] GetItems()
-    {
-        return inventory.ToArray();
     }
 
     public void Interact(GameObject source)
     {
+        isSearched = true;
+        isOpen = true;
+
+        UpdateSprite();
         ui.Show();
+    }
+
+    private void UpdateSprite()
+    {
+        gameObject.GetComponent<SpriteRenderer>().sprite = openSprite;
     }
 
     public float? GetActionTime()
     {
-        return null;
+        if (isSearched) return null;
+        else return 3;
+    }
+
+    public List<Item> GetInventory()
+    {
+        return inventory;
+    }
+
+    public string GetActionTitle()
+    {
+        return "Searching...";
     }
 }

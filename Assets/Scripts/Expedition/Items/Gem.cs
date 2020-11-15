@@ -14,4 +14,9 @@ public class Gem : MonoBehaviour, IInteractable
     {
         return null;
     }
+
+    public string GetActionTitle()
+    {
+        return null;
+    }
 }

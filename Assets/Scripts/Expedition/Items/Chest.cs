@@ -13,4 +13,9 @@ public class Chest : MonoBehaviour, IInteractable
     {
         return null;
     }
+
+    public string GetActionTitle()
+    {
+        return null;
+    }
 }
