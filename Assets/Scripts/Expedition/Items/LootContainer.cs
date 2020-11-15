@@ -8,6 +8,8 @@ public class LootContainer : MonoBehaviour, IInteractable, IInventoryUiSource
     public Sprite openSprite;
     public Sprite closeSpite;
 
+    public string ContainerName;
+
     private bool isOpen = false;
     private bool isSearched = false;
 
@@ -20,6 +22,7 @@ public class LootContainer : MonoBehaviour, IInteractable, IInventoryUiSource
     {
         ui = Instantiate(inventoryUiPrefab, transform).GetComponent<InventoryUI>();
         ui.source = this;
+        ui.SetTitle(ContainerName);
     }
 
     public void Interact(GameObject source)

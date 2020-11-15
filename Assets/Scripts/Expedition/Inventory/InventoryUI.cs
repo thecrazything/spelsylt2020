@@ -9,8 +9,6 @@ public abstract class InventoryUI : MonoBehaviour
 {
     public Transform title;
     public GameObject wrapper;
-    public string inventoryName;
-
     public IInventoryUiSource source;
 
     TextMeshProUGUI titleText;
@@ -18,12 +16,12 @@ public abstract class InventoryUI : MonoBehaviour
     public Transform list;
     public GameObject listItem;
 
+    private string inventoryName;
     private bool isVisible = false;
 
     void Start()
     {
         titleText = title.GetComponent<TextMeshProUGUI>();
-        inventoryName = transform.parent.name;
 
         Hide();
     }
@@ -51,7 +49,7 @@ public abstract class InventoryUI : MonoBehaviour
     {
         if (isVisible) return;
 
-        titleText.text = name;
+        titleText.text = inventoryName;
         UpdateUI();
         wrapper.SetActive(true);
 
