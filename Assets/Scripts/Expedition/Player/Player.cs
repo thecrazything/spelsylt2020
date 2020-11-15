@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public float sprintOxygenMod = 2.0f;
 
     public GameObject inventoryCanvas;
+    public Interactor interactor;
 
     ContainerInventoryUI inventoryUI;
     public PlayerInventory inventory = new PlayerInventory();
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        interactor = GetComponentInChildren<Interactor>();
         _playerMovement = GetComponent<PlayerMovement>();
         character = GameStatsService.Instance.selectedCharacter;
 

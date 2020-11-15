@@ -12,6 +12,10 @@ public class Interactor : MonoBehaviour
     IInteractable _focusedInteractable;
     Player player;
 
+    public event EventHandler<OnPlayerLostInteractFocus> OnLostInteractFocus;
+    public class OnPlayerLostInteractFocus : EventArgs
+    {}
+
     bool _isInteracting = false;
     float _timeout;
     float _time = 0;
@@ -128,6 +132,8 @@ public class Interactor : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collider)
     {
+        OnLostInteractFocus?.Invoke(this, new OnPlayerLostInteractFocus());
+
         IInteractable _exitInteractable = collider.GetComponent<IInteractable>();
         if (_exitInteractable != null && _exitInteractable == _focusedInteractable)
         {
