@@ -10,6 +10,7 @@ public class Door : MonoBehaviour, IInteractable
     
     public GameObject shadowObject;
     public KeycardColor keycardColor;
+    public bool requiresKeycard = false;
 
     void Start() {
         animator = GetComponent<Animator>();
@@ -27,9 +28,11 @@ public class Door : MonoBehaviour, IInteractable
 
     public void Interact(GameObject source)
     {
-        Item keycard = source.GetComponent<Player>().inventory.items.Find(i => (i is Keycard) && (i as Keycard).color == keycardColor);
+        if (requiresKeycard) {
+            Item keycard = source.GetComponent<Player>().inventory.items.Find(i => (i is Keycard) && (i as Keycard).color == keycardColor);
 
-        if (keycard == null) return;
+            if (keycard == null) return;
+        }
 
         _isOpen = true;
         shadowObject.SetActive(false);

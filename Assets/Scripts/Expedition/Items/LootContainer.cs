@@ -22,8 +22,6 @@ public class LootContainer : MonoBehaviour, IInteractable, IInventoryUiSource
 
     void Start()
     {
-        inventory.Add(new Keycard() { color = KeycardColor.Blue });
-
         ui = Instantiate(inventoryUiPrefab, transform).GetComponent<InventoryUI>();
         ui.source = this;
         ui.SetTitle(ContainerName);
