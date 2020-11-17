@@ -7,6 +7,7 @@ public class GameStats
     public delegate void GameStatChangeDelegate(GameStats stats);
     public event GameStatChangeDelegate onGameChange;
 
+    public bool intro = true;
     public bool expeditionComplete = false;
 
     public HubTask[] hubTasks = { };

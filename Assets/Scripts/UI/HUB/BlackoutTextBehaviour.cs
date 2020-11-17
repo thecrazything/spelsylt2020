@@ -10,11 +10,16 @@ public class BlackoutTextBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _console = GetComponent<ConsoleBehaviour>();
-        _console.WriteText(TextConstants.INTRO_MESSAGE, (val) => {
-            blackout.fade = true;
-            return false;
-        });
+        if (GameStatsService.Instance.gameStats.intro)
+        {
+            _console = GetComponent<ConsoleBehaviour>();
+            _console.WriteText(TextConstants.INTRO_MESSAGE, (val) =>
+            {
+                blackout.fade = true;
+                GameStatsService.Instance.gameStats.intro = false;
+                return false;
+            });
+        }
     }
 
     // Update is called once per frame
