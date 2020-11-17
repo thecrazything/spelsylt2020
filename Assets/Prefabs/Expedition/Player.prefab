@@ -149,7 +149,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 3db1b69cf36e52043b6ad85fbad5df15, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -235,6 +235,7 @@ MonoBehaviour:
   sprintOxygenMod: 4
   inventoryCanvas: {fileID: 6123184275040888053, guid: dfdd66659f226ca40bb883671628a93c,
     type: 3}
+  interactor: {fileID: 0}
 --- !u!58 &3462461069870665372
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -58,7 +58,7 @@ public class GameStatsService
             // TODO handle other item types
             items.Where(x => x is Ration).ToList().ForEach(item =>
             {
-                gameStats.AddRation(item as Ration);
+                gameStats.AddItem(item as Ration);
             });
         }
         gameStats.expeditionComplete = true;
