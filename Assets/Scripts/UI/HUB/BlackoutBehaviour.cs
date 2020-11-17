@@ -50,6 +50,8 @@ public class BlackoutBehaviour : MonoBehaviour
                 _fading = false;
             }
         }
+
+        _panel.gameObject.SetActive(_fading || !fade);
     }
 
     public void SetFade(bool value)
