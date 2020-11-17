@@ -67,4 +67,9 @@ public class TextPrintAnimation
         }
         return result;
     }
+
+    public void Clear()
+    {
+        _textView.text = "";
+    }
 }

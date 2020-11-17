@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class GameStats
 {
-    public delegate void GameStatChangeDelegate(GameStats stats);
-    public event GameStatChangeDelegate onGameChange;
-
     public bool intro = true;
     public bool expeditionComplete = false;
 
@@ -26,8 +23,6 @@ public class GameStats
     public void newDay()
     {
         _daysLeft -= 1;
-
-        onGameChange?.Invoke(this);
     }
 
     public void AddRation(Ration ration)

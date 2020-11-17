@@ -22,4 +22,8 @@ public static class TextConstants
     public static readonly string ASSIGNED_TO = "Assigned to {name}.";
     public static readonly string EXPEDITION_ASSIGNED_TO = "Expedition assigned to {name}.";
     public static readonly string EXPEDITION_UNASSIGNED = "Expedition is unassigned.";
+
+    public static readonly string START_EXPIDITION = "S T A R T  E X P E D I T I O N";
+    public static readonly string NEXT_DAY = "N E X T  D A Y";
+    public static readonly string SELECT_EXPEDITION = "S E L E C T  L O C A T I O N";
 }

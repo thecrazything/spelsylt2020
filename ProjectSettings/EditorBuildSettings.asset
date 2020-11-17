@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Expedition_Test.unity
     guid: b9e5342cb2bdb9540b44e4b738ee20cb
+  - enabled: 1
+    path: Assets/Scenes/Buzzyard.unity
+    guid: 93364b4ec6432ee47af93a0723e49152
   m_configObjects: {}

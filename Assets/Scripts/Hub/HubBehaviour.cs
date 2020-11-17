@@ -17,6 +17,7 @@ public class HubBehaviour : MonoBehaviour
         } 
     }
 
+    public BlackoutTextBehaviour blackoutTextBehaviour;
     public ConsoleBehaviour consoleBehaviour;
     public HubTask[] avalibleTasks = { };
     // Start is called before the first frame update
@@ -33,6 +34,7 @@ public class HubBehaviour : MonoBehaviour
         }
         GameStatsService.Instance.gameStats.expeditionComplete = false;
         startText += setupNewDay();
+        blackoutTextBehaviour.WriteText(startText);
         consoleBehaviour.WriteText(startText);
     }
 

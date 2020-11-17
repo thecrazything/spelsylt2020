@@ -8,6 +8,7 @@ public class ConsoleBehaviour : MonoBehaviour
     public AudioClip startSound;
     public AudioClip idleSound;
     public AudioClip stopSound;
+    public AudioClip shutdownSound;
     public AudioClip[] writeSounds;
 
     private AudioSource _audioSource;
@@ -43,6 +44,18 @@ public class ConsoleBehaviour : MonoBehaviour
         {
             _textPrintAnimation.printNextIfTime(Time.deltaTime);
         }
+    }
+
+    public void Clear()
+    {
+        _textPrintAnimation.Clear();
+    }
+
+    public void ShutDown()
+    {
+        Clear();
+        _audioSource.clip = shutdownSound;
+        _audioSource.Play();
     }
 
     public void WriteText(string text)

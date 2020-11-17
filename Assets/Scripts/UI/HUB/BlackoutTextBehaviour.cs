@@ -13,13 +13,29 @@ public class BlackoutTextBehaviour : MonoBehaviour
         if (GameStatsService.Instance.gameStats.intro)
         {
             _console = GetComponent<ConsoleBehaviour>();
-            _console.WriteText(TextConstants.INTRO_MESSAGE, (val) =>
-            {
-                blackout.fade = true;
-                GameStatsService.Instance.gameStats.intro = false;
-                return false;
-            });
         }
+    }
+
+    public void WriteText(string text)
+    {
+        if (_console == null)
+        {
+            _console = GetComponent<ConsoleBehaviour>();
+        }
+        blackout.SetBlack();
+        _console.WriteText(text, (val) =>
+        {
+            blackout.onFadeFinished += BlackOutFinished;
+            blackout.FadeIn();
+            GameStatsService.Instance.gameStats.intro = false;
+            return false;
+        });
+    }
+
+    void BlackOutFinished(bool faded)
+    {
+        blackout.onFadeFinished -= BlackOutFinished;
+        _console.Clear();
     }
 
     // Update is called once per frame
