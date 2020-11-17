@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class GameStats
 {
@@ -11,7 +12,7 @@ public class GameStats
     public bool expeditionComplete = false;
 
     public HubTask[] hubTasks = { };
-    private Ration[] _rations = { };
+    private List<Item> _items = new List<Item>();
 
     public int daysLeft 
     {
@@ -30,17 +31,19 @@ public class GameStats
         onGameChange?.Invoke(this);
     }
 
-    public void AddRation(Ration ration)
+    public void AddItem(Item item)
     {
-        var temp = new Ration[_rations.Length + 1];
-        _rations.CopyTo(temp, 0);
-        temp[temp.Length - 1] = ration;
-        _rations = temp;
+        _items.Add(item);
+    }
+
+    public void AddItems(Item[] items)
+    {
+        _items.AddRange(items);
     }
 
     public int RationCount()
     {
-        return _rations.Length;
+        return _items.Where(i => i is Ration).Count();
     }
 
     public void RemoveRation()
@@ -50,11 +53,6 @@ public class GameStats
 
     public void RemoveRation(int amount)
     {
-        var temp = new Ration[_rations.Length - amount];
-        for (var i = 0; i < temp.Length; i++)
-        {
-            temp[i] = _rations[i];
-        }
-        _rations = temp;
+        _items.Remove(_items.First(i => i is Ration));
     }
 }

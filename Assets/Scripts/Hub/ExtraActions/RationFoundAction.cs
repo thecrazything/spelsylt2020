@@ -16,7 +16,7 @@ public class RationFoundAction : IExtraAction
 
     public void on(GameStatsService stats)
     {
-        stats.gameStats.AddRation(new Ration());
+        stats.gameStats.AddItem(new Ration());
     }
 
     public void on(Player character)
