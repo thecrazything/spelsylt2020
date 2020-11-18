@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ContiniueButtonBehaviour : MonoBehaviour
+public class StartExpeditionBehaviour : MonoBehaviour
 {
     private Text _text;
     private Button _button;
