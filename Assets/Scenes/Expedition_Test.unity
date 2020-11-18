@@ -175,6 +175,7 @@ MonoBehaviour:
   startSound: {fileID: 0}
   idleSound: {fileID: 0}
   stopSound: {fileID: 0}
+  shutdownSound: {fileID: 0}
   writeSounds: []
 --- !u!114 &2250426
 MonoBehaviour:
@@ -7989,7 +7990,7 @@ PrefabInstance:
     - target: {fileID: 6935927486121044637, guid: 28c501b77130ca74896aebbe370f3616,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7676719879555408270, guid: 28c501b77130ca74896aebbe370f3616,
         type: 3}
