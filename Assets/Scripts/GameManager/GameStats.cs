@@ -26,6 +26,11 @@ public class GameStats
         _daysLeft -= 1;
     }
 
+    public List<Item> GetItems()
+    {
+        return _items;
+    }
+
     public void AddItem(Item item)
     {
         _items.Add(item);

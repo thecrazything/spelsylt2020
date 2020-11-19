@@ -12,6 +12,8 @@ public class StartExpeditionBehaviour : MonoBehaviour
     public HubBehaviour hub;
     public BlackoutBehaviour blackout;
     public ConsoleBehaviour uiConsole;
+    public InvetoryWrapper inventory;
+    public ConfirmBehaviour dialog;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,9 @@ public class StartExpeditionBehaviour : MonoBehaviour
         _text = ComponentUtil.RequireComponent<Text>(transform.Find("Text").gameObject);
         _map = ComponentUtil.RequireComponent<MapBehaviour>(GameObject.Find("MapArea"));
         _button = ComponentUtil.RequireComponent<Button>(gameObject);
+
+        inventory.Hide();
+        dialog.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -39,7 +44,7 @@ public class StartExpeditionBehaviour : MonoBehaviour
             }
             else
             {
-                _text.text = TextConstants.START_EXPIDITION;
+                _text.text = TextConstants.PREPARE_EXPIDITION;
                 _button.interactable = true;
             }
         }
@@ -47,8 +52,54 @@ public class StartExpeditionBehaviour : MonoBehaviour
 
     public void onClick()
     {
+        if (GameStatsService.Instance.selectedCharacter == null)
+        {
+            ShowConfirmDialog();
+        }
+        else
+        {
+            ShowPrepareScreen();
+        }
+    }
+
+    public void onPrepareDone()
+    {
+        ShowConfirmDialog();
+    }
+
+    public void onClickConfirm()
+    {
+        if (GameStatsService.Instance.selectedCharacter != null)
+        {
+            GameStatsService.Instance.SetPreparedInventory(inventory.plrInv.playerInventory);
+        }
+        inventory.Hide();
+        dialog.gameObject.SetActive(false);
         ChangeScene();
     }
+
+    public void onClickCancel()
+    {
+        inventory.Hide();
+    }
+
+    public void onDialogCancel()
+    {
+        dialog.gameObject.SetActive(false);
+    }
+
+    private void ShowConfirmDialog()
+    {
+        dialog.SetButtonText(GameStatsService.Instance.selectedCharacter == null ? TextConstants.NEXT_DAY : TextPrintAnimation.spaceLetters(TextConstants.START_EXPIDITION));
+        dialog.SetTitleText(GameStatsService.Instance.selectedCharacter == null ? TextConstants.START_NEW_DAY_QUESTION : TextConstants.START_EXPIDITION_QUESTION);
+        dialog.gameObject.SetActive(true);
+    }
+
+    private void ShowPrepareScreen()
+    {
+        inventory.Show();
+    }
+
 
     private void ChangeScene()
     {

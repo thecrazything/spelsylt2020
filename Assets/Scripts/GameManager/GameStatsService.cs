@@ -11,6 +11,7 @@ public class GameStatsService
     private ICollection<Character> _characters;
     private Character _selectedCharacter;
     public GameStats gameStats;
+    private List<Item> _expeditionPreparedInventory;
 
     public ICollection<Character> characters
     {
@@ -68,5 +69,16 @@ public class GameStatsService
     {
         _characters = characters;
         this.gameStats = gameStats;
+    }
+
+    public List<Item> GetPreparedInventory()
+    {
+        _expeditionPreparedInventory = null;
+        return _expeditionPreparedInventory;
+    }
+
+    public void SetPreparedInventory(List<Item> inventory)
+    {
+        _expeditionPreparedInventory = inventory;
     }
 }

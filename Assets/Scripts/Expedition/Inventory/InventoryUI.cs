@@ -17,16 +17,14 @@ public abstract class InventoryUI : MonoBehaviour
     public GameObject listItem;
 
     private string inventoryName;
-    private bool isVisible = false;
+    protected bool isVisible = false;
 
     void Start()
     {
-        titleText = title.GetComponent<TextMeshProUGUI>();
-
-        Hide();
+        OnStart();
     }
 
-    void UpdateUI()
+    protected void UpdateUI()
     {
         EmptyList();
 
@@ -41,11 +39,18 @@ public abstract class InventoryUI : MonoBehaviour
         }
     }
 
+    protected virtual void OnStart()
+    {
+        titleText = title.GetComponent<TextMeshProUGUI>();
+
+        Hide();
+    }
+
     public void SetTitle(string name) {
         inventoryName = name;
     }
 
-    public void Show()
+    public virtual void Show()
     {
         if (isVisible) return;
 
@@ -56,7 +61,7 @@ public abstract class InventoryUI : MonoBehaviour
         isVisible = true;
     }
 
-    public void Hide()
+    public virtual void Hide()
     {
         wrapper.SetActive(false);
 
