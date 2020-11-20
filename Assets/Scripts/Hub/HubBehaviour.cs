@@ -23,7 +23,7 @@ public class HubBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string startText = GameStatsService.Instance.gameStats.daysLeft == 12 ? TextConstants.INTRO_MESSAGE + "\n \n" : "";
+        string startText = GameStatsService.Instance.gameStats.daysLeft == 7 ? TextConstants.INTRO_MESSAGE + "\n \n" : "";
         if (GameStatsService.Instance.gameStats == null)
         {
             throw new ArgumentNullException("No Gamestats found in GameStatsService");
@@ -91,6 +91,7 @@ public class HubBehaviour : MonoBehaviour
         {
             string txt = TextConstants.USER_DETAIL_NAME_TEXT + "\n" +
                 CharacterTextFormatter.FormatHealth(character) + "\n" +
+                CharacterTextFormatter.FormatMentalHealth(character) + "\n" +
                 CharacterTextFormatter.FormatHunger(character);
             consoleBehaviour.WriteTextWithSound(txt.Replace("{name}", character.name));
         }
@@ -110,12 +111,12 @@ public class HubBehaviour : MonoBehaviour
                 SkillCheck.Result result = SkillCheck.DoCheck(task.doer, task.skillTest);
                 if (result.success)
                 {
-                    // TODO test success consequence
+                    task.skillTest.OnSuccess(task.doer);
                     tasksSummary += "\n" + task.skillTest.passMessage.Replace("{name}", task.doer.name);
                 }
                 else
                 {
-                    // TODO test failure consequence
+                    task.skillTest.OnFail(task.doer);
                     tasksSummary += "\n" + task.skillTest.failMessage.Replace("{name}", task.doer.name);
                 }
 
@@ -134,8 +135,8 @@ public class HubBehaviour : MonoBehaviour
             }
             else
             {
-                // TODO failure consequence
-                tasksSummary += "\n" + task.skillTest.failMessage.Replace("{name}", ""); // TODO Make the print nicer than just removing the name
+                task.skillTest.OnFail();
+                tasksSummary += "\n" + task.skillTest.ignoreMessage;
             }
         }
 
@@ -144,21 +145,58 @@ public class HubBehaviour : MonoBehaviour
 
     private string setupNewDay()
     {
-        HubTask[] tasks = HubTaskManager.getRandom(3, avalibleTasks.Select(x => x.skillTest).ToArray());
-        avalibleTasks = tasks;
+        List<HubTask> tasks = new List<HubTask>();
+        tasks.AddRange(HubTaskManager.getRandom(3, avalibleTasks.Select(x => x.skillTest).ToArray()));
+        avalibleTasks = tasks.ToArray();
+
         string msg = "$ tasks -a \n TASKS requiring crew attention: \n ";
         for (var i = 0; i < avalibleTasks.Length; i++)
         {
             msg += avalibleTasks[i].skillTest.description + "\n ";
         }
 
+        bool allDead = true;
         GameStatsService.Instance.characters.ToList().ForEach(character =>
         {
             character.hunger -= 1;
+            if (!character.dead)
+            {
+                if (character.hunger <= 0)
+                {
+                    // Starved
+                    character.dead = true;
+                    msg += "\n" + TextConstants.STARVED.Replace("{name}", character.name);
+                }
+                if (character.health <= 0)
+                {
+                    // Just dead
+                    character.dead = true;
+                    msg += "\n" + TextConstants.DIED.Replace("{name}", character.name);
+                }
+                if (character.mentalHealth <= 0)
+                {
+                    // insane
+                    character.dead = true;
+                    msg += "\n" + TextConstants.INSANE.Replace("{name}", character.name);
+                }
+            }
+            if (!character.dead)
+            {
+                allDead = false;
+            }
         });
 
-        // TODO announce deaths (and the cause)
+        if (allDead)
+        {
+            GameOver();
+        }
+
 
         return msg;
+    }
+
+    private void GameOver()
+    {
+        // TODO you lost lol
     }
 }

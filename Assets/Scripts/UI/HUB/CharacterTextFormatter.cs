@@ -28,6 +28,30 @@ public static class CharacterTextFormatter
         }
     }
 
+    public static string FormatMentalHealth(Character character)
+    {
+        if (character.hunger == 1)
+        {
+            return character.name + " is loosing it.";
+        }
+        else if (character.hunger == 2)
+        {
+            return character.name + " is not in a good place.";
+        }
+        else if (character.hunger == 3)
+        {
+            return character.name + " is fine.";
+        }
+        else if (character.hunger == 4)
+        {
+            return character.name + " is happy.";
+        }
+        else
+        {
+            return character.name + " is at peak mental capacity";
+        }
+    }
+
     public static string FormatHealth(Character character)
     {
         if (character.health <= 20)

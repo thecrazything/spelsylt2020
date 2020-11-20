@@ -11,13 +11,13 @@ public class CharacterDataInjector : MonoBehaviour
         {
             List<Character> characters = new List<Character>();
 
-            Character a = new Character(0, "Steve McQueen");
+            Character a = new Character(0, "Sam Stevens", SkillsEnum.LEADERSHIP);
             characters.Add(a);
-            Character b = new Character(1, "Rachel Rocket");
+            Character b = new Character(1, "Charlie Smith", SkillsEnum.MECHANIC);
             characters.Add(b);
-            Character c = new Character(2, "Peggy Hunter");
+            Character c = new Character(2, "Frankie Thorn", SkillsEnum.MEDIC);
             characters.Add(c);
-            Character d = new Character(3, "Micheal Moore");
+            Character d = new Character(3, "Jayden Wynn", SkillsEnum.UTILITY);
             characters.Add(d);
             GameStats stats = new GameStats();
             GameStatsService.Instance.SetStartData(characters, stats);

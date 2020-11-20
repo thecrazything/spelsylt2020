@@ -5,5 +5,8 @@ using UnityEngine;
 public enum SkillsEnum
 {
     NEUTRAL,
-    TECHINCAL
+    MECHANIC,
+    LEADERSHIP,
+    UTILITY,
+    MEDIC
 }

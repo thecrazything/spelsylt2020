@@ -5,26 +5,33 @@ using UnityEngine;
 
 public class HubTaskManager
 {
-    private static SkillTest[] skillTests = { 
-        new SkillTest(SkillsEnum.TECHINCAL, SkillTest.DIFFICULTY_HARD, "Repair Ventilation", "HUB Ventilation is broken.", "{name} repaired the HUB ventilation. Air quality at 90%.", "{name} failed to repair the ventilation. Air quality is at 20%."),
-        new SkillTest(SkillsEnum.NEUTRAL, SkillTest.DIFFICULTY_MEDIUM, "Boost moral", "The crew needs increased moral.", "{name} boosted the crews moral with a speech.", "{name} failed to boost moral."),
-        new SkillTest(SkillsEnum.NEUTRAL, SkillTest.DIFFICULTY_EASY, "Clean HUB", "HUB needs cleaning.", "{name} tidied up the HUB.", "{name} could not clean the HUB.")
+    private static HubSkillTest[] skillTests = {
+        new BoostMoraleSkillTest(),
+        new FixVentilationSkillTest(),
+        new CleanHUBTask(),
+        new SortTrashSkillTest(),
+        new FixWaterSkillTest(),
+        new RepairAlarmSystemSkillTest(),
+        new CheckOxygenSkillTest(),
+        new PlanRationsSkillTest(),
+        new HealthCheckupSkillTest()
     };
-    public static HubTask[] getRandom(int amount, SkillTest[] exclude)
+    public static List<HubTask> getRandom(int amount, HubSkillTest[] exclude)
     {
-        HubTask[] tasks = new HubTask[amount];
-        for (var i = 0; i < tasks.Length; i++)
+        List<HubTask> tasks = new List<HubTask>();
+        for (var i = 0; i < amount; i++)
         {
-            SkillTest test = getRandomTest(exclude, 0);
-            tasks[i] = new HubTask();
-            tasks[i].skillTest = test;
+            HubSkillTest test = getRandomTest(exclude, 0);
+            HubTask task = new HubTask(); ;
+            task.skillTest = test;
+            tasks.Add(task);
         }
         return tasks;
     }
 
-    private static SkillTest getRandomTest(SkillTest[] exclude, int tries)
+    private static HubSkillTest getRandomTest(HubSkillTest[] exclude, int tries)
     {
-        SkillTest test = skillTests[Random.Range(0, skillTests.Length)];
+        HubSkillTest test = skillTests[Random.Range(0, skillTests.Length)];
         if (exclude.Contains(test) && tries <= 10)
         {
             return getRandomTest(exclude, tries + 1);

@@ -104,7 +104,7 @@ public class StartExpeditionBehaviour : MonoBehaviour
 
     private void ChangeScene()
     {
-        AudioFadeOut.FadeOut(mainMusic, 2f);
+        StartCoroutine(AudioFadeOut.FadeOut(mainMusic, 2f));
         uiConsole.ShutDown();
         blackout.FadeOut();
         blackout.onFadeFinished += doChangeScene;

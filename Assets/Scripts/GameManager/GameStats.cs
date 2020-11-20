@@ -19,7 +19,7 @@ public class GameStats
         }
     }
 
-    private int _daysLeft = 12;
+    private int _daysLeft = 7;
 
     public void newDay()
     {
@@ -53,6 +53,9 @@ public class GameStats
 
     public void RemoveRation(int amount)
     {
-        _items.Remove(_items.First(i => i is Ration));
+        if (RationCount() > 0)
+        {
+            _items.Remove(_items.First(i => i is Ration));
+        }
     }
 }

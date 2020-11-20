@@ -14,6 +14,10 @@ public static class TextConstants
     public static readonly string USER_HEALTH_2_TEXT = "{name} is badly hurt.";
     public static readonly string USER_HEALTH_1_TEXT = "{name} is near death.";
 
+    public static readonly string STARVED = "{name} has starved to death.";
+    public static readonly string DIED = "{name} has died.";
+    public static readonly string INSANE = "{name} couldn't take it anymore.";
+
     public static readonly string DAYS_LEFT = "{days} days left";
     public static readonly string RATIONS_LEFT = "{count} Rations";
 

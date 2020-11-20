@@ -9,8 +9,12 @@ public static class SkillCheck
     public static Result DoCheck(Character character, SkillTest test)
     {
         int dice = baseDice;
-        // TODO check character skill and add on extra dice
         // TODO check disadvantage/advantage?
+
+        if (character.skill == test.skill)
+        {
+            dice += 2;
+        }
 
         int sucesses = 0;
         for (var i = 0; i < dice; i++)
