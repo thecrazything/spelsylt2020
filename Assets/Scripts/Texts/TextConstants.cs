@@ -8,8 +8,8 @@ public static class TextConstants
     public static readonly string IDLE_TEXT = "$ Awaiting command";
     public static readonly string USER_DETAIL_NAME_TEXT = "$ status -n {name}";
 
-    public static readonly string USER_HEALTH_5_TEXT = "{name} is feeling good.";
-    public static readonly string USER_HEALTH_4_TEXT = "{name} has been better.";
+    public static readonly string USER_HEALTH_5_TEXT = "{name} is healthy.";
+    public static readonly string USER_HEALTH_4_TEXT = "{name}s' health has been better.";
     public static readonly string USER_HEALTH_3_TEXT = "{name} is not looking too good.";
     public static readonly string USER_HEALTH_2_TEXT = "{name} is badly hurt.";
     public static readonly string USER_HEALTH_1_TEXT = "{name} is near death.";

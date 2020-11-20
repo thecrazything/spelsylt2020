@@ -90,6 +90,7 @@ public class HubBehaviour : MonoBehaviour
         else
         {
             string txt = TextConstants.USER_DETAIL_NAME_TEXT + "\n" +
+                CharacterTextFormatter.FormatSkill(character) + "\n" +
                 CharacterTextFormatter.FormatHealth(character) + "\n" +
                 CharacterTextFormatter.FormatMentalHealth(character) + "\n" +
                 CharacterTextFormatter.FormatHunger(character);
