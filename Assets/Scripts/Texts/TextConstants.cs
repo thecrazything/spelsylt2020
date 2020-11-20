@@ -30,4 +30,5 @@ public static class TextConstants
 
     public static readonly string START_NEW_DAY_QUESTION = "Start next day?";
     public static readonly string START_EXPIDITION_QUESTION = "Start expedition?";
+    public static readonly string YES = "Y E S";
 }

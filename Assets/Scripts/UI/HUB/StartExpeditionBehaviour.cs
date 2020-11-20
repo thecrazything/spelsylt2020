@@ -14,6 +14,7 @@ public class StartExpeditionBehaviour : MonoBehaviour
     public ConsoleBehaviour uiConsole;
     public InvetoryWrapper inventory;
     public ConfirmBehaviour dialog;
+    public AudioSource mainMusic;
 
     // Start is called before the first frame update
     void Start()
@@ -91,7 +92,7 @@ public class StartExpeditionBehaviour : MonoBehaviour
     private void ShowConfirmDialog()
     {
         dialog.SetButtonText(GameStatsService.Instance.selectedCharacter == null ? TextConstants.NEXT_DAY : TextPrintAnimation.spaceLetters(TextConstants.START_EXPIDITION));
-        dialog.SetTitleText(GameStatsService.Instance.selectedCharacter == null ? TextConstants.START_NEW_DAY_QUESTION : TextConstants.START_EXPIDITION_QUESTION);
+        dialog.SetTitleText(GameStatsService.Instance.selectedCharacter == null ? TextConstants.START_NEW_DAY_QUESTION : TextConstants.YES);
         dialog.gameObject.SetActive(true);
     }
 
@@ -103,6 +104,7 @@ public class StartExpeditionBehaviour : MonoBehaviour
 
     private void ChangeScene()
     {
+        AudioFadeOut.FadeOut(mainMusic, 2f);
         uiConsole.ShutDown();
         blackout.FadeOut();
         blackout.onFadeFinished += doChangeScene;

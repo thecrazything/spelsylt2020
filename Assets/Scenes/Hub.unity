@@ -269,6 +269,7 @@ MonoBehaviour:
   uiConsole: {fileID: 1688336039}
   inventory: {fileID: 1598570606}
   dialog: {fileID: 1368837926}
+  mainMusic: {fileID: 791774681}
 --- !u!224 &290127470 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5762169638827983905, guid: 9012313ac184ed54282f70079e11553c,
@@ -1020,7 +1021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e5522615ab9604581d644731c9d8da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  writeDelay: 0.05
+  writeDelay: 0.025
   startSound: {fileID: 0}
   idleSound: {fileID: 0}
   stopSound: {fileID: 0}

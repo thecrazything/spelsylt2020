@@ -13,7 +13,7 @@ public class Character
     private float _health;
     private float _maxHealth = 100f;
     private bool _dead = false;
-    private int _hunger = 5;
+    private int _hunger = 2;
 
     public int id
     {
