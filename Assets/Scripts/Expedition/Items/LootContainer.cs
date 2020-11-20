@@ -40,6 +40,11 @@ public class LootContainer : MonoBehaviour, IInteractable, IInventoryUiSource
         ui.Show();
     }
 
+    public string GetId()
+    {
+        return (transform.position + name).ToString().Replace(" ", "");
+    }
+
     private void Interactor_OnLostInteractFocus(object sender, Interactor.OnPlayerLostInteractFocus e)
     {
         ui.Hide();
