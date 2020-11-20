@@ -91,8 +91,8 @@ public class StartExpeditionBehaviour : MonoBehaviour
 
     private void ShowConfirmDialog()
     {
-        dialog.SetButtonText(GameStatsService.Instance.selectedCharacter == null ? TextConstants.NEXT_DAY : TextPrintAnimation.spaceLetters(TextConstants.START_EXPIDITION));
-        dialog.SetTitleText(GameStatsService.Instance.selectedCharacter == null ? TextConstants.START_NEW_DAY_QUESTION : TextConstants.YES);
+        dialog.SetButtonText(GameStatsService.Instance.selectedCharacter == null ? TextConstants.YES : TextPrintAnimation.spaceLetters(TextConstants.START_EXPIDITION));
+        dialog.SetTitleText(GameStatsService.Instance.selectedCharacter == null ? TextConstants.START_NEW_DAY_QUESTION : TextConstants.START_EXPIDITION_QUESTION);
         dialog.gameObject.SetActive(true);
     }
 
