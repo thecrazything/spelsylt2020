@@ -69,6 +69,19 @@ public class ExpeditionManager : MonoBehaviour
             state.containerContents.Add(container.GetId(), container.inventory);
         }
 
+        // Find and save any spawned containers
+        LootContainer[] additonals = GameObject.FindGameObjectsWithTag("AdditionalLootContainer")
+                                               .Select(g => g.GetComponent<LootContainer>())
+                                               .ToArray();
+        foreach (LootContainer additional in additonals)
+        {
+            state.additionalContainers.Add(new AdditionalContainer(
+                additional.GetComponent<PrefabHolder>().prefab,
+                additional.transform.position,
+                additional.inventory
+            ));
+        }
+
         // Save player body as an Additional container if dead
         if (playerDied)
         {

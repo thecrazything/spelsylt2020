@@ -54,6 +54,15 @@ public class LootManager : MonoBehaviour
     public void SpawnAdditionalContainer(AdditionalContainer container)
     {
         GameObject newGameObject = Instantiate(container.gameObject, container.position, Quaternion.identity);
+        PrefabHolder prefabHolder = newGameObject.GetComponent<PrefabHolder>();
+
+        if (!prefabHolder)
+        {
+            prefabHolder = newGameObject.AddComponent<PrefabHolder>();
+        }
+
+        prefabHolder.prefab = container.gameObject;
+
         LootContainer newContainer = newGameObject.GetComponent<LootContainer>();
 
         newContainer.inventory.AddRange(container.inventory);
