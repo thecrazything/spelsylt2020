@@ -24,19 +24,30 @@ public class HubBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string startText = GameStatsService.Instance.gameStats.daysLeft == 7 ? TextConstants.INTRO_MESSAGE + "\n \n" : "";
-        if (GameStatsService.Instance.gameStats == null)
+        if (GameStatsService.Instance.gameStats.victoryCondition)
         {
-            throw new ArgumentNullException("No Gamestats found in GameStatsService");
+            Victory();
         }
-        if (GameStatsService.Instance.gameStats.expeditionComplete)
+        else if (GameStatsService.Instance.gameStats.daysLeft == 0)
         {
-            startText = tallyLastDay();
+            GameOver();
         }
-        GameStatsService.Instance.gameStats.expeditionComplete = false;
-        startText += setupNewDay();
-        blackoutTextBehaviour.WriteText(startText);
-        consoleBehaviour.WriteText(startText);
+        else
+        {
+            string startText = GameStatsService.Instance.gameStats.daysLeft == 7 ? TextConstants.INTRO_MESSAGE + "\n \n" : "";
+            if (GameStatsService.Instance.gameStats == null)
+            {
+                throw new ArgumentNullException("No Gamestats found in GameStatsService");
+            }
+            if (GameStatsService.Instance.gameStats.expeditionComplete)
+            {
+                startText = tallyLastDay();
+            }
+            GameStatsService.Instance.gameStats.expeditionComplete = false;
+            startText += setupNewDay();
+            blackoutTextBehaviour.WriteText(startText);
+            consoleBehaviour.WriteText(startText);
+        }
     }
 
     // Update is called once per frame
@@ -219,6 +230,11 @@ public class HubBehaviour : MonoBehaviour
 
     private void GameOver()
     {
-        // TODO you lost lol
+        blackoutTextBehaviour.WriteText("Game Over");
+    }
+
+    private void Victory()
+    {
+        blackoutTextBehaviour.WriteText("Your signal reeaches Earth. Hopefully rescue is swift.. The End.");
     }
 }

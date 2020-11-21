@@ -12,6 +12,8 @@ public class GameStats
     public List<Character> restingCharacters;
     private List<Item> _items = new List<Item>();
 
+    public bool victoryCondition = false;
+
     public int daysLeft 
     {
         get
