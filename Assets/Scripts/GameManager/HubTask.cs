@@ -5,5 +5,5 @@ using UnityEngine;
 public class HubTask
 {
     public Character doer;
-    public SkillTest skillTest;
+    public HubSkillTest skillTest;
 }

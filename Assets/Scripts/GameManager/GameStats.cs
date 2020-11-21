@@ -9,7 +9,10 @@ public class GameStats
     public bool expeditionComplete = false;
 
     public HubTask[] hubTasks = { };
+    public List<Character> restingCharacters;
     private List<Item> _items = new List<Item>();
+
+    public bool victoryCondition = false;
 
     public int daysLeft 
     {
@@ -19,7 +22,7 @@ public class GameStats
         }
     }
 
-    private int _daysLeft = 12;
+    private int _daysLeft = 7;
 
     public void newDay()
     {
@@ -53,6 +56,9 @@ public class GameStats
 
     public void RemoveRation(int amount)
     {
-        _items.Remove(_items.First(i => i is Ration));
+        if (RationCount() > 0)
+        {
+            _items.Remove(_items.First(i => i is Ration));
+        }
     }
 }

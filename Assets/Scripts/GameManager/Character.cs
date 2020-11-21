@@ -12,8 +12,11 @@ public class Character
     private string _name = "TESTNAME";
     private float _health;
     private float _maxHealth = 100f;
-    private bool _dead = false;
-    private int _hunger = 2;
+    private int _hunger = 3;
+    private int _mentalHealth = 5;
+    private int _mentalHealthMax = 10;
+
+    public SkillsEnum skill { get; private set; }
 
     public int id
     {
@@ -39,18 +42,7 @@ public class Character
         }
     }
 
-    public bool dead
-    {
-        get
-        {
-            return _dead;
-        }
-        set
-        {
-            _dead = value;
-        }
-    }
-
+    public bool dead = false;
 
     public int hunger
     {
@@ -61,22 +53,36 @@ public class Character
         set
         {
             _hunger = value;
-            if (_hunger <= 0)
-            {
-                dead = true;
-            }
-            else if (_hunger > 6)
+            if (_hunger > 6)
             {
                 _hunger = 6;
             }
         }
     }
 
-    public Character(int id, string name)
+    public int mentalHealth
+    {
+        get
+        {
+            return _mentalHealth;
+        }
+        set
+        {
+            _mentalHealth = value;
+            if (_mentalHealth > 6)
+            {
+                _mentalHealth = 6;
+            }
+
+        }
+    }
+
+    public Character(int id, string name, SkillsEnum skill)
     {
         _id = id;
         _name = name;
         _health = _maxHealth;
+        this.skill = skill;
     }
 
     public void subtractHealth(float value)
