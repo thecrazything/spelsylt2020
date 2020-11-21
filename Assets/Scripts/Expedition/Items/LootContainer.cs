@@ -35,7 +35,6 @@ public class LootContainer : MonoBehaviour, IInteractable, IInventoryUiSource
         interactor = source;
 
         source.GetComponent<Player>().interactor.OnLostInteractFocus += Interactor_OnLostInteractFocus;
-
         UpdateSprite();
         ui.Show();
     }
