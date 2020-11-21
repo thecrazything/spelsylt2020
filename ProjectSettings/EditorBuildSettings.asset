@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Buzzyard.unity
     guid: 93364b4ec6432ee47af93a0723e49152
+  - enabled: 1
+    path: Assets/Scenes/New Scene.unity
+    guid: 66c0bb91f8ee6ac428fc94637552f1b8
   m_configObjects: {}

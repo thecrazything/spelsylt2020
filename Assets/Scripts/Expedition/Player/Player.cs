@@ -15,12 +15,15 @@ public class Player : MonoBehaviour
     ContainerInventoryUI inventoryUI;
     public PlayerInventory inventory = new PlayerInventory();
 
+    public ExpeditionManager manager;
+
     public Character character { get; private set; }
 
     PlayerMovement _playerMovement;
 
     void Start()
     {
+        oxygen = 30;
         interactor = GetComponentInChildren<Interactor>();
         _playerMovement = GetComponent<PlayerMovement>();
         character = GameStatsService.Instance.selectedCharacter;
@@ -32,13 +35,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            Debug.Log("End expedition");
-
-            GameStatsService.Instance.CompleteExpedition(inventory.items.ToArray());
-            SceneManager.LoadScene(1);
-        }
-
         if (Input.GetKeyDown(KeyCode.I)) {
             inventoryUI.Toggle();
         }
@@ -52,7 +48,8 @@ public class Player : MonoBehaviour
             oxygen -= Time.deltaTime * noMovingOxygenMod;
         }
 
-        if (oxygen < 0) {
+        if (oxygen < 0)
+        {
             character.subtractHealth(1);
         }
 
@@ -61,10 +58,10 @@ public class Player : MonoBehaviour
 
     void checkIfDead() 
     {
-        if (character.health <= 0) {
+        if (character.health <= 0)
+        {
             character.dead = true;
-            GameStatsService.Instance.CompleteExpedition(null); // TODO add items here
-            SceneManager.LoadScene(1);
+            manager.OnPlayerDeath();
         }
     }
 

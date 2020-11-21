@@ -8,13 +8,13 @@ using UnityEngine;
 public class AdditionalContainer
 {
     public GameObject gameObject;
-    public Transform transform;
+    public Vector3 position;
     public List<Item> inventory;
 
-    public AdditionalContainer(GameObject gameObject, Transform transform, List<Item> inventory)
+    public AdditionalContainer(GameObject gameObject, Vector3 position, List<Item> inventory)
     {
         this.gameObject = gameObject;
-        this.transform = transform;
+        this.position = position;
         this.inventory = inventory;
     }
 }

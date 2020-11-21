@@ -7811,6 +7811,8 @@ MonoBehaviour:
   PlayerPrefab: {fileID: 558218374134476666, guid: b50531da39a3aa04db6018d2691845a4,
     type: 3}
   SpawnPoint: {fileID: 1477216283}
+  deadPlayerContainerPrefab: {fileID: 7141451792907705181, guid: 940933c29f8b707498e7ee54d93ce678,
+    type: 3}
 --- !u!114 &922437199
 MonoBehaviour:
   m_ObjectHideFlags: 0

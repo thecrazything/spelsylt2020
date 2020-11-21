@@ -19,12 +19,19 @@ public class LootManager : MonoBehaviour
 
     public void InitializeState(ExpeditionLevelState state)
     {
-        if (state.randomItems.Count > 0) {
+        if (state.randomItems.Count > 0)
+        {
             SpawnRandomContent(state.randomItems);
         }
 
-        if (state.containerContents.Count > 0) {
+        if (state.containerContents.Count > 0)
+        {
             SpawnContainerContent(state.containerContents);
+        }
+
+        if (state.additionalContainers.Count > 0)
+        {
+            state.additionalContainers.ForEach(c => SpawnAdditionalContainer(c));
         }
     }
 
@@ -46,8 +53,10 @@ public class LootManager : MonoBehaviour
 
     public void SpawnAdditionalContainer(AdditionalContainer container)
     {
-        GameObject newGameObject = Instantiate(container.gameObject, container.transform.position, Quaternion.identity);
+        GameObject newGameObject = Instantiate(container.gameObject, container.position, Quaternion.identity);
         LootContainer newContainer = newGameObject.GetComponent<LootContainer>();
+
+        newContainer.inventory.AddRange(container.inventory);
 
         containerTable.Add(newContainer.GetId(), newContainer);
     }

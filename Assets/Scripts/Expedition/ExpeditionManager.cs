@@ -9,6 +9,8 @@ public class ExpeditionManager : MonoBehaviour
     public GameObject PlayerPrefab;
     public Transform SpawnPoint;
 
+    public GameObject deadPlayerContainerPrefab;
+
     GameObject _player;
     LootManager _lootManager;
 
@@ -16,6 +18,7 @@ public class ExpeditionManager : MonoBehaviour
     {
         _lootManager = GetComponent<LootManager>();
         _player = Instantiate(PlayerPrefab, SpawnPoint.position, Quaternion.identity);
+        _player.GetComponent<Player>().manager = this;
 
         string sceneName = SceneManager.GetActiveScene().name;
         // Check if this is the first time the scene is loaded
@@ -43,9 +46,20 @@ public class ExpeditionManager : MonoBehaviour
         SceneManager.LoadScene("New Scene");
     }
 
-    void SaveSceneState()
+    public void OnPlayerDeath()
     {
+        SaveSceneState(true);
+        Destroy(_player);
+
+        SceneManager.LoadScene("New Scene");
+    }
+
+    void SaveSceneState(bool playerDied = false)
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
         ExpeditionLevelState state = new ExpeditionLevelState();
+
+        // Sync all loot container content
         LootContainer[] containers = GameObject.FindGameObjectsWithTag("LootContainer")
                                                .Select(g => g.GetComponent<LootContainer>())
                                                .ToArray();
@@ -55,7 +69,16 @@ public class ExpeditionManager : MonoBehaviour
             state.containerContents.Add(container.GetId(), container.inventory);
         }
 
-        string sceneName = SceneManager.GetActiveScene().name;
+        // Save player body as an Additional container if dead
+        if (playerDied)
+        {
+            state.additionalContainers.Add(new AdditionalContainer(
+                deadPlayerContainerPrefab,
+                _player.transform.position,
+                _player.GetComponent<Player>().inventory.items
+            ));
+        }
+
         GameStatsService.SceneStateManager.SaveSceneState(sceneName, state);
     }
 
