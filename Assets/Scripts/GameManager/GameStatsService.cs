@@ -8,6 +8,7 @@ public class GameStatsService
     public event ChangeSelectedCharacterEvent onChangeSelectedCharacter;
 
     private static GameStatsService _serviceInstance;
+    private static ExpeditionStateManager _expeditionStateManager;
     private ICollection<Character> _characters;
     private Character _selectedCharacter;
     public GameStats gameStats;
@@ -40,6 +41,18 @@ public class GameStatsService
                 _serviceInstance = new GameStatsService();
             }
             return _serviceInstance;
+        }
+    }
+
+    public static ExpeditionStateManager SceneStateManager
+    {
+        get
+        {
+            if (_expeditionStateManager == null)
+            {
+                _expeditionStateManager = new ExpeditionStateManager();
+            }
+            return _expeditionStateManager;
         }
     }
 

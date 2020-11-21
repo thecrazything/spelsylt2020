@@ -5,24 +5,86 @@ using System.Linq;
 
 public class LootManager : MonoBehaviour
 {
-    public int RationsPool;
+    Dictionary<string, LootContainer> containerTable;
 
-    LootContainer[] containers;
-
-    void Start()
+    void Awake()
     {
-        containers = GameObject.FindGameObjectsWithTag("LootContainer")
-            .Select(i => i.GetComponent<LootContainer>())
-            .ToArray();
-        Debug.Log(containers.Length);
-        for (int i = 0; i < RationsPool; i++)
-        {
-            GetRandomContainer().inventory.Add(new Ration());
+        containerTable = new Dictionary<string, LootContainer>();
+
+        GameObject.FindGameObjectsWithTag("LootContainer")
+            .Select(g => g.GetComponent<LootContainer>())
+            .ToList()
+            .ForEach(c => containerTable.Add(c.GetId(), c));
+    }
+
+    public void InitializeState(ExpeditionLevelState state)
+    {
+        if (state.randomItems.Count > 0) {
+            SpawnRandomContent(state.randomItems);
         }
+
+        if (state.containerContents.Count > 0) {
+            SpawnContainerContent(state.containerContents);
+        }
+    }
+
+    void SpawnRandomContent(List<Item> items)
+    {
+        items.ForEach(i => SpawnInRandomContainer(i));
+    }
+
+    void SpawnContainerContent(Dictionary<string, List<Item>> containers)
+    {
+        containers.Keys
+            .ToList()
+            .ForEach(k => {
+                List<Item> items;
+                containers.TryGetValue(k, out items);
+                SpawnMultipleInContainerById(k, items);
+            });
+    }
+
+    public void SpawnAdditionalContainer(AdditionalContainer container)
+    {
+        GameObject newGameObject = Instantiate(container.gameObject, container.transform.position, Quaternion.identity);
+        LootContainer newContainer = newGameObject.GetComponent<LootContainer>();
+
+        containerTable.Add(newContainer.GetId(), newContainer);
+    }
+
+    public void SpawnInRandomContainer(Item item)
+    {
+        GetRandomContainer().inventory.Add(item);
+    }
+
+    public bool SpawnMultipleInContainerById(string id, List<Item> items)
+    {
+        LootContainer container;
+        if (containerTable.TryGetValue(id, out container)) {
+            container.inventory.AddRange(items);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool SpawnInContainerById(string id, Item item)
+    {
+        LootContainer container;
+        if (containerTable.TryGetValue(id, out container))
+        {
+            container.inventory.Add(item);
+
+            return true;
+        }
+
+        return false;
     }
 
     LootContainer GetRandomContainer()
     {
+        var containers = containerTable.Values.ToArray();
         int randomNumber = Random.Range(0, containers.Length);
         return containers[randomNumber];
     }
