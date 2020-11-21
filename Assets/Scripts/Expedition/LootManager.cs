@@ -72,7 +72,7 @@ public class LootManager : MonoBehaviour
 
     public void SpawnInRandomContainer(Item item)
     {
-        GetRandomContainer().inventory.Add(item);
+        GetRandomContainer()?.inventory.Add(item);
     }
 
     public bool SpawnMultipleInContainerById(string id, List<Item> items)
@@ -103,7 +103,14 @@ public class LootManager : MonoBehaviour
     LootContainer GetRandomContainer()
     {
         var containers = containerTable.Values.ToArray();
-        int randomNumber = Random.Range(0, containers.Length);
-        return containers[randomNumber];
+        if (containers.Length > 0)
+        {
+            int randomNumber = Random.Range(0, containers.Length);
+            return containers[randomNumber];
+        } 
+        else
+        {
+            return null;
+        }
     }
 }

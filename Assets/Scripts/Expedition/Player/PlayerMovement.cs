@@ -64,15 +64,15 @@ public class PlayerMovement : MonoBehaviour
     void UpdateInteractor(Vector2 dir)
     {
         if (dir.x > 0) {
-            interactor.transform.localPosition = new Vector3(.4f, 0, 0);
+            interactor.transform.rotation = Quaternion.Euler(0, 0, 90);
         } else if (dir.x < 0) {
-            interactor.transform.localPosition = new Vector3(-.4f, 0, 0);
+            interactor.transform.rotation = Quaternion.Euler(0, 0, 270);
         }
         else if (dir.y > 0) {
-            interactor.transform.localPosition = new Vector3(0, .45f, 0);
+            interactor.transform.rotation = Quaternion.Euler(0, 0, 180);
 
         } else {
-            interactor.transform.localPosition = new Vector3(0, -.45f, 0);
+            interactor.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 

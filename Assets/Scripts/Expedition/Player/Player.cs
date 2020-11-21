@@ -23,8 +23,6 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        oxygen = 30;
-        interactor = GetComponentInChildren<Interactor>();
         _playerMovement = GetComponent<PlayerMovement>();
         character = GameStatsService.Instance.selectedCharacter;
 

@@ -117,7 +117,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.39858478}
@@ -165,6 +165,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shadowObject: {fileID: 6160115379453609306}
+  keycardColor: 0
+  requiresKeycard: 0
 --- !u!1001 &1173498735201114319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -180,7 +182,7 @@ PrefabInstance:
     - target: {fileID: 2447274611437040340, guid: 31dc435a65c30e54b939637055b0067b,
         type: 3}
       propertyPath: m_InstanceId
-      value: -106548
+      value: -126698
       objectReference: {fileID: 0}
     - target: {fileID: 4986675202642976149, guid: 31dc435a65c30e54b939637055b0067b,
         type: 3}

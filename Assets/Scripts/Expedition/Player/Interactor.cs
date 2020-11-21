@@ -32,7 +32,7 @@ public class Interactor : MonoBehaviour
             throw new ArgumentNullException("No Progressbar found");
         }
         interactProgressbar.gameObject.SetActive(false);
-        _playerMovement = transform.parent.gameObject.GetComponent<PlayerMovement>();
+        _playerMovement = transform.parent.parent.gameObject.GetComponent<PlayerMovement>();
 
         if (_playerMovement == null)
         {
@@ -82,7 +82,7 @@ public class Interactor : MonoBehaviour
             }
             else
             {
-                _focusedInteractable.Interact(gameObject.transform.parent.gameObject);
+                _focusedInteractable.Interact(gameObject.transform.parent.parent.gameObject);
             }
         }
         else
@@ -118,7 +118,7 @@ public class Interactor : MonoBehaviour
         if (_time >= _timeout)
         {
             StopInteract();
-            _focusedInteractable.Interact(gameObject.transform.parent.gameObject);
+            _focusedInteractable.Interact(gameObject.transform.parent.parent.gameObject);
         }
     }
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 558218373324039836}
   - component: {fileID: 2512218565579547630}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Interacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,11 +25,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 558218373324039827}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.403, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.137, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 558218374134476615}
+  m_Father: {fileID: 8364005918693250757}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &558218373324039836
@@ -105,7 +105,7 @@ Transform:
   m_LocalPosition: {x: 0.0010695121, y: 0.36122766, z: 0.6580005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 558218373324039826}
+  - {fileID: 8364005918693250757}
   - {fileID: 7138134168365840040}
   - {fileID: 477169750513328369}
   m_Father: {fileID: 0}
@@ -198,7 +198,7 @@ MonoBehaviour:
   sprintModifier: 4
   rb: {fileID: 558218374134476613}
   animator: {fileID: 558218374134476614}
-  interactor: {fileID: 558218373324039827}
+  interactor: {fileID: 3067507696231838006}
 --- !u!95 &558218374134476614
 Animator:
   serializedVersion: 3
@@ -230,12 +230,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7eb8be03b940d74891bdf7294246e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oxygen: 60
+  oxygen: 300
   noMovingOxygenMod: 0.5
   sprintOxygenMod: 4
   inventoryCanvas: {fileID: 6123184275040888053, guid: dfdd66659f226ca40bb883671628a93c,
     type: 3}
-  interactor: {fileID: 0}
+  interactor: {fileID: 558218373324039836}
+  manager: {fileID: 0}
 --- !u!58 &3462461069870665372
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -512,6 +513,37 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &3067507696231838006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8364005918693250757}
+  m_Layer: 0
+  m_Name: InteractorWrapper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8364005918693250757
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3067507696231838006}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.297, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 558218373324039826}
+  m_Father: {fileID: 558218374134476615}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5085809930647040718
 GameObject:
   m_ObjectHideFlags: 0

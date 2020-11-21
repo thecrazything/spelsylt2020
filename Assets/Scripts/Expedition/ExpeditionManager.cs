@@ -32,7 +32,7 @@ public class ExpeditionManager : MonoBehaviour
         else {
             Debug.Log("Scene not initialized before");
             ExpeditionLevelState startState;
-            if (ExpeditionDefaultLoot.state.TryGetValue(sceneName, out startState)) {
+            if (!ExpeditionDefaultLoot.state.TryGetValue(sceneName, out startState)) {
                 throw new System.Exception("No default state for scene " + sceneName);
             }
             _lootManager.InitializeState(startState);
@@ -47,7 +47,7 @@ public class ExpeditionManager : MonoBehaviour
 
         SaveSceneState();
 
-        SceneManager.LoadScene("New Scene");
+        SceneManager.LoadScene("Hub");
     }
 
     public void OnPlayerDeath()
@@ -103,6 +103,6 @@ public class ExpeditionManager : MonoBehaviour
     {
         Player player = _player.GetComponent<Player>();
 
-        GameStatsService.Instance.gameStats.AddItems(player.inventory.items.ToArray());
+        GameStatsService.Instance.CompleteExpedition(player.inventory.items.ToArray());
     }
 }

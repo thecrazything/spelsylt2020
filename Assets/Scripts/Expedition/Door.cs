@@ -7,6 +7,7 @@ public class Door : MonoBehaviour, IInteractable
 {
     bool _isOpen;
     Animator animator;
+    Collider2D _collider;
     
     public GameObject shadowObject;
     public KeycardColor keycardColor;
@@ -14,6 +15,7 @@ public class Door : MonoBehaviour, IInteractable
 
     void Start() {
         animator = GetComponent<Animator>();
+        _collider = GetComponent<BoxCollider2D>();
     }
 
     public float? GetActionTime()
@@ -37,5 +39,6 @@ public class Door : MonoBehaviour, IInteractable
         _isOpen = true;
         shadowObject.SetActive(false);
         animator.SetBool("IsOpen", true);
+        _collider.enabled = false;
     }
 }
