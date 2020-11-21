@@ -20,4 +20,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/New Scene.unity
     guid: 66c0bb91f8ee6ac428fc94637552f1b8
+  - enabled: 1
+    path: Assets/Scenes/Admin.unity
+    guid: bdfa2563a8a298244814e57f48239710
+  - enabled: 1
+    path: Assets/Scenes/Comms.unity
+    guid: b83f155ca8b405840a677a1629d40ba3
+  - enabled: 1
+    path: Assets/Scenes/PowerStation.unity
+    guid: 2cb95432b777a0c4c8c4c663996d5888
+  - enabled: 1
+    path: Assets/Scenes/Storage.unity
+    guid: 9d25d1fa4455d5149b4020da0c28e67a
   m_configObjects: {}

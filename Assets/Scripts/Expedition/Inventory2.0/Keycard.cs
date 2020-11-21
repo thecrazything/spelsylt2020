@@ -11,6 +11,11 @@ public class Keycard : Item
 {
     public KeycardColor color;
 
+    public Keycard(KeycardColor color)
+    {
+        this.color = color;
+    }
+
     public override string GetName()
     {
         return color + " keycard";

@@ -31,7 +31,11 @@ public class ExpeditionManager : MonoBehaviour
         }
         else {
             Debug.Log("Scene not initialized before");
-            _lootManager.InitializeState(ExpeditionDefaultLoot.state);
+            ExpeditionLevelState startState;
+            if (ExpeditionDefaultLoot.state.TryGetValue(sceneName, out startState)) {
+                throw new System.Exception("No default state for scene " + sceneName);
+            }
+            _lootManager.InitializeState(startState);
         }
 
         Camera.main.GetComponent<CameraFollow>().player = _player;
