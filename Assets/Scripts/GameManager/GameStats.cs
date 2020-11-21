@@ -9,6 +9,7 @@ public class GameStats
     public bool expeditionComplete = false;
 
     public HubTask[] hubTasks = { };
+    public List<Character> restingCharacters;
     private List<Item> _items = new List<Item>();
 
     public int daysLeft 

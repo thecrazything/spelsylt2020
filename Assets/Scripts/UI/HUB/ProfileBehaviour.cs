@@ -18,6 +18,7 @@ public class ProfileBehaviour : MonoBehaviour, ISelectHandler
     public Character character;
     private Selectable _selectable;
     private Color _ProfilePictureBackgroundColor;
+
     // Start is called before the first frame update
     void Start()
     {

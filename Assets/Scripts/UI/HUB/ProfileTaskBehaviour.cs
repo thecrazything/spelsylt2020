@@ -11,6 +11,7 @@ public class ProfileTaskBehaviour : MonoBehaviour
     public Button task3Button;
     public Button task4Button;
     public Button expeditionButton;
+    public Button restButton;
     public HubBehaviour hub;
     public ProfileBehaviour pfB;
     public Text taskButtonText;
@@ -133,6 +134,17 @@ public class ProfileTaskBehaviour : MonoBehaviour
         taskButtonText.text = "E X P E D I T I O N";
     }
 
+    public void onClickRest()
+    {
+        unsetFromTasks();
+        taskDropdown.gameObject.SetActive(false);
+        taskButtonText.text = "R E S T";
+        if (!pfB.hub.restingCharacters.Contains(pfB.character))
+        {
+            pfB.hub.restingCharacters.Add(pfB.character);
+        }
+    }
+
     private void unsetFromTasks()
     {
         for (var i = 0; i < hub.avalibleTasks.Length; i++)
@@ -141,6 +153,11 @@ public class ProfileTaskBehaviour : MonoBehaviour
             {
                 hub.avalibleTasks[i].doer = null;
             }
+        }
+
+        if(pfB.hub.restingCharacters.Contains(pfB.character))
+        {
+            pfB.hub.restingCharacters.Remove(pfB.character);
         }
     }
 }

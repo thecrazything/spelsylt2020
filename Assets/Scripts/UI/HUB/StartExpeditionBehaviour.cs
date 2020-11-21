@@ -113,6 +113,7 @@ public class StartExpeditionBehaviour : MonoBehaviour
     private void doChangeScene(bool faded)
     {
         GameStatsService.Instance.gameStats.hubTasks = hub.avalibleTasks;
+        GameStatsService.Instance.gameStats.restingCharacters = hub.restingCharacters;
         blackout.onFadeFinished -= doChangeScene;
         if (_map.selectedMap != null && GameStatsService.Instance.selectedCharacter != null)
         {

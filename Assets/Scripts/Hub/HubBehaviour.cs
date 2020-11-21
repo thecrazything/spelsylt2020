@@ -9,6 +9,7 @@ public class HubBehaviour : MonoBehaviour
 {
     private Character _selectedCharacter;
 
+    public List<Character> restingCharacters = new List<Character>();
     public Character selectedCharacter {
         get { return _selectedCharacter; }
         set 
@@ -67,6 +68,10 @@ public class HubBehaviour : MonoBehaviour
         if (character == null)
         {
             string txt = "";
+            restingCharacters.ForEach(c => {
+                c.mentalHealth += 1;
+                txt += c.name + " is going to rest." + "\n";
+            });
             for (var i = 0; i < avalibleTasks.Length; i++)
             {
                 txt += avalibleTasks[i].skillTest.description;
@@ -104,6 +109,11 @@ public class HubBehaviour : MonoBehaviour
         GameStatsService.Instance.selectedCharacter = null;
         HubTask[] previousTasks = GameStatsService.Instance.gameStats.hubTasks;
         string tasksSummary = "";
+        GameStatsService.Instance.gameStats.restingCharacters.ForEach(character => {
+            character.mentalHealth += 1;
+            tasksSummary += "\n" + character.name + " rested and is feeling a bit better.";
+        });
+        GameStatsService.Instance.gameStats.restingCharacters = null;
         for (var i = 0; i < previousTasks.Length; i++)
         {
             HubTask task = previousTasks[i];
@@ -146,6 +156,7 @@ public class HubBehaviour : MonoBehaviour
 
     private string setupNewDay()
     {
+        restingCharacters = new List<Character>();
         List<HubTask> tasks = new List<HubTask>();
 
         // If a character is damaged, add a damaged character task to do.
