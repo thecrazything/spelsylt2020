@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
 
     PlayerMovement _playerMovement;
 
+    public MessageBehaviour console;
+
     void Start()
     {
         _playerMovement = GetComponent<PlayerMovement>();
@@ -29,6 +31,7 @@ public class Player : MonoBehaviour
         inventoryUI = Instantiate(inventoryCanvas, transform).GetComponent<ContainerInventoryUI>();
         inventoryUI.SetTitle("Inventory");
         inventoryUI.source = inventory;
+        console = GetComponent<MessageBehaviour>();
     }
 
     void Update()
