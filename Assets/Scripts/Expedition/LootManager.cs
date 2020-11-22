@@ -17,8 +17,13 @@ public class LootManager : MonoBehaviour
             .ForEach(c => containerTable.Add(c.GetId(), c));
     }
 
-    public void InitializeState(ExpeditionLevelState state)
+    public void InitializeState(ExpeditionLevelState state, bool isInitialLoad = false)
     {
+        if (isInitialLoad)
+        {
+            InjectCustomContent();
+        }
+
         if (state.randomItems.Count > 0)
         {
             SpawnRandomContent(state.randomItems);
@@ -33,6 +38,19 @@ public class LootManager : MonoBehaviour
         {
             state.additionalContainers.ForEach(c => SpawnAdditionalContainer(c));
         }
+    }
+
+    void InjectCustomContent()
+    {
+        containerTable.Values
+            .ToList()
+            .ForEach(c => {
+                LootInjector injector;
+                if (c.gameObject.TryGetComponent<LootInjector>(out injector))
+                {
+                    injector.InjectLoot();
+                }
+            });
     }
 
     void SpawnRandomContent(List<Item> items)

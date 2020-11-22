@@ -26,16 +26,14 @@ public class ExpeditionManager : MonoBehaviour
 
         if (isInitialized)
         {
-            Debug.Log("Found old state");
             _lootManager.InitializeState(GameStatsService.SceneStateManager.GetSceneState(sceneName));
         }
         else {
-            Debug.Log("Scene not initialized before");
             ExpeditionLevelState startState;
             if (!ExpeditionDefaultLoot.state.TryGetValue(sceneName, out startState)) {
                 throw new System.Exception("No default state for scene " + sceneName);
             }
-            _lootManager.InitializeState(startState);
+            _lootManager.InitializeState(startState, true);
         }
 
         Camera.main.GetComponent<CameraFollow>().player = _player;
@@ -55,7 +53,7 @@ public class ExpeditionManager : MonoBehaviour
         SaveSceneState(true);
         Destroy(_player);
 
-        SceneManager.LoadScene("New Scene");
+        SceneManager.LoadScene("Hub");
     }
 
     void SaveSceneState(bool playerDied = false)
