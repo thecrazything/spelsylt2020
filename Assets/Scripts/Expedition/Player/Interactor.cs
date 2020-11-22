@@ -65,9 +65,10 @@ public class Interactor : MonoBehaviour
     {
         if (_focusedInteractable != null)
         {
-            if (_focusedInteractable.GetActionTime() != null)
+            float? actionTime = _focusedInteractable.GetActionTime(gameObject.transform.parent.parent.gameObject);
+            if (actionTime != null)
             {
-                string title = _focusedInteractable.GetActionTitle();
+                string title = _focusedInteractable.GetActionTitle(gameObject.transform.parent.parent.gameObject);
                 if (title != null)
                 {
                     SetAndActivateTitle(title);
@@ -75,7 +76,7 @@ public class Interactor : MonoBehaviour
 
                 _playerMovement.SetFrozen(true);
                 _isInteracting = true;
-                _timeout = (float)_focusedInteractable.GetActionTime();
+                _timeout = (float)actionTime;
                 _time = 0;
                 interactProgressbar.maxValue = _timeout;
                 interactProgressbar.gameObject.SetActive(true);

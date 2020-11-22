@@ -10,12 +10,12 @@ public class Gem : MonoBehaviour, IInteractable
         Destroy(gameObject);
     }
 
-    public float? GetActionTime()
+    public float? GetActionTime(GameObject source)
     {
         return null;
     }
 
-    public string GetActionTitle()
+    public string GetActionTitle(GameObject source)
     {
         return null;
     }

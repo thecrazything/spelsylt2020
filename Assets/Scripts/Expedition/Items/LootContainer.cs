@@ -56,7 +56,7 @@ public class LootContainer : MonoBehaviour, IInteractable, IInventoryUiSource
         gameObject.GetComponent<SpriteRenderer>().sprite = openSprite;
     }
 
-    public float? GetActionTime()
+    public float? GetActionTime(GameObject source)
     {
         if (isSearched) return null;
         else return 3;
@@ -67,7 +67,7 @@ public class LootContainer : MonoBehaviour, IInteractable, IInventoryUiSource
         return inventory;
     }
 
-    public string GetActionTitle()
+    public string GetActionTitle(GameObject source)
     {
         return "Searching...";
     }

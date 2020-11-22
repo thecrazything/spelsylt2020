@@ -9,7 +9,7 @@ interface IInteractable
 {
     void Interact(GameObject source);
 
-    float? GetActionTime();
+    float? GetActionTime(GameObject source);
 
-    string GetActionTitle();
+    string GetActionTitle(GameObject source);
 }

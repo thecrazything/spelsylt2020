@@ -9,12 +9,12 @@ public class Chest : MonoBehaviour, IInteractable
         Debug.Log("Hello! I'm a chest");
     }
 
-    public float? GetActionTime()
+    public float? GetActionTime(GameObject source)
     {
         return null;
     }
 
-    public string GetActionTitle()
+    public string GetActionTitle(GameObject source)
     {
         return null;
     }

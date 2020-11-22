@@ -39,7 +39,7 @@ public class ChallengeBehaviour : MonoBehaviour, IInteractable
         }
     }
 
-    public float? GetActionTime()
+    public float? GetActionTime(GameObject source)
     {
         return executeTime;
     }
@@ -63,7 +63,7 @@ public class ChallengeBehaviour : MonoBehaviour, IInteractable
         
     }
 
-    public string GetActionTitle()
+    public string GetActionTitle(GameObject source)
     {
         return null;
     }
