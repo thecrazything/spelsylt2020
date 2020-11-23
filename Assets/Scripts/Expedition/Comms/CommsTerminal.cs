@@ -14,6 +14,8 @@ public class CommsTerminal : MonoBehaviour, IInteractable
     public float repairTime = 5f;
     public float activeTime = 5f;
 
+    private AudioSource _sound;
+
     public float? GetActionTime(GameObject source)
     {
         // TODO check if player actually has the right items to repair, else null
@@ -65,6 +67,7 @@ public class CommsTerminal : MonoBehaviour, IInteractable
                 repaied = true;
                 activated = true;
                 GameStatsService.Instance.gameStats.victoryCondition = true;
+                _sound.Play();
                 return;
             }
             else
