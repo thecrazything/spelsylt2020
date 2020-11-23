@@ -129,10 +129,9 @@ public class Interactor : MonoBehaviour
     {
         IInteractable interactable;
         if (collider.TryGetComponent(out interactable)) {
-            canInteractPromt.SetActive(false);
+            canInteractPromt.SetActive(true);
             _focusedInteractable = interactable;
         }
-        canInteractPromt.SetActive(true);
     }
 
     void OnTriggerExit2D(Collider2D collider)
@@ -142,8 +141,8 @@ public class Interactor : MonoBehaviour
         IInteractable _exitInteractable = collider.GetComponent<IInteractable>();
         if (_exitInteractable != null && _exitInteractable == _focusedInteractable)
         {
-            canInteractPromt.SetActive(false);
             _focusedInteractable = null;
         }
+        canInteractPromt.SetActive(false);
     }
 }
