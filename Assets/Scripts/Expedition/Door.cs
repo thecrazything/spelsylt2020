@@ -67,6 +67,11 @@ public class Door : MonoBehaviour, IInteractable
         if (requiresKeycard) {
             Item keycard = GetKeycard(player);
 
+            if (keycard != null)
+            {
+                RemoveKeycard(player, keycard);
+            }
+
             if (keycard == null && !pickable)
             {
                 OpenDoorFailed();
@@ -102,6 +107,11 @@ public class Door : MonoBehaviour, IInteractable
         shadowObject.SetActive(false);
         animator.SetBool("IsOpen", true);
         _collider.enabled = false;
+    }
+
+    private void RemoveKeycard(Player source, Item item)
+    {
+        source.inventory.items.Remove(item);
     }
 
     private Item GetKeycard(Player source)
