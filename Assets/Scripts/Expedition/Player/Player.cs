@@ -23,6 +23,12 @@ public class Player : MonoBehaviour
 
     public MessageBehaviour console;
 
+    public AudioClip[] breathingSounds;
+    public AudioClip noOxygenSound;
+    public float breatingSoundDelay = 4f;
+    private AudioSource _BreathingSource;
+    private float breathTimeout = 0f;
+
     void Start()
     {
         _playerMovement = GetComponent<PlayerMovement>();
@@ -32,6 +38,7 @@ public class Player : MonoBehaviour
         inventoryUI.SetTitle("Inventory");
         inventoryUI.source = inventory;
         console = GetComponent<MessageBehaviour>();
+        _BreathingSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -54,7 +61,33 @@ public class Player : MonoBehaviour
             character.subtractHealth(1);
         }
 
+        breathSound();
+
         checkIfDead();
+    }
+
+    void breathSound()
+    {
+        if (oxygen > 12)
+        {
+            if (breathTimeout <= 0)
+            {
+                _BreathingSource.loop = false;
+                breathTimeout = breatingSoundDelay;
+                _BreathingSource.clip = breathingSounds[Random.Range(0, breathingSounds.Length)];
+                _BreathingSource.Play();
+            }
+            else
+            {
+                breathTimeout -= Time.deltaTime;
+            }
+        }
+        else if(!_BreathingSource.loop)
+        {
+            _BreathingSource.clip = noOxygenSound;
+            _BreathingSource.loop = true;
+            _BreathingSource.Play();
+        }
     }
 
     void checkIfDead() 
