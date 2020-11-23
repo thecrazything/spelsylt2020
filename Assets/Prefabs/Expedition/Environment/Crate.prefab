@@ -145,6 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openSprite: {fileID: 21300000, guid: b532f53427436c34cb9a90b0423caefa, type: 3}
   closeSpite: {fileID: 21300000, guid: beb9e6f8ca37fd04f81df00490d3b9c6, type: 3}
+  startSearchSound: {fileID: 8300000, guid: 11e1fa96a81252e489bb2cf30a2f4942, type: 3}
   ContainerName: 
   inventoryUiPrefab: {fileID: 8307755571265474920, guid: de99bc5a3ac8377418a4f7c2e8208244,
     type: 3}

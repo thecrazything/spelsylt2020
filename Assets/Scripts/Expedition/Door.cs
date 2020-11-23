@@ -148,6 +148,11 @@ public class Door : MonoBehaviour, IInteractable
         failedTimer = failedTimerCooldown;
     }
 
+    public AudioClip GetActionSound(GameObject source)
+    {
+        return null;
+    }
+
     private class PickSkillTest : SkillTest
     {
         public PickSkillTest(int difficulty) : base(SkillsEnum.UTILITY, difficulty, null, null, null, null)

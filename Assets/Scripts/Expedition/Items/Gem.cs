@@ -19,4 +19,9 @@ public class Gem : MonoBehaviour, IInteractable
     {
         return null;
     }
+
+    public AudioClip GetActionSound(GameObject source)
+    {
+        return null;
+    }
 }

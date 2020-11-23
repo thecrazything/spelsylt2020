@@ -18,4 +18,9 @@ public class Chest : MonoBehaviour, IInteractable
     {
         return null;
     }
+
+    public AudioClip GetActionSound(GameObject source)
+    {
+        return null;
+    }
 }

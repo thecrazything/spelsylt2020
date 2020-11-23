@@ -12,4 +12,6 @@ interface IInteractable
     float? GetActionTime(GameObject source);
 
     string GetActionTitle(GameObject source);
+
+    AudioClip GetActionSound(GameObject source);
 }

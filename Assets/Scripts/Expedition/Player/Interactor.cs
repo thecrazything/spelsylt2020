@@ -21,6 +21,7 @@ public class Interactor : MonoBehaviour
     float _timeout;
     float _time = 0;
     PlayerMovement _playerMovement;
+    AudioSource _audioSource;
 
     void Start()
     {
@@ -39,6 +40,7 @@ public class Interactor : MonoBehaviour
         {
             throw new ArgumentNullException("No Player component found");
         }
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -67,6 +69,14 @@ public class Interactor : MonoBehaviour
         if (_focusedInteractable != null)
         {
             canInteractPromt.SetActive(false);
+
+            AudioClip sound = _focusedInteractable.GetActionSound(gameObject.transform.parent.parent.gameObject);
+            if (sound != null)
+            {
+                _audioSource.clip = sound;
+                _audioSource.Play();
+            }
+
             float? actionTime = _focusedInteractable.GetActionTime(gameObject.transform.parent.parent.gameObject);
             if (actionTime != null)
             {

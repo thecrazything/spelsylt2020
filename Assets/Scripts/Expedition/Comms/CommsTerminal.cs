@@ -16,6 +16,11 @@ public class CommsTerminal : MonoBehaviour, IInteractable
 
     private AudioSource _sound;
 
+    public AudioClip GetActionSound(GameObject source)
+    {
+        return null;
+    }
+
     public float? GetActionTime(GameObject source)
     {
         // TODO check if player actually has the right items to repair, else null

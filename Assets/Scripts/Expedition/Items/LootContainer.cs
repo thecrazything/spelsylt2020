@@ -7,6 +7,7 @@ public class LootContainer : MonoBehaviour, IInteractable, IInventoryUiSource
 {
     public Sprite openSprite;
     public Sprite closeSpite;
+    public AudioClip startSearchSound;
 
     public string ContainerName;
 
@@ -70,5 +71,10 @@ public class LootContainer : MonoBehaviour, IInteractable, IInventoryUiSource
     public string GetActionTitle(GameObject source)
     {
         return "Searching...";
+    }
+
+    public AudioClip GetActionSound(GameObject source)
+    {
+        return isSearched ? null : startSearchSound;
     }
 }

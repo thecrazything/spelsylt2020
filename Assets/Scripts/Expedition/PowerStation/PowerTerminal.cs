@@ -8,6 +8,11 @@ public class PowerTerminal : MonoBehaviour, IInteractable
 
     public bool powered = false;
 
+    public AudioClip GetActionSound(GameObject source)
+    {
+        return null;
+    }
+
     public float? GetActionTime(GameObject source)
     {
         return powered ? null : (float?) powerOnTime;
