@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardInjector : LootInjector
+public class MapCardInjector : LootInjector
 {
-    public KeycardColor color;
+    public string mapName;
 
     protected override Item[] GetItems()
     {
-        return new Item[] { new Keycard(color) };
+        return new Item[] { new MapKey(mapName) };
     }
 }

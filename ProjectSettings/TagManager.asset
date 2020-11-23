@@ -6,6 +6,7 @@ TagManager:
   tags:
   - LootContainer
   - AdditionalLootContainer
+  - Door
   layers:
   - Default
   - TransparentFX

@@ -1,19 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LootInjector : MonoBehaviour
+public abstract class LootInjector : MonoBehaviour
 {
-    public Item[] items;
-
     LootContainer container;
-    void Awake()
-    {
-        container = GetComponent<LootContainer>();
-    }
 
     public void InjectLoot()
     {
-        container.inventory.AddRange(items);
+        if (!container)
+        {
+            container = GetComponent<LootContainer>();
+        }
+        container.inventory.AddRange(GetItems());
     }
+
+    protected abstract Item[] GetItems();
 }
