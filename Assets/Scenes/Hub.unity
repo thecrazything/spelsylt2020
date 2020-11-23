@@ -4094,7 +4094,7 @@ PrefabInstance:
     - target: {fileID: 1184464263576811885, guid: 7edf78a290aa6404ebb37250e91dfb35,
         type: 3}
       propertyPath: m_Name
-      value: PowerStationButton (1)
+      value: AdminButton
       objectReference: {fileID: 0}
     - target: {fileID: 1184464263576811886, guid: 7edf78a290aa6404ebb37250e91dfb35,
         type: 3}

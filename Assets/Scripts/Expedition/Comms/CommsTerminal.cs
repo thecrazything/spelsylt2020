@@ -63,6 +63,8 @@ public class CommsTerminal : MonoBehaviour, IInteractable
             {
                 player.console.ShowMessage("The comms are now working. I should be able to contact Earth now!");
                 repaied = true;
+                activated = true;
+                GameStatsService.Instance.gameStats.victoryCondition = true;
                 return;
             }
             else
@@ -74,8 +76,6 @@ public class CommsTerminal : MonoBehaviour, IInteractable
 
         if (repaied && powered)
         {
-            activated = true;
-            GameStatsService.Instance.gameStats.victoryCondition = true;
             player.console.ShowMessage("The comms are up and running, broadcasting to earth.");
         }
     }
