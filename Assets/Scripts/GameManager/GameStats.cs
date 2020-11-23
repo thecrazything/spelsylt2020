@@ -13,6 +13,7 @@ public class GameStats
     private List<Item> _items = new List<Item>();
 
     public bool victoryCondition = false;
+    public bool isPowerOn = false;
 
     public int daysLeft 
     {
