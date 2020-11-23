@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class Door : MonoBehaviour, IInteractable
 {
     bool _isOpen;
     Animator animator;
     Collider2D _collider;
+
+    public GameObject Light;
+    Light2D light2d;
     
     public GameObject shadowObject;
     public KeycardColor keycardColor;
@@ -17,9 +21,32 @@ public class Door : MonoBehaviour, IInteractable
     public float picktime = 8f;
     public int pickDifficulty = 2;
 
+    bool isFailed = false;
+    float failedTimer = 0;
+    float failedTimerCooldown = 3;
+
     void Start() {
+        if (Light != null)
+        {
+            light2d = Light.GetComponentInChildren<Light2D>();
+            ResetLight();
+        }
+
         animator = GetComponent<Animator>();
         _collider = GetComponent<BoxCollider2D>();
+    }
+
+    void Update()
+    {
+        if (failedTimer > 0) {
+            failedTimer -= Time.deltaTime;
+        }
+
+        if (failedTimer <= 0 && isFailed)
+        {
+            isFailed = false;
+            ResetLight();
+        }
     }
 
     public float? GetActionTime(GameObject source)
@@ -42,6 +69,7 @@ public class Door : MonoBehaviour, IInteractable
 
             if (keycard == null && !pickable)
             {
+                OpenDoorFailed();
                 player.console.ShowMessage("Keycard Required. The lock cannot be picked.");
             }
 
@@ -59,11 +87,13 @@ public class Door : MonoBehaviour, IInteractable
                     {
                         player.console.ShowMessage("Failed to pick the lock.");
                     }
+                    OpenDoorFailed();
                     return;
                 }
             }
             else if(keycard == null)
             {
+                OpenDoorFailed();
                 return;
             }
         }
@@ -77,6 +107,35 @@ public class Door : MonoBehaviour, IInteractable
     private Item GetKeycard(Player source)
     {
         return source.inventory.items.Find(i => (i is Keycard) && (i as Keycard).color == keycardColor); 
+    }
+
+    private void ResetLight()
+    {
+        if (!requiresKeycard)
+        {
+            light2d.color = Color.white;
+        }
+        else {
+            switch (keycardColor)
+            {
+                case KeycardColor.Blue:
+                    light2d.color = Color.blue;
+                    break;
+                case KeycardColor.Green:
+                    light2d.color = Color.green;
+                    break;
+                default:
+                    light2d.color = Color.white;
+                    break;
+            }
+        }
+    }
+
+    private void OpenDoorFailed()
+    {
+        light2d.color = Color.red;
+        isFailed = true;
+        failedTimer = failedTimerCooldown;
     }
 
     private class PickSkillTest : SkillTest
