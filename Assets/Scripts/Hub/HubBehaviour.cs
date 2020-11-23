@@ -27,10 +27,12 @@ public class HubBehaviour : MonoBehaviour
         if (GameStatsService.Instance.gameStats.victoryCondition)
         {
             Victory();
+            return;
         }
         else if (GameStatsService.Instance.gameStats.daysLeft == 0)
         {
             GameOver();
+            return;
         }
         else
         {
@@ -44,7 +46,12 @@ public class HubBehaviour : MonoBehaviour
                 startText = tallyLastDay();
             }
             GameStatsService.Instance.gameStats.expeditionComplete = false;
-            startText += setupNewDay();
+            string txt = setupNewDay();
+            if (txt == null)
+            {
+                return;
+            }
+            startText += txt;
             blackoutTextBehaviour.WriteText(startText);
             consoleBehaviour.WriteText(startText);
         }
@@ -222,6 +229,7 @@ public class HubBehaviour : MonoBehaviour
         if (allDead)
         {
             GameOver();
+            return null;
         }
 
 
@@ -230,11 +238,11 @@ public class HubBehaviour : MonoBehaviour
 
     private void GameOver()
     {
-        blackoutTextBehaviour.WriteText("Game Over");
+        blackoutTextBehaviour.WriteText("Everyone has died. Game Over.", false);
     }
 
     private void Victory()
     {
-        blackoutTextBehaviour.WriteText("Your signal reeaches Earth. Hopefully rescue is swift.. The End.");
+        blackoutTextBehaviour.WriteText("Your signal reaches Earth. Hopefully rescue is swift.. The End.", false);
     }
 }

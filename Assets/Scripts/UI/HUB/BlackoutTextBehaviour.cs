@@ -18,6 +18,11 @@ public class BlackoutTextBehaviour : MonoBehaviour
 
     public void WriteText(string text)
     {
+        WriteText(text, true);
+    }
+
+    public void WriteText(string text, bool fade)
+    {
         if (_console == null)
         {
             _console = GetComponent<ConsoleBehaviour>();
@@ -25,9 +30,12 @@ public class BlackoutTextBehaviour : MonoBehaviour
         blackout.SetBlack();
         _console.WriteText(text, (val) =>
         {
-            blackout.onFadeFinished += BlackOutFinished;
-            blackout.FadeIn();
-            GameStatsService.Instance.gameStats.intro = false;
+            if (fade)
+            {
+                blackout.onFadeFinished += BlackOutFinished;
+                blackout.FadeIn();
+                GameStatsService.Instance.gameStats.intro = false;
+            }
             return false;
         });
     }
