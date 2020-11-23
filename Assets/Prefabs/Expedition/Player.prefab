@@ -198,8 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: addc469b59e73df4c965007545b905f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
-  sprintModifier: 4
+  moveSpeed: 0.8
+  sprintModifier: 3
   rb: {fileID: 558218374134476613}
   animator: {fileID: 558218374134476614}
   interactor: {fileID: 3067507696231838006}
