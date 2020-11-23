@@ -7,6 +7,7 @@ public class Interactor : MonoBehaviour
 {
     public Slider interactProgressbar;
     public GameObject interactTextObject;
+    public GameObject canInteractPromt;
 
     TextMeshProUGUI _interactText;
     IInteractable _focusedInteractable;
@@ -65,6 +66,7 @@ public class Interactor : MonoBehaviour
     {
         if (_focusedInteractable != null)
         {
+            canInteractPromt.SetActive(false);
             float? actionTime = _focusedInteractable.GetActionTime(gameObject.transform.parent.parent.gameObject);
             if (actionTime != null)
             {
@@ -127,8 +129,10 @@ public class Interactor : MonoBehaviour
     {
         IInteractable interactable;
         if (collider.TryGetComponent(out interactable)) {
+            canInteractPromt.SetActive(false);
             _focusedInteractable = interactable;
         }
+        canInteractPromt.SetActive(true);
     }
 
     void OnTriggerExit2D(Collider2D collider)
@@ -138,6 +142,7 @@ public class Interactor : MonoBehaviour
         IInteractable _exitInteractable = collider.GetComponent<IInteractable>();
         if (_exitInteractable != null && _exitInteractable == _focusedInteractable)
         {
+            canInteractPromt.SetActive(false);
             _focusedInteractable = null;
         }
     }
