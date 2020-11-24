@@ -82,8 +82,9 @@ public class GameStatsService
 
     public List<Item> GetPreparedInventory()
     {
+        List<Item> temp = _expeditionPreparedInventory;
         _expeditionPreparedInventory = null;
-        return _expeditionPreparedInventory;
+        return temp;
     }
 
     public void SetPreparedInventory(List<Item> inventory)
