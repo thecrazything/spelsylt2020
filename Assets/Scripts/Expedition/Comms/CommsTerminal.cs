@@ -94,6 +94,12 @@ public class CommsTerminal : MonoBehaviour, IInteractable
         powered = GameStatsService.Instance.gameStats.isPowerOn;
         screenLight.enabled = powered;
         activated = GameStatsService.Instance.gameStats.victoryCondition;
+        _sound = GetComponent<AudioSource>();
+
+        if (activated)
+        {
+            _sound.Play();
+        }
     }
 
     // Update is called once per frame
