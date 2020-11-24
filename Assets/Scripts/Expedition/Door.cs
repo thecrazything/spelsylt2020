@@ -24,6 +24,9 @@ public class Door : MonoBehaviour, IInteractable
     bool isFailed = false;
     float failedTimer = 0;
     float failedTimerCooldown = 3;
+    AudioSource _audioSource;
+
+    SpriteRenderer _renderer;
 
     void Start() {
         if (Light != null)
@@ -34,6 +37,8 @@ public class Door : MonoBehaviour, IInteractable
 
         animator = GetComponent<Animator>();
         _collider = GetComponent<BoxCollider2D>();
+        _audioSource = GetComponent<AudioSource>();
+        _renderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -105,8 +110,16 @@ public class Door : MonoBehaviour, IInteractable
 
         _isOpen = true;
         shadowObject.SetActive(false);
+        _audioSource.Play();
         animator.SetBool("IsOpen", true);
         _collider.enabled = false;
+        StartCoroutine(FixRenderOrder());
+    }
+
+    private IEnumerator FixRenderOrder()
+    {
+        yield return new WaitForSeconds(1);
+        _renderer.sortingOrder = 5;
     }
 
     private void RemoveKeycard(Player source, Item item)
