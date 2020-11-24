@@ -31,6 +31,13 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        List<Item> prepared = GameStatsService.Instance.GetPreparedInventory();
+
+        if (prepared != null)
+        {
+            inventory.GetInventory().AddRange(prepared);
+        }
+
         _playerMovement = GetComponent<PlayerMovement>();
         character = GameStatsService.Instance.selectedCharacter;
 

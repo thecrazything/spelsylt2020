@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
@@ -23,32 +24,34 @@ public class CommsTerminal : MonoBehaviour, IInteractable
 
     public float? GetActionTime(GameObject source)
     {
-        // TODO check if player actually has the right items to repair, else null
+        Player player = source.GetComponent<Player>();
+        CommsParts parts = GetParts(player);
         if (!powered)
         {
             return null;
         }
         if (!repaied)
         {
-            return repairTime;
+            return parts == null ? null : (float?)repairTime;
         }
         return activeTime;
     }
 
     public string GetActionTitle(GameObject source)
     {
+        Player player = source.GetComponent<Player>();
+        CommsParts parts = GetParts(player);
         if (repaied && powered && activated)
         {
             return null;
         }
-        // TODO check if player actually has the right items to repair, else null
         if (!powered)
         {
             return null;
         }
         if (!repaied)
         {
-            return "Repairing....";
+            return parts == null ? null : "Repairing....";
         }
         return "Activating comms....";
     }
@@ -64,15 +67,15 @@ public class CommsTerminal : MonoBehaviour, IInteractable
 
         if (!repaied)
         {
-            // TODO check if player has repair parts. Use and remove the item.
-            bool hasParts = true;
-            if (hasParts)
+            CommsParts parts = GetParts(player);
+            if (parts != null)
             {
                 player.console.ShowMessage("The comms are now working. I should be able to contact Earth now!");
                 repaied = true;
                 activated = true;
                 GameStatsService.Instance.gameStats.victoryCondition = true;
                 _sound.Play();
+                player.inventory.GetInventory().Remove(parts);
                 return;
             }
             else
@@ -106,5 +109,10 @@ public class CommsTerminal : MonoBehaviour, IInteractable
     void Update()
     {
         
+    }
+
+    private CommsParts GetParts(Player player)
+    {
+        return player.inventory.GetInventory().Where(x => x is CommsParts).Cast<CommsParts>().FirstOrDefault();
     }
 }

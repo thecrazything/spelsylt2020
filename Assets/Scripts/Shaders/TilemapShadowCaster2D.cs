@@ -18,7 +18,7 @@ public class TilemapShadowCaster2D : MonoBehaviour
             var tile = tilemap.GetTile(position);
             if (tile == null)
                 continue;
-            if (tile.name != "T_shadow_tile" && tile.name != "T_half_shadow_tile")
+            if (tile.name != "T_shadow_tile" && tile.name != "T_half_shadow_tile" && tile.name != "T_half_shadow_tile_lower")
             {
                 throw new ArgumentException("Tile must be of type T_shadow_tile or T_half_shadow_tile"); 
             }
@@ -29,6 +29,13 @@ public class TilemapShadowCaster2D : MonoBehaviour
                 shadowCaster.transform.position = new Vector3(corner.x + (cellSize.x / 2), corner.y + (cellSize.y / 2), corner.z);
                 shadowCaster.transform.localScale = cellSize;
                 shadowCaster.name = "shadow_caster_" + i;
+            }
+            else if (tile.name == "T_half_shadow_tile_lower")
+            {
+                Vector3 halfSize = new Vector3(cellSize.x, cellSize.y / 2, cellSize.z);
+                shadowCaster.transform.position = new Vector3(corner.x + (halfSize.x / 2), corner.y + (halfSize.y / 2f), corner.z);
+                shadowCaster.transform.localScale = halfSize;
+                shadowCaster.name = "shadow_caster_half_" + i;
             }
             else
             {

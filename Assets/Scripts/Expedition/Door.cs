@@ -28,6 +28,8 @@ public class Door : MonoBehaviour, IInteractable
 
     SpriteRenderer _renderer;
 
+    OnDoorOpen _OnOpen;
+
     void Start() {
         if (Light != null)
         {
@@ -39,6 +41,7 @@ public class Door : MonoBehaviour, IInteractable
         _collider = GetComponent<BoxCollider2D>();
         _audioSource = GetComponent<AudioSource>();
         _renderer = GetComponent<SpriteRenderer>();
+        _OnOpen = GetComponent<OnDoorOpen>();
     }
 
     void Update()
@@ -109,6 +112,7 @@ public class Door : MonoBehaviour, IInteractable
         animator.SetBool("IsOpen", true);
         _collider.enabled = false;
         StartCoroutine(FixRenderOrder());
+        _OnOpen.Opened();
     }
 
     private IEnumerator FixRenderOrder()
