@@ -5,6 +5,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class MainRoomReveal : MonoBehaviour, OnDoorOpen
 {
+    public AudioSource revealMusic;
     List<Light2D> _lights = new List<Light2D>();
 
     void Start()
@@ -20,5 +21,6 @@ public class MainRoomReveal : MonoBehaviour, OnDoorOpen
     public void Opened()
     {
         _lights.ForEach(light => { light.enabled = true; });
+        revealMusic.Play();
     }
 }
