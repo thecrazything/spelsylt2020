@@ -112,7 +112,10 @@ public class Door : MonoBehaviour, IInteractable
         animator.SetBool("IsOpen", true);
         _collider.enabled = false;
         StartCoroutine(FixRenderOrder());
-        _OnOpen.Opened();
+        if (_OnOpen != null)
+        {
+            _OnOpen.Opened();
+        }
     }
 
     private IEnumerator FixRenderOrder()

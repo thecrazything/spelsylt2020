@@ -14,8 +14,6 @@ public class LootContainer : MonoBehaviour, IInteractable, IInventoryUiSource
     private bool isOpen = false;
     private bool isSearched = false;
 
-    GameObject interactor;
-
     public GameObject inventoryUiPrefab;
 
     InventoryUI ui;
@@ -33,8 +31,6 @@ public class LootContainer : MonoBehaviour, IInteractable, IInventoryUiSource
         isSearched = true;
         isOpen = true;
 
-        interactor = source;
-
         source.GetComponent<Player>().interactor.OnLostInteractFocus += Interactor_OnLostInteractFocus;
         UpdateSprite();
         ui.Show();
@@ -48,8 +44,7 @@ public class LootContainer : MonoBehaviour, IInteractable, IInventoryUiSource
     private void Interactor_OnLostInteractFocus(object sender, Interactor.OnPlayerLostInteractFocus e)
     {
         ui.Hide();
-        interactor.GetComponent<Player>().interactor.OnLostInteractFocus -= Interactor_OnLostInteractFocus;
-        interactor = null;
+        (sender as Interactor).OnLostInteractFocus -= Interactor_OnLostInteractFocus;
     }
 
     private void UpdateSprite()

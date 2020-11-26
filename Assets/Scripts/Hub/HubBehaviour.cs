@@ -31,7 +31,7 @@ public class HubBehaviour : MonoBehaviour
         }
         else if (GameStatsService.Instance.gameStats.daysLeft == 0)
         {
-            GameOver();
+            GameOver(GameOverReason.TIMEOUT);
             return;
         }
         else
@@ -205,18 +205,21 @@ public class HubBehaviour : MonoBehaviour
                 {
                     // Starved
                     character.dead = true;
+                    character.deathReson = DeathReason.STARVATION;
                     msg += "\n" + TextConstants.STARVED.Replace("{name}", character.name);
                 }
                 if (character.health <= 0)
                 {
                     // Just dead
                     character.dead = true;
+                    character.deathReson = DeathReason.HEALTH;
                     msg += "\n" + TextConstants.DIED.Replace("{name}", character.name);
                 }
                 if (character.mentalHealth <= 0)
                 {
                     // insane
                     character.dead = true;
+                    character.deathReson = DeathReason.MENTAL_HEALTH;
                     msg += "\n" + TextConstants.INSANE.Replace("{name}", character.name);
                 }
             }
@@ -228,7 +231,7 @@ public class HubBehaviour : MonoBehaviour
 
         if (allDead)
         {
-            GameOver();
+            GameOver(GameOverReason.DEATH);
             return null;
         }
 
@@ -236,9 +239,39 @@ public class HubBehaviour : MonoBehaviour
         return msg;
     }
 
-    private void GameOver()
+    private void GameOver(GameOverReason reason)
     {
-        blackoutTextBehaviour.WriteText("Everyone has died. Game Over.", false);
+        if (reason == GameOverReason.TIMEOUT)
+        {
+            blackoutTextBehaviour.WriteText("Time has run out, and the window to contact earth has passed. By the next pass, the remaining crew will have starved.", false);
+        } 
+        else
+        {
+            string txt = "Everyone has died. \n";
+            GameStatsService.Instance.characters.ToList().ForEach(character => {
+                txt += character.name;
+                switch(character.deathReson)
+                {
+                    case DeathReason.HEALTH:
+                        txt += " health reached a critical condition.";
+                        break;
+                    case DeathReason.MENTAL_HEALTH:
+                        txt += " couldn't take it anymore.";
+                        break;
+                    case DeathReason.STARVATION:
+                        txt += " starved to death.";
+                        break;
+                    case DeathReason.EXPEDITION:
+                        txt += " never came back from their expedtition.";
+                        break;
+                    default:
+                        txt += " died of unkown causes.";
+                        break;
+                }
+                txt += "\n";
+            });
+            blackoutTextBehaviour.WriteText(txt, false);
+        }
     }
 
     private void Victory()

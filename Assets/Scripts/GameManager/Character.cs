@@ -43,6 +43,7 @@ public class Character
     }
 
     public bool dead = false;
+    public DeathReason deathReson;
 
     public int hunger
     {
