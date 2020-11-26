@@ -80,4 +80,14 @@ public class PlayerMovement : MonoBehaviour
     {
         _frozen = value;
     }
+
+    public Vector2 GetMovement()
+    {
+        return movement;
+    }
+
+    public bool isRunning()
+    {
+        return iSprinting;
+    }
 }
