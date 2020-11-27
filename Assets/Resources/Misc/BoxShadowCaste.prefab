@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7873452714405121035}
   - component: {fileID: 2447274611437040340}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BoxShadowCaste
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,4 +56,4 @@ MonoBehaviour:
   - {x: -0.5, y: 0.5, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -15816
+  m_InstanceId: 167384

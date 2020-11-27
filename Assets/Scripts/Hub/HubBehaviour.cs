@@ -44,6 +44,7 @@ public class HubBehaviour : MonoBehaviour
             if (GameStatsService.Instance.gameStats.expeditionComplete)
             {
                 startText = tallyLastDay();
+                GameStatsService.Instance.MoveTmpExpiditionInvToHub();
             }
             GameStatsService.Instance.gameStats.expeditionComplete = false;
             string txt = setupNewDay();

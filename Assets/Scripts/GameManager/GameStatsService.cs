@@ -13,6 +13,7 @@ public class GameStatsService
     private Character _selectedCharacter;
     public GameStats gameStats;
     private List<Item> _expeditionPreparedInventory;
+    private List<Item> _tmpExpeditionCompleteInv;
 
     public ICollection<Character> characters
     {
@@ -67,11 +68,21 @@ public class GameStatsService
 
     public void CompleteExpedition(Item[] items)
     {
+        _tmpExpeditionCompleteInv = new List<Item>();
         if (items != null)
         {
-            gameStats.AddItems(items);
+            _tmpExpeditionCompleteInv.AddRange(items);
         }
         gameStats.expeditionComplete = true;
+    }
+
+    public void MoveTmpExpiditionInvToHub()
+    {
+        if (_tmpExpeditionCompleteInv != null)
+        {
+            gameStats.AddItems(_tmpExpeditionCompleteInv.ToArray());
+        }
+        _tmpExpeditionCompleteInv = null;
     }
 
     public void SetStartData(ICollection<Character> characters, GameStats gameStats)
