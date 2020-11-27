@@ -5,6 +5,7 @@ using UnityEngine.Rendering;
 
 public class CRTEffect : MonoBehaviour
 {
+    public RenderTexture cameraTexture;
     public Shader shader;
     public float bend = 4f;
     public float scanlineSize1 = 200;

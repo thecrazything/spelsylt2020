@@ -1334,7 +1334,6 @@ GameObject:
   - component: {fileID: 791774679}
   - component: {fileID: 791774680}
   - component: {fileID: 791774681}
-  - component: {fileID: 791774682}
   - component: {fileID: 791774683}
   m_Layer: 0
   m_Name: Main Camera
@@ -1530,33 +1529,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &791774682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 791774675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdd65429288e9f24aab6927b348d8652, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shader: {fileID: 4800000, guid: 2a68d620829df024a997243732c51bf7, type: 3}
-  bend: 10
-  scanlineSize1: 200
-  scanlineSpeed1: -10
-  scanlineSize2: 50
-  scanlineSpeed2: -3
-  scanlineAmount: 0.01
-  vignetteSize: 1.81
-  vignetteSmoothness: 0.6
-  vignetteEdgeRound: 8
-  noiseSize: 75
-  noiseAmount: 0.02
-  redOffset: {x: 0, y: -0.001}
-  blueOffset: {x: 0.001, y: 0}
-  greenOffset: {x: 0, y: 0.001}
 --- !u!114 &791774683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1574,12 +1546,12 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 1
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
