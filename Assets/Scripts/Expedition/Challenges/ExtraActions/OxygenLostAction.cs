@@ -14,7 +14,7 @@ public class OxygenLostAction : IExtraAction
         return SkillsEnum.NEUTRAL;
     }
 
-    public void on(GameStatsService stats)
+    public void on(Character stats)
     {
         throw new System.NotImplementedException();
     }

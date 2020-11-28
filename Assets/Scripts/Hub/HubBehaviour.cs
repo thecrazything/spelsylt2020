@@ -154,13 +154,13 @@ public class HubBehaviour : MonoBehaviour
                 {
                     IExtraAction complication = HubComplications.getRandom(task.skillTest.skill);
                     tasksSummary += "\n" + complication.GetMessage().Replace("{name}", task.doer.name);
-                    complication.on(GameStatsService.Instance);
+                    complication.on(task.doer);
                 }
                 if (result.bonus)
                 {
                     IExtraAction bonus = HubBoons.getRandom(task.skillTest.skill);
                     tasksSummary += "\n" + bonus.GetMessage().Replace("{name}", task.doer.name);
-                    bonus.on(GameStatsService.Instance);
+                    bonus.on(task.doer);
                 }
             }
             else

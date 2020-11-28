@@ -1,12 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class RationFoundAction : IExtraAction
+﻿public class HealthGainedAction : IExtraAction
 {
     public string GetMessage()
     {
-        return "{name} found a ration!";
+        return "{name} ate a pill they found and is feeling a bit healthier.";
     }
 
     public SkillsEnum GetSkill()
@@ -16,7 +12,7 @@ public class RationFoundAction : IExtraAction
 
     public void on(Character stats)
     {
-        GameStatsService.Instance.gameStats.AddItem(new Ration());
+        stats.addHealth(10);
     }
 
     public void on(Player character)

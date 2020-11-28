@@ -14,9 +14,9 @@ public class RationLostAction : IExtraAction
         return SkillsEnum.NEUTRAL;
     }
 
-    public void on(GameStatsService stats)
+    public void on(Character character)
     {
-        stats.gameStats.RemoveRation(1);
+        GameStatsService.Instance.gameStats.RemoveRation(1);
     }
 
     public void on(Player character)
