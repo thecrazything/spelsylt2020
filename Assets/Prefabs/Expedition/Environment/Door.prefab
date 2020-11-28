@@ -238,6 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c0f6f3b0d0d1c499f6f1b3bd74fa0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockpickSound: {fileID: 8300000, guid: 8c347038fc90a0948a0023998cf6f789, type: 3}
   Light: {fileID: 43062899423890574}
   shadowObject: {fileID: 6160115379453609306}
   keycardColor: 0
@@ -356,7 +357,7 @@ PrefabInstance:
     - target: {fileID: 2447274611437040340, guid: 31dc435a65c30e54b939637055b0067b,
         type: 3}
       propertyPath: m_InstanceId
-      value: -1279708
+      value: -828668
       objectReference: {fileID: 0}
     - target: {fileID: 4986675202642976149, guid: 31dc435a65c30e54b939637055b0067b,
         type: 3}

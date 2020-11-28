@@ -6,6 +6,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class Door : MonoBehaviour, IInteractable
 {
+    public AudioClip lockpickSound;
     bool _isOpen;
     Animator animator;
     Collider2D _collider;
@@ -160,7 +161,8 @@ public class Door : MonoBehaviour, IInteractable
 
     public AudioClip GetActionSound(GameObject source)
     {
-        return null;
+        Player player = ComponentUtil.RequireComponent<Player>(source);
+        return (GetKeycard(player) == null && pickable) ? lockpickSound : null;
     }
 
     private class PickSkillTest : SkillTest
