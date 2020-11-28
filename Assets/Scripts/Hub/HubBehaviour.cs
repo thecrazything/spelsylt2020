@@ -47,7 +47,7 @@ public class HubBehaviour : MonoBehaviour
                 GameStatsService.Instance.MoveTmpExpiditionInvToHub();
             }
             GameStatsService.Instance.gameStats.expeditionComplete = false;
-            string txt = setupNewDay();
+            string txt = setupDay(GameStatsService.Instance.gameStats.daysLeft != 7);
             if (txt == null)
             {
                 return;
@@ -154,13 +154,13 @@ public class HubBehaviour : MonoBehaviour
                 {
                     IExtraAction complication = HubComplications.getRandom(task.skillTest.skill);
                     tasksSummary += "\n" + complication.GetMessage().Replace("{name}", task.doer.name);
-                    complication.on(GameStatsService.Instance);
+                    complication.on(task.doer);
                 }
                 if (result.bonus)
                 {
                     IExtraAction bonus = HubBoons.getRandom(task.skillTest.skill);
                     tasksSummary += "\n" + bonus.GetMessage().Replace("{name}", task.doer.name);
-                    bonus.on(GameStatsService.Instance);
+                    bonus.on(task.doer);
                 }
             }
             else
@@ -173,7 +173,7 @@ public class HubBehaviour : MonoBehaviour
         return TextConstants.NEXT_DAY_MESSAGE + "\n" + tasksSummary + "\n";
     }
 
-    private string setupNewDay()
+    private string setupDay(bool newDay)
     {
         restingCharacters = new List<Character>();
         List<HubTask> tasks = new List<HubTask>();
@@ -196,7 +196,26 @@ public class HubBehaviour : MonoBehaviour
             msg += avalibleTasks[i].skillTest.description + "\n ";
         }
 
+        if (newDay)
+        {
+            string text;
+            if(SubtractHungerAndTallyDead(out text))
+            {
+                GameOver(GameOverReason.DEATH);
+                return null;
+            }
+            msg += text;
+        }
+
+
+        return msg;
+    }
+
+
+    private bool SubtractHungerAndTallyDead(out string text)
+    {
         bool allDead = true;
+        string msg = "";
         GameStatsService.Instance.characters.ToList().ForEach(character =>
         {
             character.hunger -= 1;
@@ -230,14 +249,8 @@ public class HubBehaviour : MonoBehaviour
             }
         });
 
-        if (allDead)
-        {
-            GameOver(GameOverReason.DEATH);
-            return null;
-        }
-
-
-        return msg;
+        text = msg;
+        return allDead;
     }
 
     private void GameOver(GameOverReason reason)

@@ -6,7 +6,7 @@ public class RationLostAction : IExtraAction
 {
     public string GetMessage()
     {
-        return "{name} managed to lose a ration.";
+        return TextConstants.RATION_LOST_MESSAGES[Random.Range(0, TextConstants.RATION_LOST_MESSAGES.Length)];
     }
 
     public SkillsEnum GetSkill()
@@ -14,9 +14,9 @@ public class RationLostAction : IExtraAction
         return SkillsEnum.NEUTRAL;
     }
 
-    public void on(GameStatsService stats)
+    public void on(Character character)
     {
-        stats.gameStats.RemoveRation(1);
+        GameStatsService.Instance.gameStats.RemoveRation(1);
     }
 
     public void on(Player character)

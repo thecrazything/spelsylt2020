@@ -10,13 +10,13 @@ public class StartButton : MonoBehaviour
         var statsService = GameStatsService.Instance;
         List<Character> characters = new List<Character>();
 
-        Character a = new Character(0, "Sam Stevens", SkillsEnum.LEADERSHIP);
+        Character a = NewCharacter(0, "Sam Stevens", SkillsEnum.LEADERSHIP);
         characters.Add(a);
-        Character b = new Character(1, "Charlie Smith", SkillsEnum.MECHANIC);
+        Character b = NewCharacter(1, "Charlie Smith", SkillsEnum.MECHANIC);
         characters.Add(b);
-        Character c = new Character(2, "Frankie Thorn", SkillsEnum.MEDIC);
+        Character c = NewCharacter(2, "Frankie Thorn", SkillsEnum.MEDIC);
         characters.Add(c);
-        Character d = new Character(3, "Jayden Wynn", SkillsEnum.UTILITY);
+        Character d = NewCharacter(3, "Jayden Wynn", SkillsEnum.UTILITY);
         characters.Add(d);
         GameStats stats = new GameStats();
         GameStatsService.Instance.SetStartData(characters, stats);
@@ -26,5 +26,17 @@ public class StartButton : MonoBehaviour
     {
         NewGame();
         SceneManager.LoadScene("Hub");
+    }
+
+    private int GetStartHunger()
+    {
+        return Random.Range(2, 5);
+    }
+
+    private Character NewCharacter(int id, string name, SkillsEnum skill)
+    {
+        Character a = new Character(id, name, skill);
+        a.hunger = GetStartHunger();
+        return a;
     }
 }

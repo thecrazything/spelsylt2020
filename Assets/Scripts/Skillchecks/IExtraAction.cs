@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IExtraAction
 {
-    void on(GameStatsService stats);
+    void on(Character character);
     void on(Player character);
 
     SkillsEnum GetSkill();

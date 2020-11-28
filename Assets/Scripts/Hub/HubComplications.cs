@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HubComplications
 {
-    private static readonly IExtraAction[] complications = { new RationLostAction() };
+    private static readonly IExtraAction[] complications = { new RationLostAction(), new HealthLostAction(), new MentalHealthLostAction() };
 
     public static IExtraAction getRandom(SkillsEnum skill)
     {

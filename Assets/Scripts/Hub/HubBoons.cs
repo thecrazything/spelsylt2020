@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HubBoons
 {
-    private static readonly IExtraAction[] boons = { new RationFoundAction() };
+    private static readonly IExtraAction[] boons = { new RationFoundAction(), new HealthGainedAction(), new MentalHealthGainAction() };
 
     public static IExtraAction getRandom(SkillsEnum skill)
     {

@@ -6,7 +6,7 @@ public class RationFoundAction : IExtraAction
 {
     public string GetMessage()
     {
-        return "{name} found a ration!";
+        return TextConstants.RATION_FOUND_MESSAGES[Random.Range(0, TextConstants.RATION_FOUND_MESSAGES.Length)];
     }
 
     public SkillsEnum GetSkill()
@@ -14,9 +14,9 @@ public class RationFoundAction : IExtraAction
         return SkillsEnum.NEUTRAL;
     }
 
-    public void on(GameStatsService stats)
+    public void on(Character stats)
     {
-        stats.gameStats.AddItem(new Ration());
+        GameStatsService.Instance.gameStats.AddItem(new Ration());
     }
 
     public void on(Player character)
