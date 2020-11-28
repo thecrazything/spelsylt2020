@@ -199,7 +199,7 @@ public class Door : MonoBehaviour, IInteractable
     public AudioClip GetActionSound(GameObject source)
     {
         Player player = ComponentUtil.RequireComponent<Player>(source);
-        return (GetKeycard(player) == null && pickable) ? sound : null;
+        return (GetKeycard(player) == null && pickable) ? lockpickSound : null;
     }
 
     private class PickSkillTest : SkillTest
