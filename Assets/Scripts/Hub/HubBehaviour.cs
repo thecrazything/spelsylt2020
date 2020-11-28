@@ -290,7 +290,7 @@ public class HubBehaviour : MonoBehaviour
 
     private void Victory()
     {
-        blackoutTextBehaviour.WriteText("Your signal reaches Earth. Hopefully rescue is swift.. The End.", false);
+        // blackoutTextBehaviour.WriteText("Your signal reaches Earth. Hopefully rescue is swift.. The End.", false);
         SceneManager.LoadScene("Credits");
     }
 }
