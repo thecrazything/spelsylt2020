@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7eb8be03b940d74891bdf7294246e7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oxygen: 300
+  oxygen: 240
   noMovingOxygenMod: 0.5
   sprintOxygenMod: 4
   inventoryCanvas: {fileID: 6123184275040888053, guid: dfdd66659f226ca40bb883671628a93c,
