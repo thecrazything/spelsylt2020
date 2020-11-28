@@ -719,7 +719,9 @@ MonoBehaviour:
   characterId: 0
   nameField: {fileID: 5762169639242881539}
   profilePictureBackground: {fileID: 9069863050832473573}
-  disableColor: {r: 0.85490197, g: 0.15294118, b: 0, a: 0.5372549}
+  profilePicture: {fileID: 5762169638900609726}
+  disableColor: {r: 0.854902, g: 0.15294118, b: 0, a: 0.5019608}
+  deathColour: {r: 0.85490197, g: 0.15294118, b: 0.0007564989, a: 0.19215687}
 --- !u!114 &1996528667511325348
 MonoBehaviour:
   m_ObjectHideFlags: 0

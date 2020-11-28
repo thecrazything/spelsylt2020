@@ -13,15 +13,19 @@ public class ProfileBehaviour : MonoBehaviour, ISelectHandler
     public int characterId = 0;
     public Text nameField;
     public Image profilePictureBackground;
+    public Image profilePicture;
     public Color disableColor;
+    public Color deathColour;
 
     public Character character;
     private Selectable _selectable;
     private Color _ProfilePictureBackgroundColor;
+    private Image _buttonImage;
 
     // Start is called before the first frame update
     void Start()
     {
+        _buttonImage = GetComponent<Image>();
         hub = GameObject.Find("Main Camera").GetComponent<HubBehaviour>();
         _selectable = GetComponent<Selectable>();
         character = GameStatsService.Instance.GetCharacterById(characterId);
@@ -34,7 +38,9 @@ public class ProfileBehaviour : MonoBehaviour, ISelectHandler
         if (character.dead)
         {
             _selectable.interactable = false;
-            profilePictureBackground.color = disableColor;
+            profilePictureBackground.color = deathColour;
+            profilePicture.color = deathColour;
+            _buttonImage.color = deathColour;
         }
     }
 
@@ -49,6 +55,7 @@ public class ProfileBehaviour : MonoBehaviour, ISelectHandler
         {
             _selectable.interactable = false;
             profilePictureBackground.color = disableColor;
+            profilePicture.color = disableColor;
             dropdown.gameObject.SetActive(false);
             taskDropdown.gameObject.SetActive(false);
         } 
@@ -56,6 +63,13 @@ public class ProfileBehaviour : MonoBehaviour, ISelectHandler
         {
             _selectable.interactable = true;
             profilePictureBackground.color = _ProfilePictureBackgroundColor;
+            profilePicture.color = _ProfilePictureBackgroundColor;
+        }
+        if (character.dead)
+        {
+            profilePictureBackground.color = deathColour;
+            profilePicture.color = deathColour;
+            _buttonImage.color = deathColour;
         }
         if(hub.selectedCharacter == null)
         {
