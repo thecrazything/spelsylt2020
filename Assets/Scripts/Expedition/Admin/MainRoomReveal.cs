@@ -23,4 +23,9 @@ public class MainRoomReveal : MonoBehaviour, OnDoorOpen
         _lights.ForEach(light => { light.enabled = true; });
         revealMusic.Play();
     }
+
+    public void SetStateOpen()
+    {
+        _lights.ForEach(light => { light.enabled = true; });
+    }
 }

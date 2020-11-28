@@ -26,7 +26,19 @@ public class ExpeditionManager : MonoBehaviour
 
         if (isInitialized)
         {
-            _lootManager.InitializeState(GameStatsService.SceneStateManager.GetSceneState(sceneName));
+            ExpeditionLevelState state = GameStatsService.SceneStateManager.GetSceneState(sceneName);
+            _lootManager.InitializeState(state);
+
+            // Open doors
+            GameObject.FindGameObjectsWithTag("Door")
+                .Select(g => g.GetComponent<Door>())
+                .ToList()
+                .ForEach(d => {
+                    if (state.openDoors.IndexOf(d.GetId()) > -1)
+                    {
+                        d.SetOpen();
+                    }
+                });
         }
         else {
             ExpeditionLevelState startState;
@@ -83,6 +95,13 @@ public class ExpeditionManager : MonoBehaviour
                 additional.inventory
             ));
         }
+
+        // Save open doors
+        List<Door> openDoors = GameObject.FindGameObjectsWithTag("Door")
+                            .Select(g => g.GetComponent<Door>())
+                            .Where(d => d.isOpen)
+                            .ToList();
+        state.openDoors = openDoors.Select(o => o.GetId()).ToList();
 
         // Save player body as an Additional container if dead
         if (playerDied)
