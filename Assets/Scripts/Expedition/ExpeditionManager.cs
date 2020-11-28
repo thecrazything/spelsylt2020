@@ -65,6 +65,8 @@ public class ExpeditionManager : MonoBehaviour
         SaveSceneState(true);
         Destroy(_player);
 
+        GameStatsService.Instance.CompleteExpedition(null);
+
         SceneManager.LoadScene("Hub");
     }
 

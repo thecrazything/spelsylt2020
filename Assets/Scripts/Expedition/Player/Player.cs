@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public float noMovingOxygenMod = 0.5f;
     public float sprintOxygenMod = 2.0f;
 
+    public GameObject gaugeObject;
     public GameObject inventoryCanvas;
     public Interactor interactor;
 
@@ -28,9 +29,20 @@ public class Player : MonoBehaviour
     public float breatingSoundDelay = 4f;
     private AudioSource _BreathingSource;
     private float breathTimeout = 0f;
+    private float startingOxygen;
+    private GaugeController _gauge;
+
+    float oxygenPercentage {
+        get {
+            return oxygen / startingOxygen;
+        }
+    }
 
     void Start()
     {
+        startingOxygen = oxygen;
+        _gauge = gaugeObject.GetComponent<GaugeController>();
+
         List<Item> prepared = GameStatsService.Instance.GetPreparedInventory();
 
         if (prepared != null)
@@ -66,6 +78,19 @@ public class Player : MonoBehaviour
         if (oxygen < 0)
         {
             character.subtractHealth(1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            gaugeObject.SetActive(true);
+        }
+
+        if (Input.GetKeyUp(KeyCode.Q)) {
+            gaugeObject.SetActive(false);
+        }
+
+        if (gaugeObject.activeInHierarchy)
+        {
+            _gauge.SetProgress(oxygenPercentage);
         }
 
         breathSound();
@@ -104,13 +129,5 @@ public class Player : MonoBehaviour
             character.dead = true;
             manager.OnPlayerDeath();
         }
-    }
-
-    void OnGUI()
-    {
-        float o = Mathf.RoundToInt(oxygen);
-        float h = Mathf.RoundToInt(character.health);
-        GUI.Label(new Rect(10, 10, 100, 20), "Oxygen: " + o);
-        GUI.Label(new Rect(10, 50, 100, 20), "Health: " + h);
     }
 }
