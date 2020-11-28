@@ -27,7 +27,10 @@ public class MapButtonBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerE
 
         if (locked)
         {
-            if (GameStatsService.Instance.gameStats.GetItems().Where(x => x is MapKey).Cast<MapKey>().Where(x => x.mapName == mapName).FirstOrDefault() != null)
+            List<Item> items = GameStatsService.Instance.gameStats.GetItems();
+            items.AddRange(GameStatsService.Instance.GetTmpInventory());
+
+            if (items.Where(x => x is MapKey).Cast<MapKey>().Where(x => x.mapName == mapName).FirstOrDefault() != null)
             {
                 locked = false;
             }
