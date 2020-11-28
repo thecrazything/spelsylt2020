@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class HubBehaviour : MonoBehaviour
 {
@@ -179,7 +180,7 @@ public class HubBehaviour : MonoBehaviour
         List<HubTask> tasks = new List<HubTask>();
 
         // If a character is damaged, add a damaged character task to do.
-        Character dmgChar = GameStatsService.Instance.characters.Where(x => x.health <= 50).OrderBy(x => x.health).FirstOrDefault();
+        Character dmgChar = GameStatsService.Instance.characters.Where(x => x.health <= 50 && !x.dead).OrderBy(x => x.health).FirstOrDefault();
         if (dmgChar != null)
         {
             HubTask task = new HubTask();
@@ -291,5 +292,6 @@ public class HubBehaviour : MonoBehaviour
     private void Victory()
     {
         blackoutTextBehaviour.WriteText("Your signal reaches Earth. Hopefully rescue is swift.. The End.", false);
+        SceneManager.LoadScene("Credits");
     }
 }
