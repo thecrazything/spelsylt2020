@@ -2582,12 +2582,17 @@ PrefabInstance:
     - target: {fileID: 8069194802121108373, guid: 7edf78a290aa6404ebb37250e91dfb35,
         type: 3}
       propertyPath: mapName
-      value: Power Station
+      value: PowerStation
       objectReference: {fileID: 0}
     - target: {fileID: 8069194802121108373, guid: 7edf78a290aa6404ebb37250e91dfb35,
         type: 3}
       propertyPath: locked
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8069194802121108373, guid: 7edf78a290aa6404ebb37250e91dfb35,
+        type: 3}
+      propertyPath: mapDisplayName
+      value: Power Station
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7edf78a290aa6404ebb37250e91dfb35, type: 3}
