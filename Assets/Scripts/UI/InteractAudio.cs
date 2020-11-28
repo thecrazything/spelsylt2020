@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class InteractAudio : MonoBehaviour
+public class InteractAudio : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
 {
+    public bool confimSound = false;
     private AudioClip _onHover;
     private AudioClip _onClick;
     private AudioClip _onConfirm;
@@ -13,6 +15,7 @@ public class InteractAudio : MonoBehaviour
     void Start()
     {
         _source = gameObject.AddComponent<AudioSource>();
+        _source.volume = 0.1f;
         _onHover = (AudioClip)Resources.Load("Sounds/Menu/hover");
         _onClick = (AudioClip)Resources.Load("Sounds/Menu/click");
         _onConfirm = (AudioClip)Resources.Load("Sounds/Menu/confirm");
@@ -34,5 +37,22 @@ public class InteractAudio : MonoBehaviour
     {
         _source.clip = _onConfirm;
         _source.Play();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        OnHover();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (confimSound)
+        {
+            OnConfirm();
+        }
+        else
+        {
+            OnClick();
+        }
     }
 }
