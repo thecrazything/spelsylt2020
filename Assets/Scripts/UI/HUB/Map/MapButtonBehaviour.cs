@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MapButtonBehaviour : MonoBehaviour
+public class MapButtonBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public string mapName;
     public Image image;
     public CanvasGroup icon;
     public Color selectedColor;
     public bool locked;
+    public Text hoverText;
+    public string mapDisplayName;
     MapBehaviour _map;
     Button _button;
     Color _deselectColor;
@@ -34,6 +37,12 @@ public class MapButtonBehaviour : MonoBehaviour
         {
             _button.interactable = false;
         }
+
+        if (mapDisplayName == null || mapDisplayName.Length == 0)
+        {
+            mapDisplayName = mapName;
+        }
+        hoverText.text = mapDisplayName;
     }
 
     // Update is called once per frame
@@ -62,5 +71,18 @@ public class MapButtonBehaviour : MonoBehaviour
     public void onClick()
     {
         _map.selectedMap = mapName;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (_button.interactable)
+        {
+            hoverText.gameObject.SetActive(true);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        hoverText.gameObject.SetActive(false);
     }
 }
