@@ -17,12 +17,15 @@ public class PowerCell : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameStatsService.Instance.gameStats.isPowerOn && !powerLight.enabled)
+        if (GameStatsService.Instance.gameStats.isPowerOn)
         {
             powerLight.enabled = true;
-            _audio.Play();
+            if (!_audio.isPlaying)
+            {
+                _audio.Play();
+            }
         } 
-        else if (!GameStatsService.Instance.gameStats.isPowerOn)
+        else
         {
             powerLight.enabled = false;
         }
