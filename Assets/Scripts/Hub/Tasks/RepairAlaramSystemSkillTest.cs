@@ -6,7 +6,7 @@ public class RepairAlarmSystemSkillTest : HubSkillTest
 {
     public RepairAlarmSystemSkillTest() : base(SkillsEnum.UTILITY,
         SkillTest.DIFFICULTY_MEDIUM,
-        "Fix alaram system",
+        "Fix alarm system",
         "Fix the alarm system that keeps going off.",
         "{name} fixed the alaram system. It is now quiet.",
         "{name} failed to fix the alaram system at it is still going off.",
