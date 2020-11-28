@@ -16,7 +16,7 @@ public static class CharacterTextFormatter
             case SkillsEnum.MEDIC:
                 return "Medic";
             case SkillsEnum.UTILITY:
-                return "Utility";
+                return "Janitor";
             default:
                 return "";
         }

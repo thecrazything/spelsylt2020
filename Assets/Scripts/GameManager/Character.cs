@@ -13,7 +13,7 @@ public class Character
     private float _health;
     private float _maxHealth = 100f;
     private int _hunger = 3;
-    private int _mentalHealth = 5;
+    private int _mentalHealth = 10;
     private int _mentalHealthMax = 10;
 
     public SkillsEnum skill { get; private set; }

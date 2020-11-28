@@ -199,8 +199,7 @@ public class HubBehaviour : MonoBehaviour
 
         if (newDay)
         {
-            string text;
-            if(SubtractHungerAndTallyDead(out text))
+            if(SubtractHungerAndTallyDead(out string text))
             {
                 GameOver(GameOverReason.DEATH);
                 return null;
