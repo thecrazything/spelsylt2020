@@ -19,9 +19,11 @@ public class HubTaskManager
     public static List<HubTask> getRandom(int amount, HubSkillTest[] exclude)
     {
         List<HubTask> tasks = new List<HubTask>();
+        List<HubSkillTest> excluded = new List<HubSkillTest>(exclude);
         for (var i = 0; i < amount; i++)
         {
-            HubSkillTest test = getRandomTest(exclude, 0);
+            HubSkillTest test = getRandomTest(excluded, 0);
+            excluded.Add(test);
             HubTask task = new HubTask(); ;
             task.skillTest = test;
             tasks.Add(task);
@@ -29,10 +31,10 @@ public class HubTaskManager
         return tasks;
     }
 
-    private static HubSkillTest getRandomTest(HubSkillTest[] exclude, int tries)
+    private static HubSkillTest getRandomTest(List<HubSkillTest> exclude, int tries)
     {
         HubSkillTest test = skillTests[Random.Range(0, skillTests.Length)];
-        if (exclude.Contains(test) && tries <= 10)
+        if (exclude.Contains(test) && tries <= 100)
         {
             return getRandomTest(exclude, tries + 1);
         }
