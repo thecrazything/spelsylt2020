@@ -85,6 +85,15 @@ public class GameStatsService
         _tmpExpeditionCompleteInv = null;
     }
 
+    public Item[] GetTmpInventory()
+    {
+        if (_tmpExpeditionCompleteInv == null) {
+            return new Item[0];
+        }
+
+        return _tmpExpeditionCompleteInv.ToArray();
+    }
+
     public void SetStartData(ICollection<Character> characters, GameStats gameStats)
     {
         _characters = characters;

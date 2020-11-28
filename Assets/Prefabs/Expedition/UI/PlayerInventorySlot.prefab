@@ -345,6 +345,46 @@ PrefabInstance:
       propertyPath: m_Text
       value: Drop
       objectReference: {fileID: 0}
+    - target: {fileID: 7821701999536753871, guid: 346513ab0e891d34992818c2e78c172f,
+        type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821701999536753871, guid: 346513ab0e891d34992818c2e78c172f,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 26.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821701999536753871, guid: 346513ab0e891d34992818c2e78c172f,
+        type: 3}
+      propertyPath: m_margin.z
+      value: 56.85547
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821701999536753871, guid: 346513ab0e891d34992818c2e78c172f,
+        type: 3}
+      propertyPath: m_text
+      value: ITEM
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821701999536753871, guid: 346513ab0e891d34992818c2e78c172f,
+        type: 3}
+      propertyPath: m_margin.y
+      value: 2.149353
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821701999536753871, guid: 346513ab0e891d34992818c2e78c172f,
+        type: 3}
+      propertyPath: m_margin.x
+      value: 5.701355
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821701999536753871, guid: 346513ab0e891d34992818c2e78c172f,
+        type: 3}
+      propertyPath: m_margin.w
+      value: 3.4389343
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821701999536753871, guid: 346513ab0e891d34992818c2e78c172f,
+        type: 3}
+      propertyPath: m_fontSizeMin
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 346513ab0e891d34992818c2e78c172f, type: 3}
 --- !u!224 &9109710688136058402 stripped
