@@ -1,8 +1,10 @@
-﻿public class HealthLostAction : IExtraAction
+﻿using UnityEngine;
+
+public class HealthLostAction : IExtraAction
 {
     public string GetMessage()
     {
-        return "{name} cut themselves working.";
+        return TextConstants.HEALTH_LOST_MESSAGES[Random.Range(0, TextConstants.HEALTH_LOST_MESSAGES.Length)];
     }
 
     public SkillsEnum GetSkill()

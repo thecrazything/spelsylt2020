@@ -6,7 +6,7 @@ public class RationFoundAction : IExtraAction
 {
     public string GetMessage()
     {
-        return "{name} found a ration!";
+        return TextConstants.RATION_FOUND_MESSAGES[Random.Range(0, TextConstants.RATION_FOUND_MESSAGES.Length)];
     }
 
     public SkillsEnum GetSkill()

@@ -1,8 +1,10 @@
-﻿public class MentalHealthGainAction : IExtraAction
+﻿using UnityEngine;
+
+public class MentalHealthGainAction : IExtraAction
 {
     public string GetMessage()
     {
-        return "Getting work done has cleared {name}s' mind.";
+        return TextConstants.MENTAL_HEALTH_GAINED_MESSAGES[Random.Range(0, TextConstants.MENTAL_HEALTH_GAINED_MESSAGES.Length)];
     }
 
     public SkillsEnum GetSkill()

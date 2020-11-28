@@ -1,8 +1,10 @@
-﻿public class MentalHealthLostAction : IExtraAction
+﻿using UnityEngine;
+
+public class MentalHealthLostAction : IExtraAction
 {
     public string GetMessage()
     {
-        return "Work took a tool on {name}s' mind.";
+        return TextConstants.MENTAL_HEALTH_LOST_MESSAGES[Random.Range(0, TextConstants.MENTAL_HEALTH_LOST_MESSAGES.Length)];
     }
 
     public SkillsEnum GetSkill()

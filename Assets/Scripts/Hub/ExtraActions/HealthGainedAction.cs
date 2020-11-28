@@ -1,8 +1,10 @@
-﻿public class HealthGainedAction : IExtraAction
+﻿using UnityEngine;
+
+public class HealthGainedAction : IExtraAction
 {
     public string GetMessage()
     {
-        return "{name} ate a pill they found and is feeling a bit healthier.";
+        return TextConstants.HEALTH_GAINED_MESSAGES[Random.Range(0, TextConstants.HEALTH_GAINED_MESSAGES.Length)];
     }
 
     public SkillsEnum GetSkill()
