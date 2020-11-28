@@ -14,6 +14,7 @@ public class MapButtonBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerE
     public bool locked;
     public Text hoverText;
     public string mapDisplayName;
+    public Image lockImg;
     MapBehaviour _map;
     Button _button;
     Color _deselectColor;
@@ -52,6 +53,11 @@ public class MapButtonBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerE
     void Update()
     {
         _button.interactable = GameStatsService.Instance.selectedCharacter != null && !locked;
+
+        if (locked && !lockImg.IsActive())
+        {
+            lockImg.gameObject.SetActive(true);
+        }
 
         if (_map.selectedMap == mapName)
         {
