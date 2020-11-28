@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Light: {fileID: 43062899423890574}
+  openSprite: {fileID: 21300000, guid: 35017b6dda8f4f241b6653843c407444, type: 3}
   shadowObject: {fileID: 6160115379453609306}
   keycardColor: 0
   requiresKeycard: 0

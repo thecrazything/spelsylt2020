@@ -33,8 +33,11 @@ public class ExpeditionLevelState
     // Additional containers to spawn, like a dead player
     public List<AdditionalContainer> additionalContainers;
 
+    public List<string> openDoors;
+
     public ExpeditionLevelState()
     {
+        openDoors = new List<string>();
         randomItems = new List<Item>();
         containerContents = new Dictionary<string, List<Item>>();
         additionalContainers = new List<AdditionalContainer>();

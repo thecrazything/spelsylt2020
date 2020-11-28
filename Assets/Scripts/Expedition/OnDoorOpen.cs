@@ -5,4 +5,6 @@ using UnityEngine;
 public interface OnDoorOpen
 {
     void Opened();
+
+    void SetStateOpen();
 }

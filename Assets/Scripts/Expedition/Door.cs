@@ -7,12 +7,20 @@ using UnityEngine.Experimental.Rendering.Universal;
 public class Door : MonoBehaviour, IInteractable
 {
     bool _isOpen;
+    public bool isOpen
+    {
+        get
+        {
+            return _isOpen;
+        }
+    }
+
     Animator animator;
     Collider2D _collider;
 
     public GameObject Light;
     Light2D light2d;
-    
+
     public GameObject shadowObject;
     public KeycardColor keycardColor;
     public bool requiresKeycard = false;
@@ -55,6 +63,39 @@ public class Door : MonoBehaviour, IInteractable
             isFailed = false;
             ResetLight();
         }
+    }
+
+    public string GetId()
+    {
+        return (transform.position + name).ToString().Replace(" ", "");
+    }
+
+    private void _open()
+    {
+        _audioSource.Play();
+        animator.SetBool("IsOpen", true);
+        StartCoroutine(FixRenderOrder());
+
+        _setComponentsOpen();
+    }
+
+    public void SetOpen()
+    {
+        animator.Play("Door_Open");
+        _renderer.sortingOrder = 5;
+        _setComponentsOpen();
+
+        if (_OnOpen != null)
+        {
+            _OnOpen.SetStateOpen();
+        }
+    }
+
+    private void _setComponentsOpen()
+    {
+        shadowObject.SetActive(false);
+        _collider.enabled = false;
+        _isOpen = true;
     }
 
     public float? GetActionTime(GameObject source)
@@ -106,12 +147,8 @@ public class Door : MonoBehaviour, IInteractable
             }
         }
 
-        _isOpen = true;
-        shadowObject.SetActive(false);
-        _audioSource.Play();
-        animator.SetBool("IsOpen", true);
-        _collider.enabled = false;
-        StartCoroutine(FixRenderOrder());
+        _open();
+
         if (_OnOpen != null)
         {
             _OnOpen.Opened();
