@@ -65,8 +65,8 @@ MonoBehaviour:
     noiseSize: 75
     noiseAmount: 0.02
     redOffset: {x: 0, y: -0.001}
-    blueOffset: {x: 0.001, y: 0}
-    greenOffset: {x: 0, y: 0.001}
+    blueOffset: {x: 0.002, y: 0}
+    greenOffset: {x: 0, y: 0.002}
     blitMaterialPassIndex: -1
     destination: 0
     textureId: _temptexture
