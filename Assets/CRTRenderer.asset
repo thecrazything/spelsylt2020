@@ -58,12 +58,12 @@ MonoBehaviour:
     scanlineSpeed1: -10
     scanlineSize2: 50
     scanlineSpeed2: -3
-    scanlineAmount: 0.01
+    scanlineAmount: 0.001
     vignetteSize: 1.9
     vignetteSmoothness: 0.6
     vignetteEdgeRound: 8
     noiseSize: 75
-    noiseAmount: 0.02
+    noiseAmount: 0.01
     redOffset: {x: 0, y: -0.001}
     blueOffset: {x: 0.002, y: 0}
     greenOffset: {x: 0, y: 0.002}
