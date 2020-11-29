@@ -50,7 +50,7 @@ public static class CharacterTextFormatter
     {
         if (character.mentalHealth <= 2)
         {
-            return character.name + " is loosing it.";
+            return character.name + " is losing it.";
         }
         else if (character.mentalHealth <= 4)
         {

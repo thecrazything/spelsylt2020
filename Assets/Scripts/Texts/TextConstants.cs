@@ -36,10 +36,29 @@ public static class TextConstants
     public static readonly string START_EXPIDITION_QUESTION = "Start expedition?";
     public static readonly string YES = "Y E S";
 
-    public static readonly string[] RATION_FOUND_MESSAGES = new string[] { "{name} found a ration!", "{name} made a ration. Don't ask what's in it." };
-    public static readonly string[] RATION_LOST_MESSAGES = new string[] { "{name} managed to lose a ration.", "{name} accidentally threw a ration in the trash compactor." };
-    public static readonly string[] HEALTH_GAINED_MESSAGES = new string[] { "{name} ate a pill they found and is feeling a bit healthier.", "{name} walked of some of their pain." };
-    public static readonly string[] HEALTH_LOST_MESSAGES = new string[] { "{name} cut themselves working.", "A minor accident hurt {name}.", "{name} put their limbs in the wrong place." };
-    public static readonly string[] MENTAL_HEALTH_GAINED_MESSAGES = new string[] { "Work took a toll on {name}s' mind.", "Too much work makes {name} dull." };
-    public static readonly string[] MENTAL_HEALTH_LOST_MESSAGES = new string[] { "Getting work done has cleared {name}s' mind." };
+    public static readonly string[] RATION_FOUND_MESSAGES = new string[] { 
+        "{name} found a ration!", 
+        "{name} made a ration. Don't ask what's in it." 
+    };
+    public static readonly string[] RATION_LOST_MESSAGES = new string[] { 
+        "{name} managed to lose a ration.", 
+        "{name} accidentally threw a ration in the trash compactor." 
+    };
+    public static readonly string[] HEALTH_GAINED_MESSAGES = new string[] { 
+        "{name} ate a pill they found and is feeling a bit healthier.", 
+        "{name} walked off some of their pain." 
+    };
+    public static readonly string[] HEALTH_LOST_MESSAGES = new string[] { 
+        "{name} cut themselves working.", 
+        "A minor accident hurt {name}.", 
+        "{name} put their limbs in the wrong place." 
+    };
+    public static readonly string[] MENTAL_HEALTH_GAINED_MESSAGES = new string[] {
+        "Getting work done has cleared {name}s' mind."
+    };
+    public static readonly string[] MENTAL_HEALTH_LOST_MESSAGES = new string[] { 
+        "Work took a toll on {name}s' mind.",
+        "Too much work makes {name} dull.",
+        "{Name} misses their family back home."
+    };
 }
