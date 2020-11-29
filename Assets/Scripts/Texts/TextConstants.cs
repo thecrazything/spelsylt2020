@@ -54,11 +54,12 @@ public static class TextConstants
         "{name} put their limbs in the wrong place." 
     };
     public static readonly string[] MENTAL_HEALTH_GAINED_MESSAGES = new string[] {
-        "Getting work done has cleared {name}s' mind."
+        "Getting work done has cleared {name}s' mind.",
+        "{name}s' sanity has gone up."
     };
     public static readonly string[] MENTAL_HEALTH_LOST_MESSAGES = new string[] { 
         "Work took a toll on {name}s' mind.",
         "Too much work makes {name} dull.",
-        "{Name} misses their family back home."
+        "{name} misses their family back home."
     };
 }
