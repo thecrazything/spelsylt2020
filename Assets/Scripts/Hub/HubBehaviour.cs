@@ -19,6 +19,7 @@ public class HubBehaviour : MonoBehaviour
         } 
     }
 
+    public QuitGame quitButton;
     public BlackoutTextBehaviour blackoutTextBehaviour;
     public ConsoleBehaviour consoleBehaviour;
     public HubTask[] avalibleTasks = { };
@@ -286,6 +287,7 @@ public class HubBehaviour : MonoBehaviour
             });
             blackoutTextBehaviour.WriteText(txt, false);
         }
+        quitButton.Show();
     }
 
     private void Victory()
