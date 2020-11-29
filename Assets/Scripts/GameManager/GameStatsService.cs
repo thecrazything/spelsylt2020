@@ -103,6 +103,7 @@ public class GameStatsService
     public List<Item> GetPreparedInventory()
     {
         List<Item> temp = _expeditionPreparedInventory;
+        temp.ForEach(x => gameStats.GetItems().Remove(x));
         _expeditionPreparedInventory = null;
         return temp;
     }
