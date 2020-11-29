@@ -18,17 +18,19 @@ public class ConsoleBehaviour : MonoBehaviour
     private string _startText = "";
     private Func<bool, bool> _startOnComplete;
 
+    private Text _consoleTextView;
+
     // Start is called before the first frame update
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        Text consoleTextView = GetComponent<Text>();
-        if (consoleTextView == null)
+        _consoleTextView = GetComponent<Text>();
+        if (_consoleTextView == null)
         {
             throw new ArgumentNullException("No Text component exists on the GameObject");
         }
 
-        _textPrintAnimation = new TextPrintAnimation(consoleTextView, writeDelay);
+        _textPrintAnimation = new TextPrintAnimation(_consoleTextView, writeDelay);
         _textPrintAnimation.Write(_startText, _startOnComplete);
         _startOnComplete = null;
         if (_audioSource != null)
@@ -77,6 +79,11 @@ public class ConsoleBehaviour : MonoBehaviour
     public void WriteTextWithSound(string text, Func<bool, bool> onComplete)
     {
         WriteText(text, true, onComplete);
+    }
+
+    public int GetRows()
+    {
+        return _consoleTextView.text.Split('\n').Length;
     }
 
     private void WriteText(string text, bool sound, Func<bool, bool> onComplete)
