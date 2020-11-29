@@ -384,7 +384,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '- neglecting and failing tasks may have a negative impact on your crewmates'
+  m_Text: '- neglecting or failing tasks may have a negative impact on your crewmates'
 --- !u!222 &209054359
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1171,7 +1171,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '- oxygen comsumption is based on your movement'
+  m_Text: '- oxygen consumption is based on your movement'
 --- !u!222 &1056505082
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1562,7 +1562,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '- starvation is not the only wat to lose a crewmate'
+  m_Text: '- starvation is not the only way to lose a crewmate'
 --- !u!222 &1561489630
 CanvasRenderer:
   m_ObjectHideFlags: 0
