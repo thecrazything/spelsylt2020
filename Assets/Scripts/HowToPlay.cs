@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class HowToButton : MonoBehaviour
+public class HowToPlay : MonoBehaviour
 {
-    public void onClick()
+    public void onClickBack()
     {
-        SceneManager.LoadScene("HowToPlay");
+        SceneManager.LoadScene("MainMenu");
     }
 }
